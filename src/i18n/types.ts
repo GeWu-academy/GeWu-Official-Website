@@ -45,9 +45,10 @@ export interface ProjectItem {
   description: string
   techs: string[]
   highlights: string[]
-  stars: number
-  forks: number
-  contributors: number
+  repoUrl?: string
+  stars?: number
+  forks?: number
+  contributors?: number
 }
 
 export interface OracleLotItem {
@@ -158,6 +159,8 @@ export interface TranslationsSchema {
     browseGithub: string
     contributorsSuffix: string
     claimIssue: string
+    codeRepo?: string
+    viewCode?: string
     projects: ProjectItem[]
   }
   career: {

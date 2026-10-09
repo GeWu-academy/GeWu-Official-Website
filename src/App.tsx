@@ -14,7 +14,7 @@ import { FAQSection } from '@/components/faq-section'
 import { Footer } from '@/components/footer'
 import { MaintainerDialog } from '@/components/maintainer-dialog'
 import { ScholarSeal } from '@/components/scholar-seal'
-import { useI18n } from '@/i18n'
+import { I18nProvider, useI18n } from '@/i18n'
 
 function AppContent() {
   const [isMaintainerOpen, setIsMaintainerOpen] = useState(false)
@@ -114,7 +114,9 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <I18nProvider>
+        <AppContent />
+      </I18nProvider>
     </ThemeProvider>
   )
 }

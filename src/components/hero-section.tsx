@@ -4,6 +4,7 @@ import { ArrowRight, Feather, GitPullRequest } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
 import { COMMUNITY_INFO } from '@/data/community-data'
+import { useI18n } from '@/i18n'
 
 interface HeroSectionProps {
   onOpenMaintainer: () => void
@@ -14,6 +15,8 @@ export function HeroSection({
   onOpenMaintainer,
   onExploreDirections,
 }: HeroSectionProps) {
+  const { t } = useI18n()
+  const metrics = t.hero?.metrics || COMMUNITY_INFO.metrics
   const containerRef = useRef<HTMLDivElement>(null)
   const leftColRef = useRef<HTMLDivElement>(null)
   const rightColRef = useRef<HTMLDivElement>(null)
@@ -101,13 +104,13 @@ export function HeroSection({
           </div>
 
           {/* 简雅学社指标：4 枚极简指标卡片 */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-stone-200/80 w-full">
-            {COMMUNITY_INFO.metrics.map((m) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-[var(--border)] w-full">
+            {metrics.map((m) => (
               <div key={m.label} className="flex flex-col">
-                <div className="font-serif text-2xl font-bold text-stone-900">
+                <div className="font-serif text-2xl font-bold text-[var(--text-heading)]">
                   {m.value}
                 </div>
-                <div className="text-xs text-stone-500 font-serif mt-0.5">
+                <div className="text-xs text-[var(--text-muted)] font-serif mt-0.5">
                   {m.label}
                 </div>
               </div>

@@ -1,4 +1,5 @@
-import { GitFork, Star, Users, ExternalLink, GitPullRequest } from 'lucide-react'
+import { ExternalLink, GitPullRequest } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
 
@@ -82,7 +83,7 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                 </div>
               </div>
 
-              {/* 底栏技术标签与统计 */}
+              {/* 底栏技术标签与仓库操作 */}
               <div className="pt-4 border-t border-[var(--border)] space-y-3">
                 <div className="flex flex-wrap gap-1.5">
                   {proj.techs.slice(0, 4).map((tech) => (
@@ -96,28 +97,41 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
-                  <div className="flex items-center gap-3.5 text-xs font-mono text-[var(--text-muted)]">
-                    <span className="flex items-center gap-1">
-                      <Star className="w-3.5 h-3.5 text-amber-500" />
-                      {proj.stars}
+                  {proj.repoUrl ? (
+                    <a
+                      href={proj.repoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text-heading)] transition-colors"
+                    >
+                      <GithubIcon className="w-3.5 h-3.5" />
+                      <span>{t.projects.codeRepo || '代码仓库'}</span>
+                    </a>
+                  ) : (
+                    <span className="text-xs font-serif text-[var(--text-muted)]">
+                      书院孵化中
                     </span>
-                    <span className="flex items-center gap-1">
-                      <GitFork className="w-3.5 h-3.5 opacity-60" />
-                      {proj.forks}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Users className="w-3.5 h-3.5 opacity-60" />
-                      {proj.contributors} {t.projects.contributorsSuffix}
-                    </span>
-                  </div>
+                  )}
 
-                  <button
-                    onClick={onOpenMaintainer}
-                    className="flex items-center gap-1 text-xs font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer"
-                  >
-                    <span>{t.projects.claimIssue}</span>
-                    <ExternalLink className="w-3 h-3 opacity-60" />
-                  </button>
+                  <div className="flex items-center gap-3">
+                    {proj.repoUrl && (
+                      <a
+                        href={proj.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors"
+                      >
+                        <span>{t.projects.viewCode || '访问项目'}</span>
+                        <ExternalLink className="w-3 h-3 opacity-60" />
+                      </a>
+                    )}
+                    <button
+                      onClick={onOpenMaintainer}
+                      className="inline-flex items-center gap-1 text-xs font-serif text-[var(--text-muted)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
+                    >
+                      <span>{t.projects.claimIssue}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
