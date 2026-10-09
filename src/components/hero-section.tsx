@@ -1,12 +1,11 @@
 import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
 import { ArrowRight, Feather, GitPullRequest } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
-import { AnimatedCounter } from '@/animation'
+import { gsap, AnimatedCounter } from '@/animation'
 
 interface HeroSectionProps {
   onOpenMaintainer?: () => void
@@ -53,13 +52,32 @@ export function HeroSection({
       tl.fromTo(
         leftColRef.current,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.1 }
-      ).fromTo(
-        rightColRef.current,
-        { scale: 0.95, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2, ease: 'expo.out' },
-        '-=0.7'
+        { y: 0, opacity: 1, duration: 0.9, delay: 0.05 }
       )
+        .fromTo(
+          titleLinesRef.current?.children || [],
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 },
+          '-=0.6'
+        )
+        .fromTo(
+          rightColRef.current,
+          { scale: 0.94, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1.1, ease: 'expo.out' },
+          '-=0.7'
+        )
+        .fromTo(
+          ctaRef.current?.children || [],
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
+          '-=0.5'
+        )
+        .fromTo(
+          metricsRef.current?.children || [],
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.06 },
+          '-=0.4'
+        )
     }, containerRef)
 
     return () => ctx.revert()

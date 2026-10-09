@@ -1,6 +1,5 @@
 import { ThemeProvider } from '@/context/theme-context'
 import { InkRippleCanvas } from '@/components/three/ink-ripple-canvas'
-import { CustomCursor } from '@/components/custom-cursor'
 import { Navbar } from '@/components/navbar'
 import { HeroSection } from '@/components/hero-section'
 import { PhilosophySection } from '@/components/philosophy-section'
@@ -35,8 +34,6 @@ function AppContent() {
       {/* 水墨微澜互动画布（自适应白色、米白与暗色主题） */}
       <InkRippleCanvas opacity={0.12} />
 
-      {/* 游丝微光鼠标指针 */}
-      <CustomCursor />
 
       {/* 顶部雅集导航（含语言切换与三段式主题切换器） */}
       <Navbar onOpenMaintainer={openMaintainerModal} />

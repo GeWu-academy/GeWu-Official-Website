@@ -20,7 +20,7 @@ export function Footer() {
           {/* 左侧：Logo 与使命 */}
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl overflow-hidden p-0.5 border border-[var(--border)] bg-white shadow-2xs">
+              <div className="h-9 w-9 rounded-xl overflow-hidden p-0.5 border border-[var(--border)] bg-[var(--card-elevated)] shadow-2xs">
                 <img
                   src={logoImg}
                   alt={t.nav.title}
