@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTheme } from '@/context/theme-context'
 
 interface InkRippleCanvasProps {
   className?: string
@@ -17,9 +18,15 @@ interface InkDrop {
 
 export function InkRippleCanvas({
   className = '',
-  opacity = 0.08,
+  opacity = 0.12,
 }: InkRippleCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { theme } = useTheme()
+  const themeRef = useRef(theme)
+
+  useEffect(() => {
+    themeRef.current = theme
+  }, [theme])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -28,8 +35,8 @@ export function InkRippleCanvas({
     if (!ctx) return
 
     let animationId: number
-    let drops: InkDrop[] = []
-    let mouse = { x: -100, y: -100, isMoving: false }
+    const drops: InkDrop[] = []
+    const mouse = { x: -100, y: -100 }
     let lastMoveTime = 0
 
     const resize = () => {
@@ -40,21 +47,40 @@ export function InkRippleCanvas({
     resize()
     window.addEventListener('resize', resize)
 
-    // 水墨雅色谱：松烟灰、黛青、天青微蓝
-    const inkColors = [
-      'rgba(41, 37, 36, ', // stone-800 松烟
-      'rgba(71, 85, 105, ', // slate-600 黛青
-      'rgba(15, 118, 110, ', // teal-700 翡翠竹青
-    ]
+    const getThemeColors = () => {
+      const cur = themeRef.current
+      if (cur === 'dark') {
+        return [
+          'rgba(56, 189, 248, ', // cyan-400
+          'rgba(129, 140, 248, ', // indigo-400
+          'rgba(52, 211, 153, ', // emerald-400
+        ]
+      }
+      if (cur === 'cream') {
+        return [
+          'rgba(41, 37, 36, ', // stone-800 松烟
+          'rgba(71, 85, 105, ', // slate-600 黛青
+          'rgba(15, 118, 110, ', // teal-700 翡翠竹青
+        ]
+      }
+      // white 纯白科技
+      return [
+        'rgba(15, 23, 42, ', // slate-900 墨色
+        'rgba(2, 132, 199, ', // sky-600 晴空青
+        'rgba(71, 85, 105, ', // slate-600 黛蓝
+      ]
+    }
 
     const addDrop = (x: number, y: number, isMajor = false) => {
-      const color = inkColors[Math.floor(Math.random() * inkColors.length)]
+      const colors = getThemeColors()
+      const color = colors[Math.floor(Math.random() * colors.length)]
+      const isDark = themeRef.current === 'dark'
       drops.push({
         x: x + (Math.random() - 0.5) * 15,
         y: y + (Math.random() - 0.5) * 15,
         radius: isMajor ? 6 : 3,
-        maxRadius: isMajor ? 45 + Math.random() * 35 : 22 + Math.random() * 20,
-        alpha: isMajor ? 0.35 : 0.22,
+        maxRadius: isMajor ? 48 + Math.random() * 35 : 24 + Math.random() * 20,
+        alpha: isMajor ? (isDark ? 0.45 : 0.35) : (isDark ? 0.3 : 0.22),
         decay: isMajor ? 0.003 : 0.005,
         color,
       })
@@ -71,7 +97,6 @@ export function InkRippleCanvas({
     }
 
     const handleClick = (e: MouseEvent) => {
-      // 点击时晕开一朵稍大的淡墨
       addDrop(e.clientX, e.clientY, true)
       addDrop(e.clientX, e.clientY, false)
     }
@@ -84,7 +109,6 @@ export function InkRippleCanvas({
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // 绘制并更新每朵墨迹
       for (let i = drops.length - 1; i >= 0; i--) {
         const drop = drops[i]
         drop.radius += (drop.maxRadius - drop.radius) * 0.04
@@ -95,7 +119,6 @@ export function InkRippleCanvas({
           continue
         }
 
-        // 径向渐变模拟墨汁在宣纸纤维中散开的边缘晕染
         const grad = ctx.createRadialGradient(
           drop.x,
           drop.y,

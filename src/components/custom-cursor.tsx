@@ -56,15 +56,15 @@ export function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
-      {/* 墨韵外圈 */}
+      {/* 笔意光晕外圈 */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 h-8 w-8 rounded-full border border-stone-400/40 bg-stone-500/[0.03] transition-transform duration-75 pointer-events-none"
+        className="fixed top-0 left-0 h-8 w-8 rounded-full border border-[var(--cursor-ring)] bg-[var(--cursor-ring)]/[0.04] transition-transform duration-75 pointer-events-none"
       />
-      {/* 朱砂笔意中心小点 */}
+      {/* 笔意中心小点 */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-red-800 pointer-events-none shadow-[0_0_6px_rgba(185,28,28,0.4)]"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-[var(--cursor-dot)] pointer-events-none shadow-[0_0_8px_var(--cursor-dot)]"
       />
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ThemeProvider } from '@/context/theme-context'
 import { InkRippleCanvas } from '@/components/three/ink-ripple-canvas'
 import { CustomCursor } from '@/components/custom-cursor'
 import { Navbar } from '@/components/navbar'
@@ -15,7 +16,7 @@ import { MaintainerDialog } from '@/components/maintainer-dialog'
 import { MobileDock } from '@/components/mobile-dock'
 import { ScholarSeal } from '@/components/scholar-seal'
 
-export default function App() {
+function AppContent() {
   const [isMaintainerOpen, setIsMaintainerOpen] = useState(false)
 
   const handleOpenMaintainer = () => {
@@ -34,14 +35,14 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen text-stone-800 bg-[#faf9f5] selection:bg-red-800/10 selection:text-red-900 overflow-x-hidden font-sans">
-      {/* 宣纸落墨 · 水墨晕染微澜互动画布 */}
+    <div className="relative min-h-screen text-[var(--text-body)] bg-[var(--background)] selection:bg-[var(--accent-seal)]/15 selection:text-[var(--text-heading)] overflow-x-hidden font-sans transition-colors duration-300">
+      {/* 水墨微澜互动画布（自适应白色、米白与暗色主题） */}
       <InkRippleCanvas opacity={0.12} />
 
-      {/* 墨韵游丝鼠标指针 */}
+      {/* 游丝微光鼠标指针 */}
       <CustomCursor />
 
-      {/* 顶部素白雅集导航 */}
+      {/* 顶部雅集导航（含三段式主题切换器） */}
       <Navbar onOpenMaintainer={handleOpenMaintainer} />
 
       {/* 核心板块内容流 */}
@@ -58,23 +59,23 @@ export default function App() {
         {/* 格物四修：研习方向折屏 */}
         <TechDirectionsSection onOpenMaintainer={handleOpenMaintainer} />
 
-        {/* 格物灵签互动博古案：趣味书院修己体验 */}
+        {/* 格物问策博古案：趣味书院省察体验 */}
         <section
           id="oracle-lot"
-          className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-stone-100/50 border-y border-stone-200/70"
+          className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[var(--section-alt-bg)] border-y border-[var(--border)] transition-colors duration-300"
         >
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 mb-3">
                 <ScholarSeal text="问策" subtext="格物" size="sm" variant="cinnabar" />
-                <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+                <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
                   ZEN LOT & ORACLE
                 </span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-2">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-2">
                 格物问策 · 晨昏省察
               </h2>
-              <p className="font-serif text-sm text-stone-500">
+              <p className="font-serif text-sm text-[var(--text-muted)]">
                 探寻今日研习心境，在代码与工程之间体悟造物与笃行之妙
               </p>
             </div>
@@ -112,5 +113,13 @@ export default function App() {
         onClose={handleCloseMaintainer}
       />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }

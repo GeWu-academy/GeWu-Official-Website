@@ -1,4 +1,0 @@
-export * from './types'
-export * from './context'
-export { zh } from './locales/zh'
-export { en } from './locales/en'
