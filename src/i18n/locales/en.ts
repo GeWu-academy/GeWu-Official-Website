@@ -567,7 +567,7 @@ export const en: TranslationsSchema = {
     dark: 'Dark',
     whiteHint: 'Clean & Bright · Modern Minimalist',
     creamHint: 'Warm Xuan Paper · Song Dynasty Aesthetic',
-    darkHint: 'Obsidian Black · Cybernetic Glow',
+    darkHint: 'Pine Ink & Obsidian · Celadon Radiance',
   },
   lang: {
     name: 'Language',

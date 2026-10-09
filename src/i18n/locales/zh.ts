@@ -558,7 +558,7 @@ export const zh: TranslationsSchema = {
     dark: '暗色',
     whiteHint: '素雅明净 · 现代纯白',
     creamHint: '温润宣纸 · 宋风雅集',
-    darkHint: '深邃黑曜 · 赛博光晕',
+    darkHint: '松烟玄石 · 霁蓝凝光',
   },
   lang: {
     name: '语言切换',

@@ -124,7 +124,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                 onClick={handleOpenMaintainer}
                 className="flex items-center gap-1 px-3 py-1 text-xs font-serif font-medium text-[var(--primary-foreground)] bg-[var(--primary)] hover:opacity-90 rounded-lg shadow-xs hover:shadow transition-all cursor-pointer"
               >
-                <Feather className="w-3 h-3 text-amber-300 dark:text-amber-200" />
+                <Feather className="w-3 h-3 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
                 <span>{t.nav.maintainer}</span>
               </button>
             </div>
@@ -201,7 +201,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                 }}
                 className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium text-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-90 cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-amber-300 dark:text-amber-200" />
+                <MessageCircle className="w-4 h-4 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
                 <span>{t.nav.apply}</span>
               </button>
 

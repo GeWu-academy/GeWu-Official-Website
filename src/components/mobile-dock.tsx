@@ -46,7 +46,7 @@ export function MobileDock({ onOpenMaintainer, onExploreDirections }: MobileDock
           onClick={handleOpenMaintainer}
           className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-serif font-medium shadow-sm hover:opacity-90 cursor-pointer"
         >
-          <Feather className="w-3.5 h-3.5 text-amber-300 dark:text-amber-200" />
+          <Feather className="w-3.5 h-3.5 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
           <span>{t.mobileDock.maintainer}</span>
         </button>
 

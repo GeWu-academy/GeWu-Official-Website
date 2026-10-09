@@ -64,7 +64,7 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                   <span className="text-xs font-serif px-2.5 py-0.5 rounded-md bg-[var(--theme-tab-bg)] text-[var(--text-body)] border border-[var(--border)]">
                     {proj.category}
                   </span>
-                  <span className="text-[11px] font-serif text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/15 px-2 py-0.5 rounded border border-emerald-500/20 dark:border-emerald-500/30">
+                  <span className="text-[11px] font-serif text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/20 dark:border-emerald-500/25">
                     ● {proj.status}
                   </span>
                 </div>

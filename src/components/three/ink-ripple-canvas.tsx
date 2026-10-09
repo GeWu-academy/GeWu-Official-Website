@@ -51,9 +51,9 @@ export function InkRippleCanvas({
       const cur = themeRef.current
       if (cur === 'dark') {
         return [
-          'rgba(56, 189, 248, ', // cyan-400
-          'rgba(129, 140, 248, ', // indigo-400
-          'rgba(52, 211, 153, ', // emerald-400
+          'rgba(56, 189, 248, ', // 霁蓝天青
+          'rgba(203, 213, 225, ', // 曜魄月华霜白
+          'rgba(45, 212, 191, ', // 秘色青碧
         ]
       }
       if (cur === 'cream') {

@@ -127,10 +127,10 @@ export function HeroSection({
           >
             <button
               onClick={handleExploreDirections}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(56,189,248,0.2)] dark:shadow-[0_4px_24px_rgba(56,189,248,0.3)] transition-all cursor-pointer"
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-95 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(15,23,42,0.12)] dark:shadow-[0_4px_20px_rgba(56,189,248,0.22)] transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>{t.hero.exploreBtn}</span>
-              <ArrowRight className="w-4 h-4 opacity-70" />
+              <ArrowRight className="w-4 h-4 opacity-75" />
             </button>
 
             <button

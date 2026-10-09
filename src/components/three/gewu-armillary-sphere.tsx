@@ -71,7 +71,7 @@ export function GewuArmillarySphere({
     scene.add(dirLight1)
     dirLight1Ref.current = dirLight1
 
-    const dirLight2 = new THREE.DirectionalLight(isDark ? 0x818cf8 : 0xdbeafe, isDark ? 1.8 : 1.2)
+    const dirLight2 = new THREE.DirectionalLight(isDark ? 0x0284c7 : 0xdbeafe, isDark ? 1.8 : 1.2)
     dirLight2.position.set(-5, -4, -3)
     scene.add(dirLight2)
     dirLight2Ref.current = dirLight2
@@ -132,7 +132,7 @@ export function GewuArmillarySphere({
     const ringLines: THREE.LineSegments[] = []
 
     const ringColorsLight = [0x292524, 0x0f766e, 0x334155, 0xb45309]
-    const ringColorsDark = [0x94a3b8, 0x38bdf8, 0x818cf8, 0xf59e0b]
+    const ringColorsDark = [0x64748b, 0x38bdf8, 0x475569, 0xd97706]
 
     const createArmillaryRing = (
       index: number,
@@ -190,10 +190,10 @@ export function GewuArmillarySphere({
 
     // 四大研习方向节点锚点
     const nodeDirections = [
-      { name: 'AI & 智能体', pos: new THREE.Vector3(2.3, 0, 0), color: 0x0284c7 },
-      { name: '全栈现代架构', pos: new THREE.Vector3(0, 2.0, 0), color: isDark ? 0x818cf8 : 0x475569 },
-      { name: '系统高并发', pos: new THREE.Vector3(-1.7, 0, 1.2), color: 0x0f766e },
-      { name: '体验设计美学', pos: new THREE.Vector3(0, -1.35, 1.0), color: isDark ? 0xef4444 : 0xb91c1c },
+      { name: 'AI & 智能体', pos: new THREE.Vector3(2.3, 0, 0), color: isDark ? 0x38bdf8 : 0x0284c7 },
+      { name: '全栈现代架构', pos: new THREE.Vector3(0, 2.0, 0), color: isDark ? 0x0284c7 : 0x475569 },
+      { name: '系统高并发', pos: new THREE.Vector3(-1.7, 0, 1.2), color: isDark ? 0x2dd4bf : 0x0f766e },
+      { name: '体验设计美学', pos: new THREE.Vector3(0, -1.35, 1.0), color: isDark ? 0xe15555 : 0xb91c1c },
     ]
 
     const nodesGroup = new THREE.Group()

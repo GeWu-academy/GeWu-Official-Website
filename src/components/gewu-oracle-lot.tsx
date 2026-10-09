@@ -44,7 +44,7 @@ export function GewuOracleLot() {
       {/* 宣纸竹简与黑曜晶石自适应卡片主体 */}
       <div
         ref={cardRef}
-        className="relative rounded-3xl bg-gradient-to-b from-[#fbfbfa] to-[#f4f2ea] dark:from-[#111728] dark:to-[#080d17] border border-stone-200/90 dark:border-white/10 p-6 sm:p-8 shadow-[0_12px_40px_rgba(28,25,23,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.08)] overflow-hidden transition-all duration-500 backdrop-blur-md"
+        className="relative rounded-3xl bg-gradient-to-b from-[#fbfbfa] to-[#f4f2ea] dark:from-[#131722] dark:to-[#0a0d14] border border-stone-200/90 dark:border-white/[0.08] p-6 sm:p-8 shadow-[0_12px_40px_rgba(28,25,23,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.08)] overflow-hidden transition-all duration-500 backdrop-blur-md"
       >
         {/* 背景素淡花窗水墨晕边 */}
         <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl from-[var(--border)]/30 to-transparent rounded-bl-full pointer-events-none" />
@@ -106,9 +106,9 @@ export function GewuOracleLot() {
 
           {/* 宜忌研析 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-xs font-serif">
-            <div className="p-3.5 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 dark:border-emerald-500/30 flex flex-col gap-1">
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-500/20 dark:border-emerald-500/25 flex flex-col gap-1">
               <span className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 shrink-0" />
                 {t.oracle.dosLabel}
               </span>
               <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">
@@ -116,9 +116,9 @@ export function GewuOracleLot() {
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 dark:border-amber-500/30 flex flex-col gap-1">
+            <div className="p-3.5 rounded-xl bg-amber-500/10 dark:bg-amber-950/30 border border-amber-500/20 dark:border-amber-500/25 flex flex-col gap-1">
               <span className="font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 shrink-0" />
                 {t.oracle.dontsLabel}
               </span>
               <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">

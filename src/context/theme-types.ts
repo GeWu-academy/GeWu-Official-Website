@@ -27,7 +27,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
     id: 'dark',
     name: '深邃暗夜',
     shortName: '暗色',
-    desc: '黑曜晶石 · 赛博微光',
+    desc: '松烟玄石 · 霁蓝凝光',
     icon: 'Moon',
   },
 ]

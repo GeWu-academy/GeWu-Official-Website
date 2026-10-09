@@ -195,8 +195,8 @@ export const TECH_STACK_DIRECTIONS: TechStackDirection[] = [
     subtitle: 'TypeScript · React 19 · Next.js · Node.js / 全栈生态',
     category: 'Modern Web & Ecosystem',
     badge: 'Modern Fullstack',
-    accentColor: '#60a5fa',
-    glowColor: 'rgba(96, 165, 250, 0.25)',
+    accentColor: '#0284c7',
+    glowColor: 'rgba(2, 132, 199, 0.25)',
     description: '极致的端到端类型安全、现代前端工程架构与服务端渲染。打磨兼具百万级用户并发体验与极佳开发者人体工学的全栈产品。',
     highlights: [
       'React 19 Actions、RSC 与极速流式渲染 (Streaming SSR)',
@@ -299,8 +299,8 @@ export const TECH_STACK_DIRECTIONS: TechStackDirection[] = [
     subtitle: '产品交互设计 · 体验架构 · 原型输出 · 设计系统',
     category: 'Experience & Aesthetics',
     badge: 'Design System',
-    accentColor: '#f472b6',
-    glowColor: 'rgba(244, 114, 182, 0.25)',
+    accentColor: '#ef4444',
+    glowColor: 'rgba(239, 68, 68, 0.25)',
     description: '连接美学直觉与工程逻辑。不仅输出像素级优雅的界面，更从业务目标、用户心智、设计规范与研发闭环出发构建卓越的数字产品。',
     highlights: [
       '企业级 Design System 架构与 Figma Variables 变量系统',
