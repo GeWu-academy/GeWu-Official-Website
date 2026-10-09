@@ -58,8 +58,27 @@ export function GewuArmillarySphere({
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.1
+    renderer.toneMappingExposure = 1.2
     container.appendChild(renderer.domElement)
+
+    // 环境贴图（PMREMGenerator 生成柔和 IBL 以驱动物理材质反射）
+    const pmremGenerator = new THREE.PMREMGenerator(renderer)
+    pmremGenerator.compileEquirectangularShader()
+    const neutralEnvScene = new THREE.Scene()
+    neutralEnvScene.background = new THREE.Color(isDark ? 0x0a0a0f : 0xfaf8f5)
+    // 添加柔和渐变光源以形成微妙反射
+    const envLight1 = new THREE.DirectionalLight(isDark ? 0xc8d0e8 : 0xfffbf0, 1.0)
+    envLight1.position.set(1, 3, 2)
+    neutralEnvScene.add(envLight1)
+    const envLight2 = new THREE.DirectionalLight(isDark ? 0xf59e0b : 0xfef3c7, 0.5)
+    envLight2.position.set(-2, -1, -1)
+    neutralEnvScene.add(envLight2)
+    const envAmbient = new THREE.AmbientLight(0xffffff, 0.4)
+    neutralEnvScene.add(envAmbient)
+    const envMap = pmremGenerator.fromScene(neutralEnvScene, 0.04).texture
+    scene.environment = envMap
+    neutralEnvScene.dispose()
+    pmremGenerator.dispose()
 
     // 光照系统
     const isDark = theme === 'dark'
@@ -81,22 +100,30 @@ export function GewuArmillarySphere({
     scene.add(mainGroup)
     sphereGroupRef.current = mainGroup
 
-    // 核心多面体（黑曜晶石与宋瓷温润质感）
-    const coreGeo = new THREE.IcosahedronGeometry(1.0, 1)
+    // 核心多面体（黑曜晶石与宋瓷温润质感 — 高细分 + 高级物理材质）
+    const coreGeo = new THREE.IcosahedronGeometry(1.0, 2)
     const coreMat = new THREE.MeshPhysicalMaterial({
-      color: isDark ? 0x050505 : 0xfaf8f5,
-      metalness: isDark ? 0.4 : 0.1,
-      roughness: isDark ? 0.12 : 0.2,
-      transmission: isDark ? 0.4 : 0.6,
-      thickness: 1.2,
-      ior: 1.45,
+      color: isDark ? 0x080808 : 0xfcfaf7,
+      metalness: isDark ? 0.45 : 0.08,
+      roughness: isDark ? 0.08 : 0.14,
+      transmission: isDark ? 0.5 : 0.7,
+      thickness: 1.5,
+      ior: 1.52,
       transparent: true,
-      opacity: isDark ? 0.95 : 0.88,
-      reflectivity: 0.9,
-      clearcoat: 0.8,
-      clearcoatRoughness: 0.1,
-      emissive: 0x000000,
-      emissiveIntensity: 0,
+      opacity: isDark ? 0.96 : 0.9,
+      reflectivity: 1.0,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05,
+      specularIntensity: isDark ? 1.0 : 0.8,
+      specularColor: isDark ? new THREE.Color(0xffffff) : new THREE.Color(0xfef3c7),
+      sheen: isDark ? 0.3 : 0.15,
+      sheenRoughness: 0.2,
+      sheenColor: isDark ? new THREE.Color(0xf59e0b) : new THREE.Color(0x0f766e),
+      attenuationColor: isDark ? new THREE.Color(0x1a1a2e) : new THREE.Color(0xfef9ee),
+      attenuationDistance: 3.0,
+      emissive: isDark ? 0x0a0a14 : 0x000000,
+      emissiveIntensity: isDark ? 0.15 : 0,
+      envMapIntensity: 1.5,
     })
     const coreMesh = new THREE.Mesh(coreGeo, coreMat)
     mainGroup.add(coreMesh)
@@ -113,14 +140,21 @@ export function GewuArmillarySphere({
     coreMesh.add(wireLines)
     wireMeshRef.current = wireLines
 
-    // 内部微型星核（暖金橙黄 / 翡翠青）
-    const innerGeo = new THREE.OctahedronGeometry(0.45)
-    const innerMat = new THREE.MeshStandardMaterial({
+    // 内部微型星核（暖金琥珀 / 翡翠青 — 宝石级物理材质）
+    const innerGeo = new THREE.OctahedronGeometry(0.45, 1)
+    const innerMat = new THREE.MeshPhysicalMaterial({
       color: isDark ? 0xf59e0b : 0x0f766e,
-      roughness: 0.3,
-      metalness: 0.3,
+      roughness: 0.12,
+      metalness: 0.5,
       emissive: isDark ? 0xf59e0b : 0x0f766e,
-      emissiveIntensity: isDark ? 0.65 : 0.35,
+      emissiveIntensity: isDark ? 0.8 : 0.45,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.08,
+      sheen: 0.5,
+      sheenRoughness: 0.15,
+      sheenColor: isDark ? new THREE.Color(0xfbbf24) : new THREE.Color(0x14b8a6),
+      reflectivity: 1.0,
+      envMapIntensity: 2.0,
     })
     const innerMesh = new THREE.Mesh(innerGeo, innerMat)
     coreMesh.add(innerMesh)
@@ -149,14 +183,21 @@ export function GewuArmillarySphere({
 
       const colorHex = isDark ? ringColorsDark[index] : ringColorsLight[index]
 
-      // 主圆环体
-      const torusGeo = new THREE.TorusGeometry(radius, tubeRadius, 16, 120)
-      const torusMat = new THREE.MeshStandardMaterial({
+      // 主圆环体（高精度管径 + 漆金属物理材质）
+      const torusGeo = new THREE.TorusGeometry(radius, tubeRadius, 32, 160)
+      const torusMat = new THREE.MeshPhysicalMaterial({
         color: colorHex,
-        roughness: isDark ? 0.25 : 0.35,
-        metalness: isDark ? 0.7 : 0.55,
+        roughness: isDark ? 0.15 : 0.25,
+        metalness: isDark ? 0.85 : 0.7,
         emissive: isDark ? colorHex : 0x000000,
-        emissiveIntensity: isDark ? 0.2 : 0,
+        emissiveIntensity: isDark ? 0.25 : 0,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.15,
+        reflectivity: 0.9,
+        sheen: isDark ? 0.2 : 0.1,
+        sheenRoughness: 0.3,
+        sheenColor: isDark ? new THREE.Color(colorHex).lerp(new THREE.Color(0xffffff), 0.5) : new THREE.Color(0x44403c),
+        envMapIntensity: 1.2,
       })
       const torus = new THREE.Mesh(torusGeo, torusMat)
       ringGroup.add(torus)
@@ -201,13 +242,16 @@ export function GewuArmillarySphere({
     mainGroup.add(nodesGroup)
 
     nodeDirections.forEach((dir) => {
-      const nodeGeo = new THREE.SphereGeometry(0.09, 16, 16)
-      const nodeMat = new THREE.MeshStandardMaterial({
+      const nodeGeo = new THREE.SphereGeometry(0.09, 24, 24)
+      const nodeMat = new THREE.MeshPhysicalMaterial({
         color: dir.color,
-        roughness: 0.2,
-        metalness: 0.4,
+        roughness: 0.12,
+        metalness: 0.5,
         emissive: dir.color,
-        emissiveIntensity: isDark ? 0.6 : 0.4,
+        emissiveIntensity: isDark ? 0.7 : 0.5,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.05,
+        reflectivity: 1.0,
       })
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat)
       nodeMesh.position.copy(dir.pos)

@@ -18,6 +18,8 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2022',
+    cssCodeSplit: true,
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
@@ -34,6 +36,9 @@ export default defineConfig({
             }
             if (id.includes('lucide-react')) {
               return 'vendor-lucide'
+            }
+            if (id.includes('@base-ui') || id.includes('zustand') || id.includes('class-variance-authority')) {
+              return 'vendor-ui'
             }
           }
         },

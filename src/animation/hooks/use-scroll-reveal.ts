@@ -40,19 +40,19 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 ) {
   const containerRef = useRef<T>(null)
 
+  const {
+    selector,
+    start = 'top 85%',
+    y = 28,
+    duration = 0.8,
+    stagger = 0.1,
+    ease = 'power3.out',
+    once = true,
+  } = options
+
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
-
-    const {
-      selector,
-      start = 'top 85%',
-      y = 28,
-      duration = 0.8,
-      stagger = 0.1,
-      ease = 'power3.out',
-      once = true,
-    } = options
 
     const ctx = gsap.context(() => {
       const selected = selector ? el.querySelectorAll(selector) : null
@@ -87,7 +87,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     return () => {
       ctx.revert()
     }
-  }, [options.selector, options.start, options.y, options.duration, options.stagger, options.ease, options.once])
+  }, [selector, start, y, duration, stagger, ease, once])
 
   return containerRef
 }

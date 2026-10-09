@@ -393,52 +393,52 @@ export const zh: TranslationsSchema = {
   career: {
     sealText: '修己',
     sealSubtext: '致远',
-    subtitle: 'CAREER EMPOWERMENT',
-    title: '修己致远 · 职涯赋能',
-    desc: '用真实可验证的工程代码代替空洞的技术名词，让每一次投入都能转化为立身的核心底气。',
+    subtitle: 'GROWTH & REFERRAL',
+    title: '修己致远 · 技术成长与互助内推',
+    desc: '我们没有导师包办，全凭硬核代码。在纯粹的技术分享中精进，在真实的开源协作中沉淀，成员自发互助内推。',
     loopTag: '知行闭环',
     steps: [
       {
         num: '壹',
-        title: '技能标杆对齐',
-        desc: '深入一线名企与出海团队真实岗位标准，明确硬核技术评级体系，告别盲目自学。',
+        title: '技术规范与视野对齐',
+        desc: '深入生产级开源项目与一线技术标准，明确硬核工程规范，告别闭门造车与盲目自学。',
       },
       {
         num: '贰',
         title: '生产级开源实作',
-        desc: '拒绝千篇一律的玩具 Demo。参与书院孵化工程，沉淀真实高并发与智能体的代码 Commit。',
+        desc: '拒绝千篇一律的玩具 Demo。参与书院孵化工程，沉淀真实高并发、AI 智能体与设计系统的代码 Commit。',
       },
       {
         num: '叁',
-        title: '简历复盘与答辩',
-        desc: '资深工程师与 Maintainer 针对简历逐行打磨，模拟真实架构答辩与系统设计深挖。',
+        title: '同侪评审与架构推演',
+        desc: '社区成员开展平等 Code Review 与架构推演，在真实业务场景的思辨中锤炼工程硬实力。',
       },
       {
         num: '肆',
-        title: '精准内推直达',
-        desc: '直接推向用人团队业务 Leader，消除 HR 盲盒初筛信息差，全程陪伴技术立身。',
+        title: '成员互助内推直达',
+        desc: '社区成员自发互助内推优质岗位，消除中介信息差，凭借真实开源代码与同侪信任立身。',
       },
     ],
-    diffTitle: '消除技术信息差 · 建立笃定竞争力',
-    diffDesc: '通过真实开源工程协作，构建经得起时间考验的个人技术护城河',
-    badTag: '困境',
-    goodTag: '格物',
+    diffTitle: '打破传统困境 · 回归技术本真',
+    diffDesc: '没有商业培训班包装套路，以真实开源协同与开发者互助建立个人硬核护城河',
+    badTag: '传统困境',
+    goodTag: '格物书院',
     differences: [
       {
-        traditional: '自学盲刷，简历仅有套壳玩具 Demo',
-        gewu: '深入生产级开源项目，代码与架构有据可查',
+        traditional: '自学盲刷，项目仅有套壳玩具 Demo',
+        gewu: '深入生产级开源项目，代码与架构真实可查',
       },
       {
-        traditional: '技术信息闭塞，不了解企业真实考核深度',
-        gewu: '资深导师实时同步技术雷达与面试重点',
+        traditional: '闭门造车，缺乏高质量技术交流与一线工程视野',
+        gewu: '纯粹技术分享，同侪深度探讨生产落地与最佳实践',
       },
       {
-        traditional: '海投简历石沉大海，被 HR 初筛过滤',
-        gewu: '精准直达业务 Leader，作品集硬核背书',
+        traditional: '单打独斗海投，优质岗位与内推信息闭塞',
+        gewu: '社区成员自发互助内推，基于实作信任推荐',
       },
     ],
-    companionNote: '同行者互助共进 · 长期成长陪伴网络',
-    mentorCta: '预约导师一对一简历指导',
+    companionNote: '开发者平等交流 · 纯粹技术分享社区',
+    mentorCta: '加入社区交流与互助内推',
   },
   collaboration: {
     sealText: '入阁',
@@ -450,7 +450,7 @@ export const zh: TranslationsSchema = {
       tag: '开源共建',
       title: '发起 Issue & PR 提交通道',
       desc: '书院推崇「代码说话」。前往 GitHub 组织，挑选标有 good first issue 的任务，共同打磨生产级工程。',
-      point1: '严谨的 Code Review 与系统架构答辩',
+      point1: '严谨的同侪 Code Review 与系统架构探讨',
       point2: '所有合并代码永久保留贡献者学籍署名',
       btn: '前往 GitHub 组织主页',
     },
@@ -466,7 +466,7 @@ export const zh: TranslationsSchema = {
     },
     weeklySync: {
       title: '书院在线技术研讨圆桌（不定时发起）',
-      desc: '同行结对编程、生产疑难 Bug 攻坚复盘、模拟面试答辩与求职动态分享，议题驱动灵活开讲',
+      desc: '同行结对编程、生产疑难 Bug 攻坚复盘、前沿架构探讨与社区互助内推，议题驱动灵活开讲',
       tag: '不定时研讨切磋',
     },
   },
@@ -475,7 +475,7 @@ export const zh: TranslationsSchema = {
     sealSubtext: '解惑',
     subtitle: 'QUESTIONS & ANSWERS',
     title: '入阁问道 · 常见答疑',
-    desc: '关于加入书院、项目共建与修习就业的常见关切。',
+    desc: '关于加入书院、项目共建与同侪互助的常见关切。',
     items: [
       {
         question: '加入格物书院需要什么条件？有基础门槛吗？',
@@ -483,9 +483,9 @@ export const zh: TranslationsSchema = {
           '我们欢迎真正热爱技术、尊重开源、渴望提升硬核实战能力的开发者与设计师。无论你是高校在读、寻找实习，还是在职渴望技术进阶或转换赛道，只要你愿意保持「穷理而格物」的钻研心态，并能投入时间参与共建，书院都有适合你的梯队。',
       },
       {
-        question: '书院如何帮助成员打磨硬核能力并更好就业？',
+        question: '书院如何助力成员技术成长与互助内推？',
         answer:
-          '我们拒绝形式主义。第一，通过真实生产级项目和开源仓库，让成员深度参与系统设计与核心代码编写，积累高质量的 GitHub Commit；第二，一线在职导师定期开展 Code Review、简历逐行打磨与架构答辩模拟；第三，整合一线名企与优质出海团队的内推资源，直接递送至业务 Leader。',
+          '我们是一个纯粹的技术分享与开源开发者社区，没有商业培训机构式的「资深导师带徒」或「保过包装」。我们的助力方式非常真诚：第一，推崇「代码说话」，通过真实生产级项目和开源仓库，让成员深度参与系统设计与核心开发，积累高质量 GitHub 实作；第二，平等的技术分享与研讨，同侪之间互相 Code Review、切磋疑难技术方案；第三，依托技术交流建立的同侪信任，社区成员自发互通优质招聘信息并提供真诚互助内推。',
       },
       {
         question: '如何参与贡献并提交 Issue 或 Pull Request？',
@@ -501,7 +501,7 @@ export const zh: TranslationsSchema = {
   },
   footer: {
     motto: '穷理而格物 · 知行以致远',
-    desc: '面向开发者与设计师的实践学社。同行互帮互助，打磨硬核实战能力，消除求职与技术信息差，助力成员更好就业与立身。',
+    desc: '面向开发者与设计师的开放技术社区。纯粹技术分享，同行互帮互助，打磨硬核实战能力，社区成员平等互助内推。',
     sealText: '格物',
     sealSubtext: '致知',
     colTechTitle: '研习方向',
@@ -558,7 +558,7 @@ export const zh: TranslationsSchema = {
     dark: '暗色',
     whiteHint: '素雅明净 · 现代纯白',
     creamHint: '温润宣纸 · 宋风雅集',
-    darkHint: '松烟玄石 · 霁蓝凝光',
+    darkHint: '纯粹黑曜 · 白描金石',
   },
   lang: {
     name: '语言切换',
