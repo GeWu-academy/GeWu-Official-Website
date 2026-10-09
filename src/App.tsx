@@ -13,7 +13,6 @@ import { CollaborationSection } from '@/components/collaboration-section'
 import { FAQSection } from '@/components/faq-section'
 import { Footer } from '@/components/footer'
 import { MaintainerDialog } from '@/components/maintainer-dialog'
-import { MobileDock } from '@/components/mobile-dock'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
 

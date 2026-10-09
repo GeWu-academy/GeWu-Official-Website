@@ -1,5 +1,6 @@
 import { Sun, Moon, Feather } from 'lucide-react'
 import { useTheme, type Theme } from '@/context/theme-context'
+import { useI18n } from '@/i18n'
 
 interface ThemeSwitcherProps {
   variant?: 'segmented' | 'compact' | 'drawer'
@@ -8,6 +9,7 @@ interface ThemeSwitcherProps {
 
 export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSwitcherProps) {
   const { theme, setTheme } = useTheme()
+  const { t } = useI18n()
 
   const options: Array<{
     id: Theme
@@ -18,24 +20,24 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
   }> = [
     {
       id: 'white',
-      label: '白色',
-      shortLabel: '白色',
+      label: t.theme.white,
+      shortLabel: t.theme.white,
       icon: Sun,
-      hint: '素雅明净 · 现代纯白',
+      hint: t.theme.whiteHint,
     },
     {
       id: 'cream',
-      label: '米白',
-      shortLabel: '米白',
+      label: t.theme.cream,
+      shortLabel: t.theme.cream,
       icon: Feather,
-      hint: '温润宣纸 · 宋风雅集',
+      hint: t.theme.creamHint,
     },
     {
       id: 'dark',
-      label: '暗色',
-      shortLabel: '暗色',
+      label: t.theme.dark,
+      shortLabel: t.theme.dark,
       icon: Moon,
-      hint: '深邃黑曜 · 赛博光晕',
+      hint: t.theme.darkHint,
     },
   ]
 
@@ -43,7 +45,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
     return (
       <div className={`flex flex-col gap-2 ${className}`}>
         <div className="flex items-center justify-between text-xs px-1 text-[var(--text-muted)] font-serif">
-          <span>界面主题切换</span>
+          <span>{t.theme.title}</span>
           <span className="text-[10px] uppercase tracking-wider font-mono">
             {theme === 'white' ? 'WHITE' : theme === 'cream' ? 'CREAM' : 'DARK'}
           </span>
@@ -89,7 +91,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
                   : 'text-[var(--text-muted)] hover:text-[var(--text-heading)]'
               }`}
               title={`${opt.label} (${opt.hint})`}
-              aria-label={`切换为${opt.label}主题`}
+              aria-label={opt.label}
             >
               <Icon className="w-3.5 h-3.5" />
             </button>
@@ -103,7 +105,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
   return (
     <div
       role="group"
-      aria-label="选择主题"
+      aria-label={t.theme.title}
       className={`relative inline-flex items-center p-1 rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] ${className}`}
     >
       {options.map((opt) => {
