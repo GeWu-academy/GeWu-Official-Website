@@ -1,4 +1,5 @@
-import { ArrowUp, Github, Heart } from 'lucide-react'
+import { ArrowUp, Heart } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/github-icon'
 import logoImg from '@/assets/329871518.png'
 import { COMMUNITY_INFO } from '@/data/community-data'
 
@@ -82,7 +83,7 @@ export function Footer() {
                   rel="noreferrer"
                   className="flex items-center gap-1.5 hover:text-cyan-300 transition-colors"
                 >
-                  <Github className="w-3.5 h-3.5" />
+                  <GithubIcon className="w-3.5 h-3.5" />
                   <span>GitHub 组织主页</span>
                 </a>
               </li>

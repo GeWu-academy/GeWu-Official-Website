@@ -1,4 +1,5 @@
-import { Sparkles, Compass, Github } from 'lucide-react'
+import { Sparkles, Compass } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/github-icon'
 
 interface MobileDockProps {
   onOpenMaintainer: () => void
@@ -32,7 +33,7 @@ export function MobileDock({ onOpenMaintainer, onExploreDirections }: MobileDock
           className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 border border-white/10"
           aria-label="GitHub"
         >
-          <Github className="w-4 h-4" />
+          <GithubIcon className="w-4 h-4" />
         </a>
       </div>
     </div>

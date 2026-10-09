@@ -4,7 +4,6 @@ import {
   MessageCircle,
   Copy,
   Check,
-  Github,
   Mail,
   Users2,
   Calendar,
@@ -12,6 +11,7 @@ import {
   ArrowRight,
   Terminal,
 } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/github-icon'
 import { LiquidGlassCard } from '@/components/liquid-glass-card'
 import { MagneticButton } from '@/components/magnetic-button'
 import { COMMUNITY_INFO } from '@/data/community-data'
@@ -117,7 +117,7 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
               className="w-full"
             >
               <MagneticButton size="lg" variant="primary" className="w-full gap-2">
-                <Github className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4" />
                 <span>前往 GitHub 组织提交 PR / Issue</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </MagneticButton>

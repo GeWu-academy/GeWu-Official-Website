@@ -1,4 +1,4 @@
-import { Briefcase, Target, Shield, Award, Sparkles, Check } from 'lucide-react'
+import { Briefcase, Target, Award, Sparkles, Check } from 'lucide-react'
 import { LiquidGlassCard } from '@/components/liquid-glass-card'
 import { MagneticButton } from '@/components/magnetic-button'
 

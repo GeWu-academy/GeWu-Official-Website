@@ -6,7 +6,6 @@ import {
   Cpu,
   Palette,
   CheckCircle,
-  ExternalLink,
   ChevronRight,
   Code2,
   Workflow,

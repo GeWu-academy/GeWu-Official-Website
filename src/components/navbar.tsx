@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, ArrowUpRight, Sparkles, MessageCircle, Github } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Sparkles, MessageCircle } from 'lucide-react'
+import { GithubIcon } from '@/components/icons/github-icon'
 import { MagneticButton } from '@/components/magnetic-button'
 import logoImg from '@/assets/329871518.png'
 
@@ -104,7 +105,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-300 hover:text-white rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 transition-all"
                 title="前往 GitHub 组织"
               >
-                <Github className="w-3.5 h-3.5 text-zinc-300" />
+                <GithubIcon className="w-3.5 h-3.5 text-zinc-300" />
                 <span>GitHub</span>
                 <ArrowUpRight className="w-3 h-3 text-zinc-400 opacity-60" />
               </a>
@@ -187,7 +188,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                 rel="noreferrer"
                 className="w-full py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-zinc-200 font-medium text-sm flex items-center justify-center gap-2 border border-white/10"
               >
-                <Github className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4" />
                 <span>GitHub 组织主页</span>
               </a>
             </div>
