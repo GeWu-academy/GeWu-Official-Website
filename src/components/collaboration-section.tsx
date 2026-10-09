@@ -154,7 +154,7 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
           </div>
         </div>
 
-        {/* 每周常例圆桌说明 */}
+        {/* 不定时技术圆桌说明 */}
         <div className="rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Calendar className="w-5 h-5 text-[var(--text-body)] shrink-0" />

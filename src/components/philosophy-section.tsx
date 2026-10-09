@@ -1,8 +1,11 @@
 import { Users, Cpu, Compass, TrendingUp, CheckCircle2 } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { MUTUAL_AID_PILLARS, COMMUNITY_INFO } from '@/data/community-data'
+import { useI18n } from '@/i18n'
 
 export function PhilosophySection() {
+  const { t } = useI18n()
+
   const iconMap: Record<string, React.ElementType> = {
     Users,
     Cpu,
@@ -17,30 +20,37 @@ export function PhilosophySection() {
     { prefix: '肆 · 经世致用', theme: '赋能成员就业' },
   ]
 
+  const pillars = t.philosophy?.pillars || MUTUAL_AID_PILLARS
+
   return (
     <section id="philosophy" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* 顶部标题区：极简宋体留白 */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
-            <ScholarSeal text="书院" subtext="四立" size="sm" variant="cinnabar" />
+            <ScholarSeal
+              text={t.philosophy?.sealText || '书院'}
+              subtext={t.philosophy?.sealSubtext || '四立'}
+              size="sm"
+              variant="cinnabar"
+            />
             <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
-              ACADEMY PHILOSOPHY
+              {t.philosophy?.subtitle || 'ACADEMY PHILOSOPHY'}
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
-            以实作破局 · 与良友同行
+            {t.philosophy?.title || '以实作破局 · 与良友同行'}
           </h2>
           <p className="font-serif text-sm sm:text-base text-stone-600 leading-relaxed">
-            {COMMUNITY_INFO.originStory}
+            {t.philosophy?.originStory || COMMUNITY_INFO.originStory}
           </p>
         </div>
 
         {/* 四大支柱卡片（宣纸质感，低信息密度，间距开阔） */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12">
-          {MUTUAL_AID_PILLARS.map((pillar, index) => {
+          {pillars.map((pillar, index) => {
             const Icon = iconMap[pillar.iconName] || Users
-            const meta = classicalTitles[index]
+            const prefix = pillar.prefix || classicalTitles[index]?.prefix
 
             return (
               <div
