@@ -94,7 +94,7 @@ export function TechDirectionsSection({ onOpenMaintainer }: TechDirectionsSectio
                 onClick={() => setActiveTab(dir.id)}
                 className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-2xl font-serif text-xs sm:text-sm transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md dark:shadow-[0_4px_16px_rgba(56,189,248,0.2)] scale-[1.02] font-semibold'
+                    ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md dark:shadow-[0_4px_16px_rgba(255,255,255,0.18)] scale-[1.02] font-semibold'
                     : 'bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] shadow-xs'
                 }`}
               >

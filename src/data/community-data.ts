@@ -143,8 +143,8 @@ export const TECH_STACK_DIRECTIONS: TechStackDirection[] = [
     subtitle: '大模型应用 · Multi-Agent 架构 · 工作流调度 · 工程落地',
     category: 'Intelligent Systems',
     badge: 'Frontier AI',
-    accentColor: '#38bdf8',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
+    accentColor: '#f59e0b',
+    glowColor: 'rgba(245, 158, 11, 0.25)',
     description: '超越简单的 Prompt 套壳。深入探索 LLM 工具调用、记忆持久化、复杂多智能体协同网络，以及生产环境下的低延迟吞吐与自动化评测体系。',
     highlights: [
       'Multi-Agent 编排拓扑与自主决策回环',
@@ -195,8 +195,8 @@ export const TECH_STACK_DIRECTIONS: TechStackDirection[] = [
     subtitle: 'TypeScript · React 19 · Next.js · Node.js / 全栈生态',
     category: 'Modern Web & Ecosystem',
     badge: 'Modern Fullstack',
-    accentColor: '#0284c7',
-    glowColor: 'rgba(2, 132, 199, 0.25)',
+    accentColor: '#10b981',
+    glowColor: 'rgba(16, 185, 129, 0.25)',
     description: '极致的端到端类型安全、现代前端工程架构与服务端渲染。打磨兼具百万级用户并发体验与极佳开发者人体工学的全栈产品。',
     highlights: [
       'React 19 Actions、RSC 与极速流式渲染 (Streaming SSR)',
@@ -299,8 +299,8 @@ export const TECH_STACK_DIRECTIONS: TechStackDirection[] = [
     subtitle: '产品交互设计 · 体验架构 · 原型输出 · 设计系统',
     category: 'Experience & Aesthetics',
     badge: 'Design System',
-    accentColor: '#ef4444',
-    glowColor: 'rgba(239, 68, 68, 0.25)',
+    accentColor: '#fb7185',
+    glowColor: 'rgba(251, 113, 133, 0.25)',
     description: '连接美学直觉与工程逻辑。不仅输出像素级优雅的界面，更从业务目标、用户心智、设计规范与研发闭环出发构建卓越的数字产品。',
     highlights: [
       '企业级 Design System 架构与 Figma Variables 变量系统',

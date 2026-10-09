@@ -51,23 +51,24 @@ export function InkRippleCanvas({
       const cur = themeRef.current
       if (cur === 'dark') {
         return [
-          'rgba(56, 189, 248, ', // 霁蓝天青
-          'rgba(203, 213, 225, ', // 曜魄月华霜白
-          'rgba(45, 212, 191, ', // 秘色青碧
+          'rgba(255, 255, 255, ', // 纯粹白描线条微澜
+          'rgba(245, 158, 11, ', // 暖金橙黄
+          'rgba(16, 185, 129, ', // 翠绿竹青
+          'rgba(251, 113, 133, ', // 桃绯柔粉
         ]
       }
       if (cur === 'cream') {
         return [
-          'rgba(41, 37, 36, ', // stone-800 松烟
-          'rgba(71, 85, 105, ', // slate-600 黛青
+          'rgba(41, 37, 36, ', // stone-800 松烟墨痕
+          'rgba(180, 83, 9, ', // amber-700 暖铜琥珀
           'rgba(15, 118, 110, ', // teal-700 翡翠竹青
         ]
       }
-      // white 纯白科技
+      // white 纯白主题：水墨、琥珀金、翠竹
       return [
-        'rgba(15, 23, 42, ', // slate-900 墨色
-        'rgba(2, 132, 199, ', // sky-600 晴空青
-        'rgba(71, 85, 105, ', // slate-600 黛蓝
+        'rgba(20, 20, 20, ', // 浓墨点染
+        'rgba(217, 119, 6, ', // 琥珀橙黄
+        'rgba(5, 150, 105, ', // 苍翠竹青
       ]
     }
 

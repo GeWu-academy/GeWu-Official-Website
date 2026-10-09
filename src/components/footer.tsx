@@ -2,7 +2,7 @@ import { ArrowUp, Heart } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { LanguageSwitcher } from '@/components/language-switcher'
-import logoImg from '@/assets/329871518.png'
+import logoImg from '@/assets/logo.webp'
 import { useI18n } from '@/i18n'
 
 const CURRENT_YEAR = new Date().getFullYear()
@@ -25,6 +25,10 @@ export function Footer() {
                 <img
                   src={logoImg}
                   alt={t.nav.title}
+                  width={36}
+                  height={36}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-contain"
                 />
               </div>

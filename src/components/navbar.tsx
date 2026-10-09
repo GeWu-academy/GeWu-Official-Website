@@ -6,7 +6,8 @@ import { ThemeSwitcher } from '@/components/theme-switcher'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
-import logoImg from '@/assets/329871518.png'
+import logoImg from '@/assets/logo.webp'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { gsap } from '@/animation'
 
 interface NavbarProps {
@@ -53,10 +54,10 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
     <>
       <header
         ref={navRef}
-        className="absolute top-0 left-0 right-0 z-40 py-2 sm:py-3"
+        className="absolute top-0 left-0 right-0 z-40 py-2 sm:py-2.5"
       >
         <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
-          <nav className="mx-auto flex items-center justify-between rounded-xl px-3 py-1.5 sm:px-4 sm:py-1.5 bg-[var(--nav-bg)] border border-[var(--border)] shadow-[var(--card-shadow)] backdrop-blur-md transition-all">
+          <nav className="mx-auto flex items-center justify-between rounded-xl px-2.5 py-1 sm:px-3.5 sm:py-1.5 bg-[var(--nav-bg)] border border-[var(--border)] shadow-[var(--card-shadow)] backdrop-blur-md transition-all">
             {/* Logo 区域 */}
             <a
               href="#"
@@ -66,16 +67,21 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
             >
-              <div className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-lg overflow-hidden p-0.5 border border-[var(--border)] bg-[var(--card-elevated)] shadow-xs group-hover:border-[var(--accent-cyan)] transition-colors">
+              <div className="relative h-7 w-7 sm:h-7.5 sm:w-7.5 rounded-lg overflow-hidden p-0.5 border border-[var(--border)] bg-[var(--card-elevated)] shadow-xs group-hover:border-amber-500/70 transition-colors">
                 <img
                   src={logoImg}
                   alt={`${t.nav.title} Logo`}
+                  width={30}
+                  height={30}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="h-full w-full object-contain"
                 />
               </div>
 
               <div className="flex items-center gap-1.5">
-                <span className="font-serif font-bold text-sm sm:text-base text-[var(--text-heading)] tracking-wide group-hover:text-[var(--accent-seal)] transition-colors">
+                <span className="font-serif font-bold text-sm text-[var(--text-heading)] tracking-wide group-hover:text-[var(--accent-seal)] transition-colors">
                   {t.nav.title}
                 </span>
                 <ScholarSeal
@@ -83,7 +89,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                   subtext={t.nav.sealSubtext}
                   size="sm"
                   variant="cinnabar"
-                  className="hidden sm:inline-flex scale-90 origin-left"
+                  className="hidden md:inline-flex scale-85 origin-left"
                 />
               </div>
             </a>
@@ -101,12 +107,12 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
               ))}
             </div>
 
-            <div className="hidden sm:flex items-center gap-2">
-              {/* 主题切换器（白色、米白、暗色） */}
-              <ThemeSwitcher variant="segmented" />
+            <div className="hidden sm:flex items-center gap-1.5 lg:gap-2">
+              {/* 主题切换器（素白、暖杏、玄夜 图标微型分段，仅 ~76px） */}
+              <ThemeSwitcher variant="compact" />
 
-              {/* 语言切换器（中文、English） */}
-              <LanguageSwitcher variant="segmented" />
+              {/* 语言切换器（中 / EN 紧凑双段药丸，仅 ~52px） */}
+              <LanguageSwitcher variant="pill" />
 
               <a
                 href="https://github.com/gewu-academy"
@@ -122,7 +128,9 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
 
               <button
                 onClick={handleOpenMaintainer}
-                className="flex items-center gap-1 px-3 py-1 text-xs font-serif font-medium text-[var(--primary-foreground)] bg-[var(--primary)] hover:opacity-90 rounded-lg shadow-xs hover:shadow transition-all cursor-pointer"
+                onMouseEnter={preloadMaintainerAssets}
+                onTouchStart={preloadMaintainerAssets}
+                className="flex items-center gap-1 px-3 py-1 text-xs font-serif font-medium text-[var(--primary-foreground)] bg-[var(--primary)] hover:opacity-90 rounded-lg shadow-xs hover:shadow transition-all cursor-pointer whitespace-nowrap"
               >
                 <Feather className="w-3 h-3 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
                 <span>{t.nav.maintainer}</span>
@@ -132,11 +140,11 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
             {/* 移动端汉堡切换与语言/主题切换 */}
             <div className="flex sm:hidden items-center gap-1.5">
               <LanguageSwitcher variant="compact" />
-              <ThemeSwitcher variant="compact" />
+              <ThemeSwitcher variant="toggle" />
 
               <button
                 onClick={handleOpenMaintainer}
-                className="px-2.5 py-1 text-[11px] rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium shadow-xs hover:opacity-90"
+                className="px-2.5 py-1 text-[11px] rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium shadow-xs hover:opacity-90 whitespace-nowrap"
               >
                 {t.nav.join}
               </button>
@@ -199,6 +207,7 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
                   setMobileMenuOpen(false)
                   handleOpenMaintainer()
                 }}
+                onTouchStart={preloadMaintainerAssets}
                 className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium text-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-90 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
