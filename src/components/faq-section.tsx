@@ -16,14 +16,14 @@ export function FAQSection() {
         <div className="text-center mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 mb-3">
             <ScholarSeal text="问道" subtext="解惑" size="sm" variant="cinnabar" />
-            <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+            <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
               QUESTIONS & ANSWERS
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-3">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-3">
             入阁问道 · 常见答疑
           </h2>
-          <p className="font-serif text-sm text-stone-500">
+          <p className="font-serif text-sm text-[var(--text-muted)]">
             关于加入书院、项目共建与修习就业的常见关切。
           </p>
         </div>
@@ -40,18 +40,18 @@ export function FAQSection() {
                   onClick={() => toggle(idx)}
                   className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="font-serif font-bold text-stone-900 text-sm sm:text-base">
+                  <span className="font-serif font-bold text-[var(--text-heading)] text-sm sm:text-base">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-stone-400 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-stone-900' : ''
+                    className={`w-4 h-4 text-[var(--text-muted)] shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[var(--text-heading)]' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-4 font-sans animate-in fade-in duration-200">
+                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[var(--text-body)] leading-relaxed border-t border-[var(--border)] pt-4 font-sans animate-in fade-in duration-200">
                     {item.answer}
                   </div>
                 )}
