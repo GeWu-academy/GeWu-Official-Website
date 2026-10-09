@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN" data-theme="white">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/src/assets/329871518.png" />
@@ -10,8 +10,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('gewu-theme');
+          var theme = (saved === 'cream' || saved === 'dark' || saved === 'white') ? saved : 'white';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#faf9f5] text-stone-800 antialiased selection:bg-red-800/10 selection:text-red-900">
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

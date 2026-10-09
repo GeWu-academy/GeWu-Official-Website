@@ -1,94 +1,23 @@
 import { useState } from 'react'
 import { RefreshCw, BookmarkCheck, Check, Feather } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
-
-interface LotItem {
-  id: number
-  tier: '上上签' | '吉' | '修省'
-  motto: string
-  source: string
-  principle: string
-  dos: string
-  donts: string
-  direction: string
-}
-
-const SCHOLAR_LOTS: LotItem[] = [
-  {
-    id: 1,
-    tier: '上上签',
-    motto: '致知在格物，物格而后知至。',
-    source: '《礼记·大学》',
-    principle: '求真务实，直面生产级代码真相。',
-    dos: '亲笔撰写测试用例，推演高并发边界',
-    donts: '浮躁套壳，浅尝辄止',
-    direction: '系统工程 · 核心架构',
-  },
-  {
-    id: 2,
-    tier: '吉',
-    motto: '知之真切笃实处，即是行。',
-    source: '王阳明《传习录》',
-    principle: '代码说话，用可运行的系统验证认知。',
-    dos: '向组织发起首个 Pull Request',
-    donts: '纸上谈兵，空谈理论',
-    direction: '开源协作 · 实战共建',
-  },
-  {
-    id: 3,
-    tier: '上上签',
-    motto: '博学之，审问之，慎思之，明辨之，笃行之。',
-    source: '《中庸》',
-    principle: '在多智能体与大模型潮涌中保有清醒洞察。',
-    dos: '深研 Agent 拓扑调度与状态机自愈',
-    donts: '无批判盲信通用 Prompt',
-    direction: 'AI & Agent · 智能系统',
-  },
-  {
-    id: 4,
-    tier: '吉',
-    motto: '工欲善其事，必先利其器。',
-    source: '《论语·卫灵公》',
-    principle: '磨砺端到端工程工法与类型安全契约。',
-    dos: '落地全栈强类型约束与毫秒级流式渲染',
-    donts: '放任 Any 类型蔓延',
-    direction: 'TypeScript · 现代全栈',
-  },
-  {
-    id: 5,
-    tier: '上上签',
-    motto: '大巧若拙，大美不言。',
-    source: '《庄子·知北游》',
-    principle: '极简克制，删繁就简，留白成境。',
-    dos: '优化用户界面信息密度与微交互阻尼',
-    donts: '堆砌无意义的视觉噪点',
-    direction: 'UI/UX · 体验架构',
-  },
-  {
-    id: 6,
-    tier: '吉',
-    motto: '独学而无友，则孤陋而寡闻。',
-    source: '《礼记·学记》',
-    principle: '同行互助，打破信息茧房与求职孤岛。',
-    dos: '参与周日晚技术圆桌，互相 Review 简历',
-    donts: '独自焦虑，闭门造车',
-    direction: '同行互助 · 职涯加速',
-  },
-]
+import { useI18n } from '@/i18n'
 
 export function GewuOracleLot() {
+  const { t } = useI18n()
+  const lots = t.oracle.lots
   const [currentLotIndex, setCurrentLotIndex] = useState(0)
   const [isCasting, setIsCasting] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const lot = SCHOLAR_LOTS[currentLotIndex]
+  const lot = lots[currentLotIndex] || lots[0]
 
   const handleCastLot = () => {
     setIsCasting(true)
     setTimeout(() => {
-      let nextIndex = Math.floor(Math.random() * SCHOLAR_LOTS.length)
+      let nextIndex = Math.floor(Math.random() * lots.length)
       if (nextIndex === currentLotIndex) {
-        nextIndex = (currentLotIndex + 1) % SCHOLAR_LOTS.length
+        nextIndex = (currentLotIndex + 1) % lots.length
       }
       setCurrentLotIndex(nextIndex)
       setIsCasting(false)
@@ -96,7 +25,7 @@ export function GewuOracleLot() {
   }
 
   const handleCopyMotto = () => {
-    const text = `【格物书院·${lot.tier}】「${lot.motto}」—— ${lot.principle} (宜: ${lot.dos} / 忌: ${lot.donts})`
+    const text = `【${t.nav.title}·${lot.tier}】「${lot.motto}」—— ${lot.principle} (${t.oracle.dosLabel}: ${lot.dos} / ${t.oracle.dontsLabel}: ${lot.donts})`
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -114,18 +43,18 @@ export function GewuOracleLot() {
         {/* 顶部标题栏：印章与签次 */}
         <div className="relative z-10 flex items-center justify-between pb-5 border-b border-[var(--border)] mb-6">
           <div className="flex items-center gap-3">
-            <ScholarSeal text="格物" subtext="灵签" size="md" variant="cinnabar" />
+            <ScholarSeal text={t.oracle.sealText} subtext={t.oracle.sealSubtext} size="md" variant="cinnabar" />
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-serif font-bold text-lg text-[var(--text-heading)] tracking-wide">
-                  格物修身签
+                  {t.oracle.cardTitle}
                 </h3>
                 <span className="px-2 py-0.5 rounded text-[11px] font-serif font-medium bg-[var(--accent-seal)]/10 text-[var(--accent-seal)] border border-[var(--accent-seal)]/20">
                   {lot.tier}
                 </span>
               </div>
               <p className="text-xs text-[var(--text-muted)] font-serif">
-                今日研习箴言 · 审己度物
+                {t.oracle.todayMottoTag}
               </p>
             </div>
           </div>
@@ -134,12 +63,12 @@ export function GewuOracleLot() {
             onClick={handleCastLot}
             disabled={isCasting}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] text-xs font-serif text-[var(--text-body)] border border-[var(--border)] hover:text-[var(--text-heading)] shadow-sm transition-all cursor-pointer active:scale-95 disabled:opacity-50"
-            title="重新摇签"
+            title={t.oracle.redrawBtn}
           >
             <RefreshCw
               className={`w-3.5 h-3.5 text-[var(--text-muted)] ${isCasting ? 'animate-spin' : ''}`}
             />
-            <span>{isCasting ? '摇签中...' : '再探一签'}</span>
+            <span>{isCasting ? t.oracle.redrawingBtn : t.oracle.redrawBtn}</span>
           </button>
         </div>
 
@@ -153,12 +82,12 @@ export function GewuOracleLot() {
           <div className="p-5 rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] mb-5 relative shadow-sm">
             <Feather className="absolute top-3.5 right-3.5 w-4 h-4 text-[var(--text-muted)] opacity-40 pointer-events-none" />
             <blockquote className="font-serif text-xl sm:text-2xl font-bold text-[var(--text-heading)] tracking-wide leading-relaxed mb-2">
-              「{lot.motto}」
+              “{lot.motto}”
             </blockquote>
-            <div className="flex items-center justify-between text-xs text-[var(--text-muted)] font-serif">
-              <span>出自 {lot.source}</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-[var(--text-muted)] font-serif">
+              <span>{t.oracle.sourcePrefix} {lot.source}</span>
               <span className="text-[var(--text-body)] font-medium">
-                研习宗要：{lot.direction}
+                {t.oracle.disciplinePrefix}{lot.direction}
               </span>
             </div>
           </div>
@@ -168,7 +97,7 @@ export function GewuOracleLot() {
             <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col gap-1">
               <span className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                宜 · 笃行致远
+                {t.oracle.dosLabel}
               </span>
               <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">
                 {lot.dos}
@@ -178,7 +107,7 @@ export function GewuOracleLot() {
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex flex-col gap-1">
               <span className="font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                忌 · 浮游纸上
+                {t.oracle.dontsLabel}
               </span>
               <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">
                 {lot.donts}
@@ -195,19 +124,19 @@ export function GewuOracleLot() {
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600 font-sans">箴言已录入剪贴板</span>
+                  <span className="text-emerald-600 font-sans">{t.oracle.savedBtn}</span>
                 </>
               ) : (
                 <>
                   <BookmarkCheck className="w-3.5 h-3.5 opacity-60" />
-                  <span>收存今日箴言</span>
+                  <span>{t.oracle.saveBtn}</span>
                 </>
               )}
             </button>
 
             <div className="flex items-center gap-2 text-[11px] text-[var(--text-muted)] font-serif">
-              <span className="italic">格物致知 · 知行合一</span>
-              <ScholarSeal text="知行" subtext="致远" size="sm" variant="outline" />
+              <span className="italic">{t.oracle.footerQuote}</span>
+              <ScholarSeal text={t.oracle.footerSealText} subtext={t.oracle.footerSealSubtext} size="sm" variant="outline" />
             </div>
           </div>
         </div>
