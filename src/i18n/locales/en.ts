@@ -34,7 +34,7 @@ export const en: TranslationsSchema = {
     metrics: [
       { label: 'Core Disciplines', value: '4 Tracks', unit: 'Hardcore' },
       { label: 'Open Source Driven', value: 'OSS', unit: 'Code Speaks' },
-      { label: 'Peer Roundtables', value: 'Weekly', unit: 'Online Sync' },
+      { label: 'Peer Roundtables', value: 'Flexible', unit: 'Tech Salons' },
       { label: 'Info Gap Cleared', value: 'Direct', unit: 'Action-First' },
     ],
   },
@@ -53,9 +53,9 @@ export const en: TranslationsSchema = {
         title: 'Peer Mutual Support',
         subtitle: 'Farewell to fighting alone; build a high-caliber network',
         description:
-          'Break engineering silos. Weekly pair programming, deep-dive debugging salons, and design reviews spark breakthrough ideas continuously.',
+          'Break engineering silos. Pair programming, deep-dive debugging salons, and design reviews spark breakthrough ideas continuously.',
         details: [
-          'Weekly Sunday “Gewu Engineering Salon” deep-dives',
+          'On-demand “Gewu Engineering Salon” deep-dives',
           'One-on-one code reviews & architecture walkthroughs',
           'First-hand teardowns of frontier tech and open source trends',
         ],
@@ -111,7 +111,7 @@ export const en: TranslationsSchema = {
     bannerSealSubtext: 'Action',
     bannerTitle: 'Code Speaks · Practical Application',
     bannerDesc: 'Reject hollow slide decks; build lifelong technical assets on real system architectures',
-    bannerTag1: 'Weekly Engineering Salon',
+    bannerTag1: 'Flexible Engineering Salon',
     bannerTag2: '1-on-1 Code Review',
   },
   techDirections: {
@@ -331,7 +331,7 @@ export const en: TranslationsSchema = {
         motto: 'To study in solitude without companions leads to narrow insight and shallow view.',
         source: 'The Book of Rites · Record on Education',
         principle: 'Mutual aid shatters echo chambers and job search isolation.',
-        dos: 'Join Sunday tech roundtables and review resumes together',
+        dos: 'Join community tech roundtables and review resumes together',
         donts: 'Worrying in isolation and reinventing the wheel in secret',
         direction: 'Peer Support · Career Acceleration',
       },
@@ -474,9 +474,9 @@ export const en: TranslationsSchema = {
       viewQrBtn: 'View Invitation & WeChat QR Code',
     },
     weeklySync: {
-      title: 'Weekly Sunday 20:30 Online Tech Roundtable',
-      desc: 'Pair programming, production bug autopsy, mock interview defense, and industry radar sharing',
-      tag: 'Open to All Members',
+      title: 'Academy Online Tech Roundtable (On-Demand)',
+      desc: 'Pair programming, production bug autopsy, mock interview defense, and industry radar sharing, organized flexibly around key topics',
+      tag: 'Flexible Open Salons',
     },
   },
   faq: {
@@ -494,7 +494,7 @@ export const en: TranslationsSchema = {
       {
         question: 'How does the academy help members level up and secure top offers?',
         answer:
-          'We reject vanity metrics. First, through production-grade projects and open source repos, members write real architectural code and build impressive commit histories; second, practicing mentors provide weekly code reviews, resume overhauls, and mock defenses; third, we connect members directly with engineering leads at premier tech and global teams.',
+          'We reject vanity metrics. First, through production-grade projects and open source repos, members write real architectural code and build impressive commit histories; second, practicing mentors provide hands-on code reviews, resume overhauls, and mock defenses; third, we connect members directly with engineering leads at premier tech and global teams.',
       },
       {
         question: 'How can I start contributing and submit issues or PRs?',

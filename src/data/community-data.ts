@@ -62,7 +62,7 @@ export const COMMUNITY_INFO = {
   metrics: [
     { label: '核心实践方向', value: '4 大', unit: '硬核领域' },
     { label: '开源代码驱动', value: '开源', unit: '代码为凭' },
-    { label: '同行常例研讨', value: '每周', unit: '技术圆桌' },
+    { label: '同行研讨切磋', value: '不定时', unit: '技术圆桌' },
     { label: '消除信息壁垒', value: '笃行', unit: '知行合一' },
   ],
   maintainerContact: {
@@ -72,7 +72,7 @@ export const COMMUNITY_INFO = {
     wechatGroupNote: '备注「格物加入+方向」',
     email: 'maintainer@gewu.academy',
     githubOrg: 'https://github.com/gewu-academy',
-    weeklySync: '每周日晚 20:30 在线技术圆桌与实战答辩',
+    weeklySync: '书院在线技术研讨圆桌与实战答辩（不定时发起）',
     rules: [
       '保持对技术的敬畏与求真务实态度',
       '主张「代码说话」，提倡积极发起 Issue & Pull Request',
@@ -88,9 +88,9 @@ export const MUTUAL_AID_PILLARS: MutualAidPillar[] = [
     subtitle: '告别孤军奋战，建立高质量技术圈层',
     tag: 'PEER SUPPORT',
     iconName: 'Users',
-    description: '打破技术孤岛。每周线上结对编程、疑难 Bug 攻坚研讨、设计体验推演，同行者随时碰撞思路。',
+    description: '打破技术孤点与孤岛。线上结对编程、疑难 Bug 攻坚研讨、设计体验推演，同行者随时碰撞思路。',
     details: [
-      '每周日晚「格物实战研讨会」深度切磋',
+      '不定时发起「格物实战研讨会」深度切磋',
       '一对一 Code Review 与架构推演',
       '前沿技术早报与开源趋势一手拆解'
     ]

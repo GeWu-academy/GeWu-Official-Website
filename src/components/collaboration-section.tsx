@@ -11,14 +11,24 @@ import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 
 interface CollaborationSectionProps {
-  onOpenMaintainer: () => void
+  onOpenMaintainer?: () => void
 }
 
 export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionProps) {
   const [copiedWechat, setCopiedWechat] = useState(false)
   const { t } = useI18n()
+  const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
+
+  const handleOpenMaintainer = () => {
+    if (onOpenMaintainer) {
+      onOpenMaintainer()
+    } else {
+      openMaintainerModal()
+    }
+  }
 
   const handleCopyWechat = () => {
     navigator.clipboard.writeText(COMMUNITY_INFO.maintainerContact.wechat)
@@ -83,9 +93,9 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
                 href="https://github.com/gewu-academy"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-xs transition-all"
               >
-                <GitPullRequest className="w-4 h-4 text-amber-300" />
+                <GitPullRequest className="w-4 h-4 text-amber-300 dark:text-amber-200" />
                 <span>{t.collaboration.githubCard.btn}</span>
               </a>
             </div>
@@ -129,8 +139,8 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
                 >
                   {copiedWechat ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-600">{t.collaboration.maintainerCard.copiedBtn}</span>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-emerald-600 dark:text-emerald-400">{t.collaboration.maintainerCard.copiedBtn}</span>
                     </>
                   ) : (
                     <>
@@ -144,7 +154,7 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
 
             <div className="pt-4 border-t border-[var(--border)]">
               <button
-                onClick={onOpenMaintainer}
+                onClick={handleOpenMaintainer}
                 className="w-full py-2.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
               >
                 <span>{t.collaboration.maintainerCard.viewQrBtn}</span>
@@ -155,7 +165,7 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
         </div>
 
         {/* 每周常例圆桌说明 */}
-        <div className="rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <Calendar className="w-5 h-5 text-[var(--text-body)] shrink-0" />
             <div>

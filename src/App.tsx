@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ThemeProvider } from '@/context/theme-context'
 import { InkRippleCanvas } from '@/components/three/ink-ripple-canvas'
 import { Navbar } from '@/components/navbar'
@@ -12,20 +11,16 @@ import { CollaborationSection } from '@/components/collaboration-section'
 import { FAQSection } from '@/components/faq-section'
 import { Footer } from '@/components/footer'
 import { MaintainerDialog } from '@/components/maintainer-dialog'
+import { MobileDock } from '@/components/mobile-dock'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { I18nProvider, useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 
 function AppContent() {
-  const [isMaintainerOpen, setIsMaintainerOpen] = useState(false)
   const { t } = useI18n()
-
-  const handleOpenMaintainer = () => {
-    setIsMaintainerOpen(true)
-  }
-
-  const handleCloseMaintainer = () => {
-    setIsMaintainerOpen(false)
-  }
+  const isMaintainerOpen = useUIStore((s) => s.isMaintainerOpen)
+  const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
+  const closeMaintainerModal = useUIStore((s) => s.closeMaintainerModal)
 
   const handleExploreDirections = () => {
     const el = document.getElementById('tech-directions')
@@ -39,14 +34,15 @@ function AppContent() {
       {/* 水墨微澜互动画布（自适应白色、米白与暗色主题） */}
       <InkRippleCanvas opacity={0.12} />
 
+
       {/* 顶部雅集导航（含语言切换与三段式主题切换器） */}
-      <Navbar onOpenMaintainer={handleOpenMaintainer} />
+      <Navbar onOpenMaintainer={openMaintainerModal} />
 
       {/* 核心板块内容流 */}
       <main className="relative z-10 flex flex-col">
         {/* 首屏：宋韵山门与 Three.js 格物乾坤仪 */}
         <HeroSection
-          onOpenMaintainer={handleOpenMaintainer}
+          onOpenMaintainer={openMaintainerModal}
           onExploreDirections={handleExploreDirections}
         />
 
@@ -54,7 +50,7 @@ function AppContent() {
         <PhilosophySection />
 
         {/* 格物四修：研习方向折屏 */}
-        <TechDirectionsSection onOpenMaintainer={handleOpenMaintainer} />
+        <TechDirectionsSection onOpenMaintainer={openMaintainerModal} />
 
         {/* 格物问策博古案：趣味书院省察体验 */}
         <section
@@ -83,13 +79,13 @@ function AppContent() {
         </section>
 
         {/* 经世实作：实战孵化开源矩阵 */}
-        <ProjectsSection onOpenMaintainer={handleOpenMaintainer} />
+        <ProjectsSection onOpenMaintainer={openMaintainerModal} />
 
         {/* 修己致远：消除信息差与职涯赋能 */}
-        <CareerPathwaySection onOpenMaintainer={handleOpenMaintainer} />
+        <CareerPathwaySection onOpenMaintainer={openMaintainerModal} />
 
         {/* 同窗雅集：协作与加入 */}
-        <CollaborationSection onOpenMaintainer={handleOpenMaintainer} />
+        <CollaborationSection onOpenMaintainer={openMaintainerModal} />
 
         {/* 问道答疑：常见问题 */}
         <FAQSection />
@@ -98,10 +94,16 @@ function AppContent() {
       {/* 网站底栏 */}
       <Footer />
 
+      {/* 移动端固定底部便携栏 */}
+      <MobileDock
+        onOpenMaintainer={openMaintainerModal}
+        onExploreDirections={handleExploreDirections}
+      />
+
       {/* 山长拜帖弹窗模态框 */}
       <MaintainerDialog
         isOpen={isMaintainerOpen}
-        onClose={handleCloseMaintainer}
+        onClose={closeMaintainerModal}
       />
     </div>
   )

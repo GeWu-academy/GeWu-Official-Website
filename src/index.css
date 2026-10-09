@@ -3,7 +3,7 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
     --font-heading: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', serif;
@@ -134,48 +134,50 @@
     --section-alt-bg: rgba(245, 244, 238, 0.5);
 }
 
-/* 暗色主题 (Dark / 深邃黑曜赛博) */
+/* 暗色主题 (Dark / 松烟黑曜 · 霁蓝天青) */
 .dark, [data-theme="dark"] {
-    --background: #07090e;
-    --foreground: #f8fafc;
-    --text-heading: #ffffff;
+    --background: #090b10;
+    --foreground: #f1f5f9;
+    --text-heading: #f8fafc;
     --text-body: #cbd5e1;
-    --text-muted: #94a3b8;
-    --card: #111520;
+    --text-muted: #8e9bb0;
+    --card: #11141d;
     --card-foreground: #f8fafc;
-    --card-bg: rgba(17, 21, 32, 0.75);
-    --card-elevated: #0e121a;
-    --card-hover-border: rgba(56, 189, 248, 0.35);
-    --card-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-    --card-shadow-hover: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.15);
-    --popover: #111520;
+    --card-bg: rgba(17, 21, 30, 0.78);
+    --card-elevated: #161b26;
+    --card-hover-border: rgba(56, 189, 248, 0.38);
+    --card-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --card-shadow-hover: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    --popover: #11141d;
     --popover-foreground: #f8fafc;
     --primary: #38bdf8;
-    --primary-foreground: #020617;
-    --secondary: #1e2433;
+    --primary-foreground: #04101d;
+    --secondary: #1a202c;
     --secondary-foreground: #f1f5f9;
-    --muted: #1e2433;
-    --muted-foreground: #94a3b8;
-    --accent: #1e2433;
+    --muted: #161c28;
+    --muted-foreground: #8e9bb0;
+    --accent: #161c28;
     --accent-foreground: #f8fafc;
-    --accent-seal: #ef4444;
+    --accent-seal: #e15555;
     --accent-cyan: #38bdf8;
-    --accent-bg-subtle: rgba(56, 189, 248, 0.12);
-    --destructive: #ef4444;
-    --border: rgba(255, 255, 255, 0.12);
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --input: rgba(255, 255, 255, 0.15);
-    --ring: #38bdf8;
+    --accent-bg-subtle: rgba(56, 189, 248, 0.1);
+    --destructive: #e15555;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --input: rgba(255, 255, 255, 0.12);
+    --ring: rgba(56, 189, 248, 0.5);
     --radius: 0.75rem;
-    --theme-tab-bg: rgba(255, 255, 255, 0.07);
-    --theme-hover-bg: rgba(255, 255, 255, 0.12);
-    --nav-bg: rgba(11, 14, 20, 0.82);
-    --nav-bg-scrolled: rgba(11, 14, 20, 0.95);
-    --footer-bg: #040609;
-    --footer-border: rgba(255, 255, 255, 0.1);
-    --dialog-bg: rgba(11, 15, 22, 0.98);
-    --dock-bg: rgba(11, 14, 20, 0.94);
-    --code-box-bg: rgba(0, 0, 0, 0.4);
+    --theme-tab-bg: rgba(255, 255, 255, 0.05);
+    --theme-hover-bg: rgba(255, 255, 255, 0.09);
+    --nav-bg: rgba(10, 13, 19, 0.82);
+    --nav-bg-scrolled: rgba(10, 13, 19, 0.95);
+    --footer-bg: #06070b;
+    --footer-border: rgba(255, 255, 255, 0.08);
+    --dialog-bg: rgba(13, 17, 24, 0.98);
+    --dock-bg: rgba(10, 13, 19, 0.94);
+    --cursor-ring: rgba(56, 189, 248, 0.45);
+    --cursor-dot: #38bdf8;
+    --code-box-bg: rgba(6, 8, 12, 0.6);
     --section-alt-bg: rgba(255, 255, 255, 0.02);
 }
 
@@ -250,13 +252,13 @@
 }
 
 .celadon-gradient {
-  background: linear-gradient(135deg, var(--accent-cyan) 0%, #115e59 100%);
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #0d9488 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .cinnabar-gradient {
-  background: linear-gradient(135deg, var(--accent-seal) 0%, #991b1b 100%);
+  background: linear-gradient(135deg, var(--accent-seal) 0%, #be123c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

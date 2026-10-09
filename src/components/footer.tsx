@@ -1,6 +1,7 @@
 import { ArrowUp, Heart } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { LanguageSwitcher } from '@/components/language-switcher'
 import logoImg from '@/assets/329871518.png'
 import { useI18n } from '@/i18n'
 
@@ -20,7 +21,7 @@ export function Footer() {
           {/* 左侧：Logo 与使命 */}
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl overflow-hidden p-0.5 border border-[var(--border)] bg-white shadow-2xs">
+              <div className="h-9 w-9 rounded-xl overflow-hidden p-0.5 border border-[var(--border)] bg-[var(--card-elevated)] shadow-2xs">
                 <img
                   src={logoImg}
                   alt={t.nav.title}
@@ -106,13 +107,16 @@ export function Footer() {
             </span>
           </div>
 
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] transition-colors cursor-pointer shadow-xs"
-          >
-            <span>{t.footer.backToTop}</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex items-center gap-2.5">
+            <LanguageSwitcher variant="segmented" />
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] transition-colors cursor-pointer shadow-xs"
+            >
+              <span>{t.footer.backToTop}</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

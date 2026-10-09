@@ -1,13 +1,23 @@
 import { Target, Award, Check, ArrowRight } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 
 interface CareerPathwaySectionProps {
-  onOpenMaintainer: () => void
+  onOpenMaintainer?: () => void
 }
 
 export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionProps) {
   const { t } = useI18n()
+  const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
+
+  const handleOpenMaintainer = () => {
+    if (onOpenMaintainer) {
+      onOpenMaintainer()
+    } else {
+      openMaintainerModal()
+    }
+  }
 
   return (
     <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
@@ -70,16 +80,16 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
             {t.career.differences.map((diff, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-[var(--theme-tab-bg)] border border-[var(--border)] space-y-2.5"
+                className="p-4 rounded-xl bg-[var(--theme-tab-bg)] border border-[var(--border)] space-y-2.5 backdrop-blur-sm"
               >
                 <div className="text-xs text-[var(--text-muted)] line-through pb-1.5 border-b border-[var(--border)] flex items-start gap-1.5">
-                  <span className="text-[10px] font-serif px-1 rounded bg-[var(--theme-hover-bg)] text-[var(--text-body)] shrink-0">
+                  <span className="text-[10px] font-serif px-1.5 py-0.5 rounded bg-[var(--theme-hover-bg)] text-[var(--text-muted)] shrink-0">
                     {t.career.badTag}
                   </span>
                   <span>{diff.traditional}</span>
                 </div>
                 <div className="text-xs sm:text-sm text-[var(--text-body)] flex items-start gap-2 pt-0.5">
-                  <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <span className="font-serif">{diff.gewu}</span>
                 </div>
               </div>
@@ -92,7 +102,7 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
               <span>{t.career.companionNote}</span>
             </div>
             <button
-              onClick={onOpenMaintainer}
+              onClick={handleOpenMaintainer}
               className="inline-flex items-center gap-1.5 text-xs font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer"
             >
               <span>{t.career.mentorCta}</span>

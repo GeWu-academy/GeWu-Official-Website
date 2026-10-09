@@ -2,13 +2,23 @@ import { ExternalLink, GitPullRequest } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 
 interface ProjectsSectionProps {
-  onOpenMaintainer: () => void
+  onOpenMaintainer?: () => void
 }
 
 export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
   const { t } = useI18n()
+  const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
+
+  const handleOpenMaintainer = () => {
+    if (onOpenMaintainer) {
+      onOpenMaintainer()
+    } else {
+      openMaintainerModal()
+    }
+  }
 
   return (
     <section id="projects" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
@@ -54,7 +64,7 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                   <span className="text-xs font-serif px-2.5 py-0.5 rounded-md bg-[var(--theme-tab-bg)] text-[var(--text-body)] border border-[var(--border)]">
                     {proj.category}
                   </span>
-                  <span className="text-[11px] font-serif text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                  <span className="text-[11px] font-serif text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/15 px-2 py-0.5 rounded border border-emerald-500/20 dark:border-emerald-500/30">
                     ● {proj.status}
                   </span>
                 </div>
@@ -126,7 +136,7 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                       </a>
                     )}
                     <button
-                      onClick={onOpenMaintainer}
+                      onClick={handleOpenMaintainer}
                       className="inline-flex items-center gap-1 text-xs font-serif text-[var(--text-muted)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
                     >
                       <span>{t.projects.claimIssue}</span>

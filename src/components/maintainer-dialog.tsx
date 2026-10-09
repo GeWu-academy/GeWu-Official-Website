@@ -1,17 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { X, Copy, Check, MessageCircle, Mail } from 'lucide-react'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 import logoImg from '@/assets/329871518.png'
 import maintainerQrImg from '@/assets/maintainer-qr.jpg'
+import { gsap } from '@/animation'
 
 interface MaintainerDialogProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen?: boolean
+  onClose?: () => void
 }
 
-export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
+export function MaintainerDialog({ isOpen: propIsOpen, onClose: propOnClose }: MaintainerDialogProps) {
+  const storeIsOpen = useUIStore((s) => s.isMaintainerOpen)
+  const storeClose = useUIStore((s) => s.closeMaintainerModal)
+
+  const isOpen = propIsOpen !== undefined ? propIsOpen : storeIsOpen
+  const onClose = propOnClose !== undefined ? propOnClose : storeClose
+
+  const modalRef = useRef<HTMLDivElement>(null)
   const [copiedWechat, setCopiedWechat] = useState(false)
   const [copiedEmail, setCopiedEmail] = useState(false)
   const { t } = useI18n()
@@ -23,6 +32,13 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
       window.addEventListener('keydown', handleKeyDown)
+      if (modalRef.current) {
+        gsap.fromTo(
+          modalRef.current,
+          { scale: 0.94, opacity: 0, y: 16 },
+          { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: 'back.out(1.5)' }
+        )
+      }
     } else {
       document.body.style.overflow = ''
     }
@@ -50,12 +66,15 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* 遮罩 */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
       />
 
       {/* 拜帖模态框主体 */}
-      <div className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl bg-[var(--dialog-bg)] border border-[var(--border)] p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl bg-[var(--dialog-bg)] border border-[var(--border)] p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.45)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.85)] z-10 backdrop-blur-xl"
+      >
         {/* 关闭按钮 */}
         <button
           onClick={onClose}
@@ -66,7 +85,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
 
         {/* 顶部标题与拜帖印签 */}
         <div className="flex items-center gap-3.5 mb-5 pb-4 border-b border-[var(--border)]">
-          <div className="w-11 h-11 rounded-2xl p-1 bg-white border border-[var(--border)] overflow-hidden shadow-2xs">
+          <div className="w-11 h-11 rounded-2xl p-1 bg-[var(--card-elevated)] border border-[var(--border)] overflow-hidden shadow-2xs">
             <img src={logoImg} alt={t.nav.title} className="w-full h-full object-contain" />
           </div>
           <div>
@@ -114,8 +133,8 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
             >
               {copiedWechat ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">{t.maintainerModal.copiedBtn}</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-emerald-600 dark:text-emerald-400">{t.maintainerModal.copiedBtn}</span>
                 </>
               ) : (
                 <>
@@ -147,8 +166,8 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
             >
               {copiedEmail ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">{t.maintainerModal.copiedBtn}</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-emerald-600 dark:text-emerald-400">{t.maintainerModal.copiedBtn}</span>
                 </>
               ) : (
                 <>
@@ -162,7 +181,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
 
         {/* 二维码展示 */}
         <div className="p-4 rounded-2xl bg-[var(--card-elevated)] border border-[var(--border)] flex flex-col items-center shadow-2xs mb-5">
-          <div className="p-1.5 bg-white rounded-xl border border-[var(--border)] mb-2.5">
+          <div className="p-2 bg-white rounded-xl border border-[var(--border)] mb-2.5 shadow-xs">
             <img
               src={maintainerQrImg}
               alt="Maintainer QR Code"

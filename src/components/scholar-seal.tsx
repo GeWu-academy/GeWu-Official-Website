@@ -21,10 +21,10 @@ export function ScholarSeal({
 
   const variantClasses = {
     cinnabar:
-      'bg-red-800 text-amber-50 border border-red-700/60 shadow-[0_2px_8px_rgba(185,28,28,0.25)]',
-    ink: 'bg-stone-900 text-stone-100 border border-stone-800 shadow-[0_2px_8px_rgba(28,25,23,0.15)]',
+      'bg-red-800 dark:bg-[#991b1b]/90 text-amber-50 dark:text-amber-100 border border-red-700/60 dark:border-red-500/40 shadow-[0_2px_8px_rgba(185,28,28,0.25)] dark:shadow-[0_2px_12px_rgba(153,27,27,0.35),inset_0_1px_1px_rgba(255,255,255,0.12)]',
+    ink: 'bg-stone-900 dark:bg-[#121622] text-stone-100 dark:text-slate-200 border border-stone-800 dark:border-slate-700/60 shadow-[0_2px_8px_rgba(28,25,23,0.15)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.5)]',
     outline:
-      'bg-transparent text-red-800 border-2 border-red-800/80',
+      'bg-transparent text-red-800 dark:text-red-400/90 border-2 border-red-800/80 dark:border-red-500/50 dark:shadow-[0_1px_6px_rgba(153,27,27,0.2)]',
   }
 
   return (
