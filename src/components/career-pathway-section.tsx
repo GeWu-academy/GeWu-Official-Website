@@ -51,19 +51,19 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 mb-3">
             <ScholarSeal text="修己" subtext="致远" size="sm" variant="cinnabar" />
-            <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+            <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
               CAREER EMPOWERMENT
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-3">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-3">
             修己致远 · 职涯赋能
           </h2>
-          <p className="font-serif text-sm sm:text-base text-stone-600 leading-relaxed">
+          <p className="font-serif text-sm sm:text-base text-[var(--text-body)] leading-relaxed">
             用真实可验证的工程代码代替空洞的技术名词，让每一次投入都能转化为立身的核心底气。
           </p>
         </div>
 
-        {/* 阶梯路径卡片（素白宣纸质感） */}
+        {/* 阶梯路径卡片 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10">
           {steps.map((step) => (
             <div
@@ -71,19 +71,19 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
               className="scholar-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between"
             >
               <div>
-                <span className="font-serif text-xl font-bold text-red-800 block mb-2">
+                <span className="font-serif text-xl font-bold text-[var(--accent-seal)] block mb-2">
                   {step.num}
                 </span>
-                <h3 className="font-serif text-base font-bold text-stone-900 mb-1.5">
+                <h3 className="font-serif text-base font-bold text-[var(--text-heading)] mb-1.5">
                   {step.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed font-sans">
                   {step.desc}
                 </p>
               </div>
 
-              <div className="pt-4 mt-5 border-t border-stone-200/80 flex items-center gap-1.5 text-xs text-stone-400 font-serif">
-                <Target className="w-3.5 h-3.5 text-stone-400" />
+              <div className="pt-4 mt-5 border-t border-[var(--border)] flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-serif">
+                <Target className="w-3.5 h-3.5 opacity-60" />
                 <span>知行闭环</span>
               </div>
             </div>
@@ -93,10 +93,10 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
         {/* 对比视窗：传统困境 vs 格物破局 */}
         <div className="scholar-card rounded-3xl p-6 sm:p-8">
           <div className="text-center max-w-lg mx-auto mb-6">
-            <h3 className="font-serif text-lg sm:text-xl font-bold text-stone-900 mb-1">
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-[var(--text-heading)] mb-1">
               消除技术信息差 · 建立笃定竞争力
             </h3>
-            <p className="text-xs text-stone-500 font-serif">
+            <p className="text-xs text-[var(--text-muted)] font-serif">
               通过真实开源工程协作，构建经得起时间考验的个人技术护城河
             </p>
           </div>
@@ -105,33 +105,33 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
             {differences.map((diff, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-stone-50/80 border border-stone-200/70 space-y-2.5"
+                className="p-4 rounded-xl bg-[var(--theme-tab-bg)] border border-[var(--border)] space-y-2.5"
               >
-                <div className="text-xs text-stone-400 line-through pb-1.5 border-b border-stone-200/60 flex items-start gap-1.5">
-                  <span className="text-[10px] font-serif px-1 rounded bg-stone-200/70 text-stone-600 shrink-0">
+                <div className="text-xs text-[var(--text-muted)] line-through pb-1.5 border-b border-[var(--border)] flex items-start gap-1.5">
+                  <span className="text-[10px] font-serif px-1 rounded bg-[var(--theme-hover-bg)] text-[var(--text-body)] shrink-0">
                     困境
                   </span>
                   <span>{diff.traditional}</span>
                 </div>
-                <div className="text-xs sm:text-sm text-stone-800 flex items-start gap-2 pt-0.5">
-                  <Check className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                <div className="text-xs sm:text-sm text-[var(--text-body)] flex items-start gap-2 pt-0.5">
+                  <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <span className="font-serif">{diff.gewu}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="pt-4 border-t border-stone-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center gap-2 text-xs text-stone-500 font-serif">
-              <Award className="w-4 h-4 text-stone-400" />
+          <div className="pt-4 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] font-serif">
+              <Award className="w-4 h-4 opacity-60" />
               <span>同行者互助共进 · 长期成长陪伴网络</span>
             </div>
             <button
               onClick={onOpenMaintainer}
-              className="inline-flex items-center gap-1.5 text-xs font-serif font-bold text-stone-900 hover:text-red-800 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer"
             >
               <span>预约导师一对一简历指导</span>
-              <ArrowRight className="w-3.5 h-3.5 text-stone-400" />
+              <ArrowRight className="w-3.5 h-3.5 opacity-60" />
             </button>
           </div>
         </div>

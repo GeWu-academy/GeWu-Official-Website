@@ -108,23 +108,23 @@ export function GewuOracleLot() {
       {/* 宣纸竹简卡片主体 */}
       <div className="relative rounded-3xl bg-gradient-to-b from-[#fbfbfa] to-[#f4f2ea] border border-stone-200/90 p-6 sm:p-8 shadow-[0_12px_40px_rgba(28,25,23,0.05)] overflow-hidden transition-all duration-500">
         {/* 背景素淡花窗水墨晕边 */}
-        <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl from-stone-200/40 to-transparent rounded-bl-full pointer-events-none" />
-        <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-gradient-to-tr from-amber-100/30 to-transparent rounded-tr-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl from-[var(--border)]/30 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-gradient-to-tr from-[var(--accent-seal)]/5 to-transparent rounded-tr-full pointer-events-none" />
 
         {/* 顶部标题栏：印章与签次 */}
-        <div className="relative z-10 flex items-center justify-between pb-5 border-b border-stone-200/80 mb-6">
+        <div className="relative z-10 flex items-center justify-between pb-5 border-b border-[var(--border)] mb-6">
           <div className="flex items-center gap-3">
             <ScholarSeal text="格物" subtext="灵签" size="md" variant="cinnabar" />
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-serif font-bold text-lg text-stone-900 tracking-wide">
+                <h3 className="font-serif font-bold text-lg text-[var(--text-heading)] tracking-wide">
                   格物修身签
                 </h3>
-                <span className="px-2 py-0.5 rounded text-[11px] font-serif font-medium bg-red-50 text-red-800 border border-red-200/70">
+                <span className="px-2 py-0.5 rounded text-[11px] font-serif font-medium bg-[var(--accent-seal)]/10 text-[var(--accent-seal)] border border-[var(--accent-seal)]/20">
                   {lot.tier}
                 </span>
               </div>
-              <p className="text-xs text-stone-500 font-serif">
+              <p className="text-xs text-[var(--text-muted)] font-serif">
                 今日研习箴言 · 审己度物
               </p>
             </div>
@@ -133,31 +133,31 @@ export function GewuOracleLot() {
           <button
             onClick={handleCastLot}
             disabled={isCasting}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-xs font-serif text-stone-700 border border-stone-200 hover:border-stone-400 hover:text-stone-900 shadow-sm transition-all cursor-pointer active:scale-95 disabled:opacity-50"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] text-xs font-serif text-[var(--text-body)] border border-[var(--border)] hover:text-[var(--text-heading)] shadow-sm transition-all cursor-pointer active:scale-95 disabled:opacity-50"
             title="重新摇签"
           >
             <RefreshCw
-              className={`w-3.5 h-3.5 text-stone-500 ${isCasting ? 'animate-spin' : ''}`}
+              className={`w-3.5 h-3.5 text-[var(--text-muted)] ${isCasting ? 'animate-spin' : ''}`}
             />
             <span>{isCasting ? '摇签中...' : '再探一签'}</span>
           </button>
         </div>
 
-        {/* 核心竹简签文区（带有典雅的翻折动效体验） */}
+        {/* 核心竹简签文区 */}
         <div
           className={`relative z-10 transition-all duration-500 ${
             isCasting ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'
           }`}
         >
           {/* 经典名言金句 */}
-          <div className="p-5 rounded-2xl bg-white/80 border border-stone-200/70 mb-5 relative shadow-[inset_0_1px_2px_rgba(255,255,255,0.9)]">
-            <Feather className="absolute top-3.5 right-3.5 w-4 h-4 text-stone-300 pointer-events-none" />
-            <blockquote className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-wide leading-relaxed mb-2">
+          <div className="p-5 rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] mb-5 relative shadow-sm">
+            <Feather className="absolute top-3.5 right-3.5 w-4 h-4 text-[var(--text-muted)] opacity-40 pointer-events-none" />
+            <blockquote className="font-serif text-xl sm:text-2xl font-bold text-[var(--text-heading)] tracking-wide leading-relaxed mb-2">
               「{lot.motto}」
             </blockquote>
-            <div className="flex items-center justify-between text-xs text-stone-400 font-serif">
+            <div className="flex items-center justify-between text-xs text-[var(--text-muted)] font-serif">
               <span>出自 {lot.source}</span>
-              <span className="text-stone-600 font-medium">
+              <span className="text-[var(--text-body)] font-medium">
                 研习宗要：{lot.direction}
               </span>
             </div>
@@ -165,47 +165,47 @@ export function GewuOracleLot() {
 
           {/* 宜忌研析 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-xs font-serif">
-            <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/60 flex flex-col gap-1">
-              <span className="font-bold text-emerald-800 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col gap-1">
+              <span className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 宜 · 笃行致远
               </span>
-              <span className="text-stone-700 leading-relaxed font-sans text-[13px]">
+              <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">
                 {lot.dos}
               </span>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/60 flex flex-col gap-1">
-              <span className="font-bold text-amber-800 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex flex-col gap-1">
+              <span className="font-bold text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                 忌 · 浮游纸上
               </span>
-              <span className="text-stone-700 leading-relaxed font-sans text-[13px]">
+              <span className="text-[var(--text-body)] leading-relaxed font-sans text-[13px]">
                 {lot.donts}
               </span>
             </div>
           </div>
 
           {/* 底部操作与书院印印记 */}
-          <div className="flex items-center justify-between pt-4 border-t border-stone-200/80">
+          <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]">
             <button
               onClick={handleCopyMotto}
-              className="flex items-center gap-1.5 text-xs text-stone-500 hover:text-stone-900 font-serif transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] hover:text-[var(--text-heading)] font-serif transition-colors cursor-pointer"
             >
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-700 font-sans">箴言已录入剪贴板</span>
+                  <span className="text-emerald-600 font-sans">箴言已录入剪贴板</span>
                 </>
               ) : (
                 <>
-                  <BookmarkCheck className="w-3.5 h-3.5 text-stone-400" />
+                  <BookmarkCheck className="w-3.5 h-3.5 opacity-60" />
                   <span>收存今日箴言</span>
                 </>
               )}
             </button>
 
-            <div className="flex items-center gap-2 text-[11px] text-stone-400 font-serif">
+            <div className="flex items-center gap-2 text-[11px] text-[var(--text-muted)] font-serif">
               <span className="italic">格物致知 · 知行合一</span>
               <ScholarSeal text="知行" subtext="致远" size="sm" variant="outline" />
             </div>
