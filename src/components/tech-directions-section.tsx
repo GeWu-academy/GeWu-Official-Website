@@ -5,14 +5,12 @@ import {
   Layers,
   Cpu,
   Palette,
-  CheckCircle,
-  ChevronRight,
-  Code2,
-  Workflow,
-  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  BookOpen,
 } from 'lucide-react'
 import { TECH_STACK_DIRECTIONS } from '@/data/community-data'
-import { MagneticButton } from '@/components/magnetic-button'
+import { ScholarSeal } from '@/components/scholar-seal'
 
 interface TechDirectionsSectionProps {
   onOpenMaintainer: () => void
@@ -32,212 +30,156 @@ export function TechDirectionsSection({ onOpenMaintainer }: TechDirectionsSectio
     'ui-ux-design': Palette,
   }
 
-  // 切换 Tab 时触发 GSAP 优雅内容重排与淡入
+  const tabClassicalNames: Record<string, { seal: string; label: string }> = {
+    'ai-agent': { seal: '智能', label: 'AI & 智能体架构' },
+    'typescript-fullstack': { seal: '全栈', label: '现代全栈工法' },
+    'systems-engineering': { seal: '系统', label: '系统与高并发' },
+    'ui-ux-design': { seal: '体验', label: '体验设计架构' },
+  }
+
+  // 切换 Tab 时优雅淡入
   useEffect(() => {
     if (!contentRef.current) return
     gsap.fromTo(
       contentRef.current,
-      { opacity: 0, y: 15, filter: 'blur(4px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.45, ease: 'power2.out' }
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
     )
   }, [activeTab])
 
   return (
-    <section id="tech-directions" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* 标题 */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-pill text-xs font-mono text-cyan-300 mb-4">
-            <Workflow className="w-3.5 h-3.5" />
-            <span>PRACTICE & TECH DOMAINS</span>
+    <section id="tech-directions" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* 顶部标题 */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <ScholarSeal text="研习" subtext="方向" size="sm" variant="cinnabar" />
+            <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+              STUDY DISCIPLINES
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-5">
-            技术栈与实践方向
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
+            格物四修 · 研习方向
           </h2>
-          <p className="text-base sm:text-lg text-zinc-300">
-            拒绝蜻蜓点水。聚焦真实工业级生产实践，打磨从底层系统到前沿 Agent 的硬核工程能力。
+          <p className="font-serif text-sm sm:text-base text-stone-600 leading-relaxed">
+            删繁就简，直面生产级系统本质。从前沿 AI 协同到高并发底座，沉淀真实硬核实力。
           </p>
         </div>
 
-        {/* 顶部 Tab 选择器（支持横向滚动，移动端完美适配） */}
-        <div className="flex items-center justify-start lg:justify-center gap-2.5 overflow-x-auto pb-4 mb-10 no-scrollbar select-none">
+        {/* 极简宋风折扇/屏风选项卡 */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
           {TECH_STACK_DIRECTIONS.map((dir) => {
-            const Icon = tabIcons[dir.id] || Code2
-            const isActive = activeTab === dir.id
+            const Icon = tabIcons[dir.id] || Bot
+            const meta = tabClassicalNames[dir.id]
+            const isActive = dir.id === activeTab
+
             return (
               <button
                 key={dir.id}
                 onClick={() => setActiveTab(dir.id)}
-                className={`relative flex items-center gap-2.5 px-4 sm:px-6 py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+                className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-2xl font-serif text-xs sm:text-sm transition-all cursor-pointer ${
                   isActive
-                    ? 'liquid-glass-prominent bg-white/[0.1] text-white border-cyan-400/50 shadow-[0_0_25px_rgba(6,182,212,0.25)]'
-                    : 'liquid-glass text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                    ? 'bg-stone-900 text-stone-50 shadow-md scale-[1.02]'
+                    : 'bg-white/80 hover:bg-white text-stone-600 hover:text-stone-950 border border-stone-200/80 shadow-sm'
                 }`}
               >
-                <div
-                  className={`p-1.5 rounded-lg ${
-                    isActive ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/[0.05] text-zinc-400'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                </div>
-                <span>{dir.title}</span>
-                {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse ml-0.5" />
-                )}
+                <Icon className={`w-4 h-4 ${isActive ? 'text-amber-200' : 'text-stone-400'}`} />
+                <span className="font-medium">{meta?.label || dir.title}</span>
               </button>
             )
           })}
         </div>
 
-        {/* 详情内容容器 */}
+        {/* 核心屏风展开视窗（宣纸质感、留白充裕、低信息密度） */}
         <div
           ref={contentRef}
-          className="rounded-3xl liquid-glass-prominent p-6 sm:p-10 border border-white/15 backdrop-blur-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+          className="scholar-card rounded-3xl p-6 sm:p-10 shadow-sm transition-all"
         >
-          {/* 方向头部概要 */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-white/10">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="px-2.5 py-0.5 text-xs font-mono font-medium rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
-                  {currentDir.badge}
-                </span>
-                <span className="text-xs text-zinc-400 font-mono tracking-wider">
-                  {currentDir.category}
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-extrabold text-white mb-2">
-                {currentDir.title}
-              </h3>
-              <p className="text-sm sm:text-base text-cyan-300/80 font-mono">
-                {currentDir.subtitle}
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <MagneticButton
-                size="md"
-                variant="primary"
-                onClick={onOpenMaintainer}
-                className="gap-2 shrink-0"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>加入本方向实践</span>
-              </MagneticButton>
-            </div>
-          </div>
-
-          {/* 核心描述与亮点网格 */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-            {/* 左侧：深度实践与架构脉络 */}
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* 左侧：方向概旨与实作项目 */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
-                <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-cyan-400" />
-                  <span>核心实践领域与重点攻坚</span>
-                </h4>
-                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6">
-                  {currentDir.description}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-stone-100 text-stone-600 border border-stone-200">
+                    {currentDir.category}
+                  </span>
+                  <span className="text-xs font-serif text-stone-400">
+                    {currentDir.badge}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mb-3">
+                  {currentDir.title}
+                </h3>
+
+                <p className="font-serif text-xs sm:text-sm text-stone-500 mb-5 italic">
+                  {currentDir.subtitle}
                 </p>
 
-                <div className="space-y-3">
-                  {currentDir.highlights.map((highlight, idx) => (
+                <p className="font-serif text-sm sm:text-base text-stone-700 leading-relaxed mb-6">
+                  {currentDir.description}
+                </p>
+              </div>
+
+              {/* 代表实作与号召 */}
+              <div className="pt-6 border-t border-stone-200/80">
+                <div className="text-xs font-serif text-stone-500 mb-2 font-medium">
+                  书院研习产出实作：
+                </div>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {currentDir.productionPractices.slice(0, 2).map((item, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs px-3 py-1.5 rounded-xl bg-stone-100 text-stone-800 font-sans border border-stone-200"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  onClick={onOpenMaintainer}
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-serif font-bold text-stone-900 hover:text-red-800 transition-colors cursor-pointer group"
+                >
+                  <span>与此方向山长交流研习计划</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+            {/* 右侧：重点攻坚亮点与技术胶囊 */}
+            <div className="lg:col-span-5 flex flex-col gap-6 bg-stone-50/70 p-6 sm:p-7 rounded-2xl border border-stone-200/70">
+              <div>
+                <h4 className="font-serif font-bold text-sm text-stone-900 mb-3 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-stone-600" />
+                  <span>核心攻坚实战</span>
+                </h4>
+                <div className="space-y-2.5">
+                  {currentDir.highlights.map((hl, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-xl liquid-glass bg-white/[0.02] border border-white/10 flex items-start gap-3 hover:bg-white/[0.05] transition-colors"
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-700 font-sans"
                     >
-                      <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm text-zinc-200">{highlight}</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                      <span>{hl}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* 核心工具链 Tags */}
-              <div className="pt-4">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3">
-                  CORE TECH STACKS & ECOSYSTEM
+              <div className="pt-4 border-t border-stone-200/70">
+                <h4 className="font-serif font-semibold text-xs text-stone-500 mb-2.5">
+                  研习技术矩阵
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {currentDir.coreTechnologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-cyan-400/40 hover:text-white transition-all select-none"
+                      className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white text-stone-700 border border-stone-200 shadow-2xs"
                     >
                       {tech}
                     </span>
                   ))}
-                </div>
-              </div>
-            </div>
-
-            {/* 右侧：进阶路线图与架构流动视窗 */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* 进阶路线图 */}
-              <div className="p-5 sm:p-6 rounded-2xl liquid-glass bg-white/[0.02] border border-white/10">
-                <h4 className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-4 flex items-center gap-2">
-                  <Workflow className="w-4 h-4 text-cyan-400" />
-                  <span>3 阶段成长路径演进</span>
-                </h4>
-
-                <div className="space-y-4">
-                  {currentDir.curriculum.map((step, idx) => (
-                    <div key={idx} className="relative pl-6 pb-2 last:pb-0">
-                      {/* 时间线连接轴 */}
-                      {idx !== currentDir.curriculum.length - 1 && (
-                        <div className="absolute left-2.5 top-5 bottom-0 w-px bg-white/10" />
-                      )}
-                      <div className="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-cyan-400/80 border-2 border-[#090b10]" />
-
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[11px] font-mono text-cyan-300 bg-cyan-950/70 px-1.5 py-0.5 rounded border border-cyan-800/60">
-                          {step.phase}
-                        </span>
-                        <h5 className="text-xs sm:text-sm font-semibold text-white">
-                          {step.title}
-                        </h5>
-                      </div>
-                      <p className="text-xs text-zinc-400 leading-relaxed">{step.detail}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 架构节点拓扑预览卡片 */}
-              <div className="p-5 sm:p-6 rounded-2xl liquid-glass bg-white/[0.02] border border-white/10">
-                <div className="flex items-center justify-between mb-3 text-xs font-mono text-zinc-400">
-                  <span className="uppercase">ARCHITECTURE TOPOLOGY</span>
-                  <span className="text-cyan-400 text-[10px]">PRODUCTION FLOW</span>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 font-mono text-xs">
-                  <div className="flex flex-wrap items-center gap-1.5 text-zinc-300">
-                    {currentDir.architecturePreview.nodes.map((node, i) => (
-                      <div key={node} className="flex items-center gap-1.5">
-                        <span className="px-2 py-1 rounded bg-white/[0.06] border border-white/15 text-[11px] text-cyan-200">
-                          {node}
-                        </span>
-                        {i < currentDir.architecturePreview.nodes.length - 1 && (
-                          <ChevronRight className="w-3 h-3 text-zinc-500 shrink-0" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 对应孵化项目 */}
-                <div className="mt-4 pt-3 border-t border-white/10">
-                  <span className="text-[11px] font-mono text-zinc-400 block mb-2">
-                    书院真实孵化工程参考：
-                  </span>
-                  <div className="space-y-1.5">
-                    {currentDir.productionPractices.map((prac, i) => (
-                      <div key={i} className="text-xs text-zinc-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                        <span className="truncate">{prac}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>

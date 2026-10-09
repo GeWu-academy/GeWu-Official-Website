@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { X, Copy, Check, MessageCircle, Mail, Sparkles, QrCode } from 'lucide-react'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import logoImg from '@/assets/329871518.png'
+import maintainerQrImg from '@/assets/maintainer-qr.jpg'
 
 interface MaintainerDialogProps {
   isOpen: boolean
@@ -51,7 +52,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
       />
 
       {/* 模态框主体 */}
-      <div className="relative w-full max-w-lg rounded-3xl liquid-glass-prominent bg-[#0c1017]/95 border border-white/20 p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.8)] z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-3xl liquid-glass-prominent bg-[#0c1017]/95 border border-white/20 p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.8)] z-10 animate-in fade-in zoom-in-95 duration-200">
         {/* 关闭按钮 */}
         <button
           onClick={onClose}

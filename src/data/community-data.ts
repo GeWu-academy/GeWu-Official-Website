@@ -66,7 +66,9 @@ export const COMMUNITY_INFO = {
     { label: '成员高质量就业助力', value: '92%', unit: '重点内推转化' },
   ],
   maintainerContact: {
-    wechat: 'gewu_maintainer',
+    name: 'Alkaid',
+    wechat: 'Alkaid',
+    region: '中国香港',
     wechatGroupNote: '备注「格物加入+方向」',
     email: 'maintainer@gewu.academy',
     githubOrg: 'https://github.com/gewu-academy',

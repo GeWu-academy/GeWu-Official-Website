@@ -1,5 +1,5 @@
 import { Users, Cpu, Compass, TrendingUp, CheckCircle2 } from 'lucide-react'
-import { LiquidGlassCard } from '@/components/liquid-glass-card'
+import { ScholarSeal } from '@/components/scholar-seal'
 import { MUTUAL_AID_PILLARS, COMMUNITY_INFO } from '@/data/community-data'
 
 export function PhilosophySection() {
@@ -10,106 +10,113 @@ export function PhilosophySection() {
     TrendingUp,
   }
 
+  const classicalTitles = [
+    { prefix: '壹 · 同窗砥砺', theme: '同行互帮互助' },
+    { prefix: '贰 · 格物实作', theme: '打磨硬核实战' },
+    { prefix: '叁 · 开物洞见', theme: '消除信息壁垒' },
+    { prefix: '肆 · 经世致用', theme: '赋能成员就业' },
+  ]
+
   return (
-    <section id="philosophy" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* 标题与标语引言 */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-pill text-xs font-mono text-cyan-300 mb-4">
-            <span>OUR MISSION & VALUES</span>
+    <section id="philosophy" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* 顶部标题区：极简宋体留白 */}
+        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <ScholarSeal text="书院" subtext="四立" size="sm" variant="cinnabar" />
+            <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+              ACADEMY PHILOSOPHY
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-6">
-            以实战破局 · 同行致远
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
+            以实作破局 · 与良友同行
           </h2>
-          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
+          <p className="font-serif text-sm sm:text-base text-stone-600 leading-relaxed">
             {COMMUNITY_INFO.originStory}
           </p>
         </div>
 
-        {/* 四维初衷矩阵卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
-          {MUTUAL_AID_PILLARS.map((pillar) => {
+        {/* 四大支柱卡片（宣纸质感，低信息密度，间距开阔） */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-12">
+          {MUTUAL_AID_PILLARS.map((pillar, index) => {
             const Icon = iconMap[pillar.iconName] || Users
+            const meta = classicalTitles[index]
+
             return (
-              <LiquidGlassCard
+              <div
                 key={pillar.number}
-                className="p-7 sm:p-9 flex flex-col justify-between"
-                glowColor="rgba(56, 189, 248, 0.12)"
+                className="scholar-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between"
               >
                 <div>
-                  {/* 顶栏：编号与标签 */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-cyan-400/80">
-                      {pillar.number}
+                  {/* 顶栏序号与宋风题签 */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-serif text-xs font-semibold text-red-800 tracking-wider">
+                      {meta.prefix}
                     </span>
-                    <span className="text-[11px] font-mono tracking-wider px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-zinc-400">
+                    <span className="text-[11px] font-mono text-stone-400">
                       {pillar.tag}
                     </span>
                   </div>
 
-                  {/* 图标与标题 */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 shrink-0">
-                      <Icon className="w-6 h-6" />
+                  {/* 核心主标题 */}
+                  <div className="flex items-start gap-3.5 mb-3">
+                    <div className="p-2.5 rounded-xl bg-stone-100 text-stone-800 shrink-0 border border-stone-200">
+                      <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                      <h3 className="font-serif text-xl font-bold text-stone-900">
                         {pillar.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-cyan-300/80 font-mono">
+                      <p className="text-xs text-stone-500 font-serif mt-0.5">
                         {pillar.subtitle}
                       </p>
                     </div>
                   </div>
 
-                  {/* 核心描述 */}
-                  <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6">
+                  {/* 简要说明 */}
+                  <p className="text-sm text-stone-600 leading-relaxed mb-6 font-serif">
                     {pillar.description}
                   </p>
                 </div>
 
-                {/* 落地清单 */}
-                <div className="pt-5 border-t border-white/10 space-y-2.5">
+                {/* 落地清单：极简 3 条 */}
+                <div className="pt-4 border-t border-stone-200/80 space-y-2">
                   {pillar.details.map((detail, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300"
+                      className="flex items-center gap-2 text-xs sm:text-sm text-stone-700"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{detail}</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+                      <span className="font-sans">{detail}</span>
                     </div>
                   ))}
                 </div>
-              </LiquidGlassCard>
+              </div>
             )
           })}
         </div>
 
-        {/* 典籍哲学与现代极客呼应条 */}
-        <div className="relative rounded-2xl liquid-glass-prominent p-8 sm:p-10 border border-white/15 overflow-hidden">
-          <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="max-w-2xl">
-              <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">
-                PHILOSOPHY BEHIND GEWU
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                穷理而格物，知行以致远
-              </h3>
-              <p className="text-sm text-zinc-300 leading-relaxed">
-                “格物”并非坐而论道，而是通过深度解构事物机理，探究软硬件与系统运转的本质；“知行”则是将所悟化为健壮的代码、精妙的交互与经得起考验的生产工程。
+        {/* 底部文人雅句横幅 */}
+        <div className="rounded-2xl bg-white border border-stone-200 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <ScholarSeal text="知行" subtext="合一" size="md" variant="outline" />
+            <div>
+              <h4 className="font-serif font-bold text-base text-stone-900">
+                代码为凭 · 经世致用
+              </h4>
+              <p className="text-xs text-stone-500 font-serif mt-0.5">
+                拒绝纸上谈兵与空心套壳，以真实系统架构沉淀个人终身技术资产
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-              <div className="px-5 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-center w-full sm:w-auto">
-                <span className="text-xs text-zinc-400 block">社区信条</span>
-                <span className="text-sm font-semibold text-white">用代码与实战说话</span>
-              </div>
-              <div className="px-5 py-3 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-center w-full sm:w-auto">
-                <span className="text-xs text-cyan-300 block">协同机制</span>
-                <span className="text-sm font-semibold text-cyan-200">开源互助 · 资源互通</span>
-              </div>
-            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-serif text-stone-600">
+            <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200">
+              每周研讨研习会
+            </span>
+            <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200">
+              一对一实战 Review
+            </span>
           </div>
         </div>
       </div>
