@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Sparkles, RotateCw, Compass, Eye, ShieldCheck } from 'lucide-react'
+import { RotateCw, Compass } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 
 interface GewuArmillarySphereProps {
@@ -16,8 +16,6 @@ export function GewuArmillarySphere({
 }: GewuArmillarySphereProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const [activeMode, setActiveMode] = useState<'celestial' | 'crystal' | 'constellation'>('celestial')
-  const [activeNode, setActiveNode] = useState<string | null>(null)
-  const [isHovered, setIsHovered] = useState(false)
 
   // 内部引用以供交互控制
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -381,8 +379,6 @@ export function GewuArmillarySphere({
   return (
     <div
       className={`relative w-full h-full flex flex-col items-center justify-center select-none ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* 宣纸底衬与宋代八角花窗轻边框 */}
       <div className="absolute inset-2 sm:inset-4 rounded-3xl border border-stone-200/70 bg-gradient-to-b from-stone-50/60 via-white/80 to-stone-50/40 pointer-events-none shadow-[inset_0_1px_3px_rgba(255,255,255,0.9),0_10px_30px_rgba(28,25,23,0.03)] backdrop-blur-sm" />

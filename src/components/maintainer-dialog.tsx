@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { X, Copy, Check, MessageCircle, Mail, Sparkles, QrCode } from 'lucide-react'
+import { X, Copy, Check, MessageCircle, Mail } from 'lucide-react'
 import { COMMUNITY_INFO } from '@/data/community-data'
+import { ScholarSeal } from '@/components/scholar-seal'
 import logoImg from '@/assets/329871518.png'
 import maintainerQrImg from '@/assets/maintainer-qr.jpg'
 
@@ -47,74 +48,76 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* 遮罩 */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-xl transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
         onClick={onClose}
       />
 
-      {/* 模态框主体 */}
-      <div className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-3xl liquid-glass-prominent bg-[#0c1017]/95 border border-white/20 p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.8)] z-10 animate-in fade-in zoom-in-95 duration-200">
+      {/* 拜帖模态框主体 */}
+      <div className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl bg-[#fbfbfa] border border-stone-200 p-6 sm:p-8 shadow-[0_20px_60px_rgba(28,25,23,0.15)] z-10 animate-in fade-in zoom-in-95 duration-200">
         {/* 关闭按钮 */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-zinc-400 hover:text-white transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-xl text-stone-400 hover:text-stone-800 hover:bg-stone-100 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* 顶部标题与 Logo */}
-        <div className="flex items-center gap-3.5 mb-6">
-          <div className="w-12 h-12 rounded-2xl p-1 bg-white border border-white/20 overflow-hidden shadow-lg shadow-cyan-500/10">
+        {/* 顶部标题与拜帖印签 */}
+        <div className="flex items-center gap-3.5 mb-5 pb-4 border-b border-stone-200/80">
+          <div className="w-11 h-11 rounded-2xl p-1 bg-white border border-stone-200 overflow-hidden shadow-2xs">
             <img src={logoImg} alt="格物书院" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
-              <span>联系组织 Maintainer</span>
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-            </h3>
-            <p className="text-xs text-zinc-400 font-mono">
-              格物书院 · 穷理而格物，知行以致远
+            <div className="flex items-center gap-2">
+              <h3 className="font-serif font-bold text-lg text-stone-900">
+                山长拜帖 · 入阁指引
+              </h3>
+              <ScholarSeal text="格物" subtext="拜启" size="sm" variant="cinnabar" />
+            </div>
+            <p className="text-xs text-stone-500 font-serif">
+              格物书院 · 穷理致知 · 知行合一
             </p>
           </div>
         </div>
 
         {/* 核心指引 */}
-        <div className="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/40 mb-6 text-xs text-cyan-200 leading-relaxed">
-          👋 欢迎加入书院！请在添加 Maintainer 微信时附带备注：
-          <span className="font-semibold text-cyan-300">
-            「格物加入 + 你的专注方向（如 AI Agent / 全栈 / 系统 / 设计）」
+        <div className="p-3.5 rounded-xl bg-stone-100/90 border border-stone-200/80 mb-5 text-xs text-stone-700 font-serif leading-relaxed">
+          欢迎同窗！添加 Maintainer 微信时请备注：
+          <span className="font-bold text-stone-900 font-sans block mt-0.5">
+            「格物加入 + 研习方向（AI / 全栈 / 系统 / 设计）」
           </span>
-          ，我们将在 24 小时内邀请你进入核心开发者协同群。
+          山长将在 24 小时内邀你进入研习交流群。
         </div>
 
         {/* 联系方式条目 */}
-        <div className="space-y-3 mb-6">
+        <div className="space-y-2.5 mb-5">
           {/* 微信 */}
-          <div className="p-4 rounded-xl liquid-glass bg-white/[0.02] border border-white/10 flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-white border border-stone-200 flex items-center justify-between shadow-2xs">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300">
-                <MessageCircle className="w-5 h-5" />
+              <div className="p-2 rounded-lg bg-red-50 text-red-800 border border-red-200/60">
+                <MessageCircle className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-zinc-400 block font-mono">
-                  WECHAT ID
+                <span className="text-[10px] text-stone-400 block font-mono">
+                  WECHAT
                 </span>
-                <span className="text-sm font-bold text-white font-mono">
+                <span className="text-xs sm:text-sm font-bold text-stone-900 font-mono">
                   {COMMUNITY_INFO.maintainerContact.wechat}
                 </span>
               </div>
             </div>
             <button
               onClick={copyWechat}
-              className="px-3.5 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-xs font-mono text-zinc-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3 py-1 rounded-lg bg-stone-100 hover:bg-stone-200/70 text-xs font-serif text-stone-700 flex items-center gap-1 transition-colors cursor-pointer"
             >
               {copiedWechat ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400">已复制</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-700">已复制</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="w-3.5 h-3.5 text-stone-400" />
                   <span>复制</span>
                 </>
               )}
@@ -122,32 +125,32 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
           </div>
 
           {/* 邮箱 */}
-          <div className="p-4 rounded-xl liquid-glass bg-white/[0.02] border border-white/10 flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-white border border-stone-200 flex items-center justify-between shadow-2xs">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-300">
-                <Mail className="w-5 h-5" />
+              <div className="p-2 rounded-lg bg-stone-100 text-stone-700 border border-stone-200">
+                <Mail className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-zinc-400 block font-mono">
-                  CONTACT EMAIL
+                <span className="text-[10px] text-stone-400 block font-mono">
+                  EMAIL
                 </span>
-                <span className="text-sm font-bold text-white font-mono">
+                <span className="text-xs sm:text-sm font-bold text-stone-900 font-mono">
                   {COMMUNITY_INFO.maintainerContact.email}
                 </span>
               </div>
             </div>
             <button
               onClick={copyEmail}
-              className="px-3.5 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-xs font-mono text-zinc-200 flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3 py-1 rounded-lg bg-stone-100 hover:bg-stone-200/70 text-xs font-serif text-stone-700 flex items-center gap-1 transition-colors cursor-pointer"
             >
               {copiedEmail ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400">已复制</span>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-700">已复制</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="w-3.5 h-3.5 text-stone-400" />
                   <span>复制</span>
                 </>
               )}
@@ -155,33 +158,50 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
           </div>
         </div>
 
-        {/* 拟物二维码卡片区域 */}
-        <div className="p-4 rounded-2xl bg-black/40 border border-white/10 text-center flex flex-col items-center">
-          <div className="p-3 bg-white rounded-2xl shadow-xl mb-2 flex items-center justify-center relative">
-            {/* SVG 艺术二维码预览 */}
-            <div className="w-32 h-32 flex flex-col items-center justify-center border border-zinc-200 rounded-xl relative p-2 bg-zinc-50">
-              <QrCode className="w-24 h-24 text-zinc-900" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-7 h-7 rounded-lg bg-white p-0.5 shadow-md border border-zinc-300">
-                  <img src={logoImg} alt="Logo" className="w-full h-full object-contain" />
-                </div>
-              </div>
-            </div>
+        {/* 二维码展示 */}
+        <div className="p-4 rounded-2xl bg-white border border-stone-200 flex flex-col items-center shadow-2xs mb-5">
+          <div className="p-1.5 bg-stone-50 rounded-xl border border-stone-200 mb-2.5">
+            <img
+              src={maintainerQrImg}
+              alt="山长 Alkaid 微信二维码"
+              className="w-52 sm:w-56 h-auto object-contain rounded-lg"
+            />
           </div>
-          <span className="text-[11px] text-zinc-400 font-mono">
-            扫码或搜索微信号直接添加 Maintainer
+          <div className="flex items-center gap-1.5 mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-serif font-bold text-stone-800">
+              {COMMUNITY_INFO.maintainerContact.name} ({COMMUNITY_INFO.maintainerContact.region})
+            </span>
+          </div>
+          <span className="text-[11px] text-stone-500 font-serif mb-2.5">
+            打开微信扫一扫添加山长，沟通入阁事宜
           </span>
+          <div className="flex items-center gap-2">
+            <a
+              href={maintainerQrImg}
+              download="Alkaid-WeChat-QRCode.jpg"
+              className="px-3 py-1 rounded-lg bg-stone-100 hover:bg-stone-200/80 text-[11px] font-serif text-stone-700 transition-colors"
+            >
+              保存名片
+            </a>
+            <a
+              href={maintainerQrImg}
+              target="_blank"
+              rel="noreferrer"
+              className="px-3 py-1 rounded-lg bg-stone-100 hover:bg-stone-200/80 text-[11px] font-serif text-stone-700 transition-colors"
+            >
+              查看大图
+            </a>
+          </div>
         </div>
 
-        {/* 底部按钮 */}
-        <div className="mt-6 flex justify-end">
-          <button
-            onClick={onClose}
-            className="w-full py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 font-medium text-xs transition-colors cursor-pointer"
-          >
-            关闭视窗
-          </button>
-        </div>
+        {/* 底部关闭按钮 */}
+        <button
+          onClick={onClose}
+          className="w-full py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-serif text-xs font-medium transition-colors cursor-pointer"
+        >
+          关闭拜帖
+        </button>
       </div>
     </div>
   )

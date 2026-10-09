@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
-import { ArrowRight, Feather, GitPullRequest, Sparkles } from 'lucide-react'
+import { ArrowRight, Feather, GitPullRequest } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
 import { COMMUNITY_INFO } from '@/data/community-data'

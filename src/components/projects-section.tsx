@@ -1,4 +1,4 @@
-import { GitFork, Star, Users, ExternalLink, GitPullRequest, FolderGit2 } from 'lucide-react'
+import { GitFork, Star, Users, ExternalLink, GitPullRequest } from 'lucide-react'
 import { INCUBATOR_PROJECTS } from '@/data/community-data'
 import { ScholarSeal } from '@/components/scholar-seal'
 

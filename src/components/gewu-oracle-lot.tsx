@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sparkles, RefreshCw, BookmarkCheck, Check, Feather } from 'lucide-react'
+import { RefreshCw, BookmarkCheck, Check, Feather } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 
 interface LotItem {

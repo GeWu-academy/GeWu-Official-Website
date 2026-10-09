@@ -29,7 +29,6 @@ export function InkRippleCanvas({
 
     let animationId: number
     let drops: InkDrop[] = []
-    let lastTime = 0
     let mouse = { x: -100, y: -100, isMoving: false }
     let lastMoveTime = 0
 
@@ -80,7 +79,7 @@ export function InkRippleCanvas({
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
     window.addEventListener('click', handleClick, { passive: true })
 
-    const render = (time: number) => {
+    const render = () => {
       animationId = requestAnimationFrame(render)
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)

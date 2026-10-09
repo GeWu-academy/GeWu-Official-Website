@@ -1,4 +1,4 @@
-import { Sparkles, Compass } from 'lucide-react'
+import { Feather, Compass } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 
 interface MobileDockProps {
@@ -9,28 +9,28 @@ interface MobileDockProps {
 export function MobileDock({ onOpenMaintainer, onExploreDirections }: MobileDockProps) {
   return (
     <div className="fixed bottom-4 inset-x-4 z-40 sm:hidden">
-      <div className="liquid-glass-prominent bg-[#0b0e14]/90 backdrop-blur-2xl border border-white/20 rounded-2xl px-4 py-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center justify-between gap-3">
+      <div className="bg-white/95 backdrop-blur-xl border border-stone-300/90 rounded-2xl px-3.5 py-2 shadow-[0_8px_24px_rgba(28,25,23,0.12)] flex items-center justify-between gap-2.5">
         <button
           onClick={onExploreDirections}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-xs font-medium text-zinc-200 border border-white/10"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-stone-100 hover:bg-stone-200/70 text-xs font-serif text-stone-700 border border-stone-200"
         >
-          <Compass className="w-3.5 h-3.5 text-cyan-400" />
-          <span>实践方向</span>
+          <Compass className="w-3.5 h-3.5 text-stone-500" />
+          <span>研习方向</span>
         </button>
 
         <button
           onClick={onOpenMaintainer}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-cyan-500 text-zinc-950 text-xs font-semibold shadow-lg shadow-cyan-500/25"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-stone-900 text-stone-50 text-xs font-serif font-medium shadow-sm"
         >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>加入书院</span>
+          <Feather className="w-3.5 h-3.5 text-amber-200" />
+          <span>拜谒山长</span>
         </button>
 
         <a
           href="https://github.com/gewu-academy"
           target="_blank"
           rel="noreferrer"
-          className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 border border-white/10"
+          className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200/70 text-stone-700 border border-stone-200"
           aria-label="GitHub"
         >
           <GithubIcon className="w-4 h-4" />

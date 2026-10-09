@@ -6,7 +6,6 @@ export function CustomCursor() {
   const cursorDotRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // 移动端或无鼠标设备不挂载
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
     if (isTouch) return
 
@@ -17,29 +16,26 @@ export function CustomCursor() {
     gsap.set([cursor, dot], { xPercent: -50, yPercent: -50, opacity: 0 })
 
     const moveCursor = (e: MouseEvent) => {
-      // 首次移动时淡入
       gsap.to([cursor, dot], { opacity: 1, duration: 0.3 })
 
-      // 小圆点几乎无延迟跟随
       gsap.to(dot, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.1,
+        duration: 0.08,
         ease: 'none',
       })
 
-      // 外圈光晕带柔和物理阻尼跟随
       gsap.to(cursor, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.35,
+        duration: 0.28,
         ease: 'power2.out',
       })
     }
 
     const handleMouseDown = () => {
-      gsap.to(cursor, { scale: 0.85, duration: 0.2 })
-      gsap.to(dot, { scale: 1.4, duration: 0.2 })
+      gsap.to(cursor, { scale: 0.75, duration: 0.15 })
+      gsap.to(dot, { scale: 1.5, duration: 0.15 })
     }
 
     const handleMouseUp = () => {
@@ -60,18 +56,15 @@ export function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
-      {/* 外圈微光透镜光晕 */}
+      {/* 墨韵外圈 */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 h-10 w-10 rounded-full border border-cyan-400/40 bg-cyan-400/[0.04] backdrop-blur-[2px] transition-transform duration-75"
-        style={{
-          boxShadow: '0 0 20px rgba(56, 189, 248, 0.25)',
-        }}
+        className="fixed top-0 left-0 h-8 w-8 rounded-full border border-stone-400/40 bg-stone-500/[0.03] transition-transform duration-75 pointer-events-none"
       />
-      {/* 中心高亮微光点 */}
+      {/* 朱砂笔意中心小点 */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#38bdf8]"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-red-800 pointer-events-none shadow-[0_0_6px_rgba(185,28,28,0.4)]"
       />
     </div>
   )
