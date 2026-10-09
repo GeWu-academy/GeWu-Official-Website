@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { RotateCw, Compass } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { useI18n } from '@/i18n'
 
 interface GewuArmillarySphereProps {
   className?: string
@@ -16,6 +17,7 @@ export function GewuArmillarySphere({
 }: GewuArmillarySphereProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const [activeMode, setActiveMode] = useState<'celestial' | 'crystal' | 'constellation'>('celestial')
+  const { t } = useI18n()
 
   // 内部引用以供交互控制
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -391,13 +393,13 @@ export function GewuArmillarySphere({
 
       {/* 左上角：格物浑天仪印鉴与题旨 */}
       <div className="absolute top-5 left-5 z-20 flex items-center gap-2.5 pointer-events-none">
-        <ScholarSeal text="浑天" subtext="格物" size="sm" variant="cinnabar" />
+        <ScholarSeal text={t.armillary.sealText} subtext={t.armillary.sealSubtext} size="sm" variant="cinnabar" />
         <div className="flex flex-col">
           <span className="font-serif text-xs font-semibold text-[var(--text-heading)] tracking-wider">
-            格物乾坤仪
+            {t.armillary.title}
           </span>
           <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-widest uppercase">
-            Armillary Core 3D
+            {t.armillary.subtitle}
           </span>
         </div>
       </div>
@@ -412,9 +414,9 @@ export function GewuArmillarySphere({
                 ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
                 : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
-            title="浑天演历：天度同心环"
+            title={t.armillary.celestialTip}
           >
-            浑天仪
+            {t.armillary.celestialMode}
           </button>
           <button
             onClick={() => handleModeChange('crystal')}
@@ -423,9 +425,9 @@ export function GewuArmillarySphere({
                 ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
                 : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
-            title="格物晶核：数理多面体"
+            title={t.armillary.crystalTip}
           >
-            格物核
+            {t.armillary.crystalMode}
           </button>
           <button
             onClick={() => handleModeChange('constellation')}
@@ -434,14 +436,14 @@ export function GewuArmillarySphere({
                 ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
                 : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
-            title="星轨散络：四象星图"
+            title={t.armillary.constellationTip}
           >
-            四象轨
+            {t.armillary.constellationMode}
           </button>
           <button
             onClick={handleResetRotation}
             className="p-1 text-[var(--text-muted)] hover:text-[var(--text-heading)] rounded-lg hover:bg-[var(--theme-tab-bg)] transition-colors ml-0.5 cursor-pointer"
-            title="归正原位"
+            title={t.armillary.resetTip}
           >
             <RotateCw className="w-3.5 h-3.5" />
           </button>
@@ -452,10 +454,10 @@ export function GewuArmillarySphere({
       <div className="absolute bottom-4 inset-x-6 z-20 flex items-center justify-between text-[11px] text-[var(--text-muted)] font-serif border-t border-[var(--border)] pt-2.5 pointer-events-none">
         <span className="flex items-center gap-1.5 text-[var(--text-muted)]">
           <Compass className="w-3 h-3 opacity-60" />
-          <span>拖拽可转动乾坤 · 鼠标掠过生墨澜</span>
+          <span>{t.armillary.guideInteraction}</span>
         </span>
         <span className="text-[var(--text-muted)] opacity-80 hidden sm:inline tracking-wider">
-          「致知在格物，物格而后知至」
+          {t.armillary.quote}
         </span>
       </div>
     </div>

@@ -15,9 +15,11 @@ import { Footer } from '@/components/footer'
 import { MaintainerDialog } from '@/components/maintainer-dialog'
 import { MobileDock } from '@/components/mobile-dock'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { useI18n } from '@/i18n'
 
 function AppContent() {
   const [isMaintainerOpen, setIsMaintainerOpen] = useState(false)
+  const { t } = useI18n()
 
   const handleOpenMaintainer = () => {
     setIsMaintainerOpen(true)
@@ -42,7 +44,7 @@ function AppContent() {
       {/* 游丝微光鼠标指针 */}
       <CustomCursor />
 
-      {/* 顶部雅集导航（含三段式主题切换器） */}
+      {/* 顶部雅集导航（含语言切换与三段式主题切换器） */}
       <Navbar onOpenMaintainer={handleOpenMaintainer} />
 
       {/* 核心板块内容流 */}
@@ -67,16 +69,16 @@ function AppContent() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 mb-3">
-                <ScholarSeal text="问策" subtext="格物" size="sm" variant="cinnabar" />
+                <ScholarSeal text={t.oracle.sealText} subtext={t.oracle.sealSubtext} size="sm" variant="cinnabar" />
                 <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
-                  ZEN LOT & ORACLE
+                  {t.oracle.subtitle}
                 </span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-2">
-                格物问策 · 晨昏省察
+                {t.oracle.title}
               </h2>
               <p className="font-serif text-sm text-[var(--text-muted)]">
-                探寻今日研习心境，在代码与工程之间体悟造物与笃行之妙
+                {t.oracle.desc}
               </p>
             </div>
 
@@ -100,12 +102,6 @@ function AppContent() {
 
       {/* 网站底栏 */}
       <Footer />
-
-      {/* 移动端快捷浮动坞 */}
-      <MobileDock
-        onOpenMaintainer={handleOpenMaintainer}
-        onExploreDirections={handleExploreDirections}
-      />
 
       {/* 山长拜帖弹窗模态框 */}
       <MaintainerDialog

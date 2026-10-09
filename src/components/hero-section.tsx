@@ -40,7 +40,7 @@ export function HeroSection({
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] pt-28 pb-16 lg:py-32 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-[90vh] pt-20 sm:pt-24 pb-16 lg:pt-28 lg:pb-24 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         {/* 左侧：宋韵文心 · 宗旨题辞 */}
