@@ -33,7 +33,7 @@ export const zh: TranslationsSchema = {
     metrics: [
       { label: '核心实践方向', value: '4 大', unit: '硬核领域' },
       { label: '开源代码驱动', value: '开源', unit: '代码为凭' },
-      { label: '同行常例研讨', value: '每周', unit: '技术圆桌' },
+      { label: '同行研讨切磋', value: '不定时', unit: '技术圆桌' },
       { label: '消除信息壁垒', value: '笃行', unit: '知行合一' },
     ],
   },
@@ -51,9 +51,9 @@ export const zh: TranslationsSchema = {
         tag: 'PEER SUPPORT',
         title: '同行互帮互助',
         subtitle: '告别孤军奋战，建立高质量技术圈层',
-        description: '打破技术孤岛。每周线上结对编程、疑难 Bug 攻坚研讨、设计体验推演，同行者随时碰撞思路。',
+        description: '打破技术孤点与孤岛。线上结对编程、疑难 Bug 攻坚研讨、设计体验推演，同行者随时碰撞思路。',
         details: [
-          '每周日晚「格物实战研讨会」深度切磋',
+          '不定时发起「格物实战研讨会」深度切磋',
           '一对一 Code Review 与架构推演',
           '前沿技术早报与开源趋势一手拆解',
         ],
@@ -106,7 +106,7 @@ export const zh: TranslationsSchema = {
     bannerSealSubtext: '合一',
     bannerTitle: '代码为凭 · 经世致用',
     bannerDesc: '拒绝纸上谈兵与空心套壳，以真实系统架构沉淀个人终身技术资产',
-    bannerTag1: '每周研讨研习会',
+    bannerTag1: '不定时实战研讨会',
     bannerTag2: '一对一实战 Review',
   },
   techDirections: {
@@ -326,7 +326,7 @@ export const zh: TranslationsSchema = {
         motto: '独学而无友，则孤陋而寡闻。',
         source: '《礼记·学记》',
         principle: '同行互助，打破信息茧房与求职孤岛。',
-        dos: '参与周日晚技术圆桌，互相 Review 简历',
+        dos: '参与书院技术研讨圆桌，互相 Review 简历',
         donts: '独自焦虑，闭门造车',
         direction: '同行互助 · 职涯加速',
       },
@@ -465,9 +465,9 @@ export const zh: TranslationsSchema = {
       viewQrBtn: '查看山长拜帖与微信二维码',
     },
     weeklySync: {
-      title: '每周日晚 20:30 书院在线技术圆桌',
-      desc: '同行结对编程、生产疑难 Bug 攻坚复盘、模拟面试答辩与求职动态分享',
-      tag: '全员公开研讨',
+      title: '书院在线技术研讨圆桌（不定时发起）',
+      desc: '同行结对编程、生产疑难 Bug 攻坚复盘、模拟面试答辩与求职动态分享，议题驱动灵活开讲',
+      tag: '不定时研讨切磋',
     },
   },
   faq: {

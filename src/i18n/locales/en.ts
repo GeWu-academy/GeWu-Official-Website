@@ -152,7 +152,7 @@ export const en: TranslationsSchema = {
           'Langfuse',
         ],
         productionPractices: [
-          'Gewu-Agent-Flow: General multi-agent async workflow engine',
+          'coderelay: Intelligent traffic router for coding agent CLIs',
           'Intelligent code review and issue triage agent',
           'High-recall retrieval-augmented generation (RAG) framework',
         ],

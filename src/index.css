@@ -85,8 +85,6 @@
     --footer-border: #e2e8f0;
     --dialog-bg: rgba(255, 255, 255, 0.98);
     --dock-bg: rgba(255, 255, 255, 0.95);
-    --cursor-ring: rgba(15, 23, 42, 0.35);
-    --cursor-dot: #b91c1c;
     --code-box-bg: #f8fafc;
     --section-alt-bg: rgba(248, 250, 252, 0.7);
 }
@@ -132,8 +130,6 @@
     --footer-border: #e7e5e0;
     --dialog-bg: rgba(255, 254, 250, 0.98);
     --dock-bg: rgba(255, 254, 250, 0.95);
-    --cursor-ring: rgba(68, 64, 60, 0.35);
-    --cursor-dot: #b91c1c;
     --code-box-bg: rgba(245, 244, 238, 0.8);
     --section-alt-bg: rgba(245, 244, 238, 0.5);
 }
@@ -179,8 +175,6 @@
     --footer-border: rgba(255, 255, 255, 0.1);
     --dialog-bg: rgba(11, 15, 22, 0.98);
     --dock-bg: rgba(11, 14, 20, 0.94);
-    --cursor-ring: rgba(56, 189, 248, 0.45);
-    --cursor-dot: #38bdf8;
     --code-box-bg: rgba(0, 0, 0, 0.4);
     --section-alt-bg: rgba(255, 255, 255, 0.02);
 }

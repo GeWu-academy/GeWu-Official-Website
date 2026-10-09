@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ThemeProvider } from '@/context/theme-context'
 import { InkRippleCanvas } from '@/components/three/ink-ripple-canvas'
-import { CustomCursor } from '@/components/custom-cursor'
 import { Navbar } from '@/components/navbar'
 import { HeroSection } from '@/components/hero-section'
 import { PhilosophySection } from '@/components/philosophy-section'
@@ -39,9 +38,6 @@ function AppContent() {
     <div className="relative min-h-screen text-[var(--text-body)] bg-[var(--background)] selection:bg-[var(--accent-seal)]/15 selection:text-[var(--text-heading)] overflow-x-hidden font-sans transition-colors duration-300">
       {/* 水墨微澜互动画布（自适应白色、米白与暗色主题） */}
       <InkRippleCanvas opacity={0.12} />
-
-      {/* 游丝微光鼠标指针 */}
-      <CustomCursor />
 
       {/* 顶部雅集导航（含语言切换与三段式主题切换器） */}
       <Navbar onOpenMaintainer={handleOpenMaintainer} />
