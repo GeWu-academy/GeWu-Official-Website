@@ -1,5 +1,5 @@
 import { Sun, Moon, Feather } from 'lucide-react'
-import { useTheme, type Theme } from '@/context/theme-context'
+import { useThemeStore, type Theme } from '@/store/use-theme-store'
 import { useI18n } from '@/i18n'
 
 interface ThemeSwitcherProps {
@@ -8,7 +8,8 @@ interface ThemeSwitcherProps {
 }
 
 export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSwitcherProps) {
-  const { theme, setTheme } = useTheme()
+  const theme = useThemeStore((s) => s.theme)
+  const setTheme = useThemeStore((s) => s.setTheme)
   const { t } = useI18n()
 
   const options: Array<{
@@ -17,6 +18,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
     shortLabel: string
     icon: typeof Sun
     hint: string
+    activeColor: string
   }> = [
     {
       id: 'white',
@@ -24,6 +26,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
       shortLabel: t.theme.white,
       icon: Sun,
       hint: t.theme.whiteHint,
+      activeColor: 'text-amber-500',
     },
     {
       id: 'cream',
@@ -31,6 +34,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
       shortLabel: t.theme.cream,
       icon: Feather,
       hint: t.theme.creamHint,
+      activeColor: 'text-amber-600 dark:text-amber-400',
     },
     {
       id: 'dark',
@@ -38,6 +42,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
       shortLabel: t.theme.dark,
       icon: Moon,
       hint: t.theme.darkHint,
+      activeColor: 'text-sky-400',
     },
   ]
 
@@ -60,12 +65,12 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
                 onClick={() => setTheme(opt.id)}
                 className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl text-xs font-serif transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[var(--card-bg)] text-[var(--text-heading)] shadow-sm font-semibold border border-[var(--border)]'
+                    ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] shadow-xs font-semibold border border-[var(--border)]'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
                 }`}
                 title={opt.hint}
               >
-                <Icon className={`w-4 h-4 mb-1 ${isActive ? 'text-[var(--accent-seal)]' : 'opacity-70'}`} />
+                <Icon className={`w-4 h-4 mb-1 ${isActive ? opt.activeColor : 'opacity-70'}`} />
                 <span>{opt.label}</span>
               </button>
             )
@@ -87,13 +92,13 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
               onClick={() => setTheme(opt.id)}
               className={`p-1.5 rounded-lg transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-[var(--card-bg)] text-[var(--text-heading)] shadow-sm border border-[var(--border)]'
+                  ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] shadow-xs border border-[var(--border)]'
                   : 'text-[var(--text-muted)] hover:text-[var(--text-heading)]'
               }`}
               title={`${opt.label} (${opt.hint})`}
               aria-label={opt.label}
             >
-              <Icon className="w-3.5 h-3.5" />
+              <Icon className={`w-3.5 h-3.5 ${isActive ? opt.activeColor : ''}`} />
             </button>
           )
         })}
@@ -106,7 +111,7 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
     <div
       role="group"
       aria-label={t.theme.title}
-      className={`relative inline-flex items-center p-1 rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] ${className}`}
+      className={`relative inline-flex items-center p-1 rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm ${className}`}
     >
       {options.map((opt) => {
         const Icon = opt.icon
@@ -117,19 +122,19 @@ export function ThemeSwitcher({ variant = 'segmented', className = '' }: ThemeSw
             onClick={() => setTheme(opt.id)}
             className={`relative z-10 flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-xl text-xs font-serif transition-all cursor-pointer ${
               isActive
-                ? 'bg-[var(--card-bg)] text-[var(--text-heading)] font-semibold shadow-sm border border-[var(--border)]'
+                ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] font-semibold shadow-xs border border-[var(--border)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
             }`}
             title={`${opt.label} - ${opt.hint}`}
           >
             <Icon
               className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                isActive ? 'scale-110 text-[var(--accent-seal)]' : 'opacity-70'
+                isActive ? `scale-110 ${opt.activeColor}` : 'opacity-70'
               }`}
             />
             <span className="tracking-wide">{opt.label}</span>
             {isActive && (
-              <span className="w-1 h-1 rounded-full bg-[var(--accent-seal)] sm:hidden" />
+              <span className={`w-1 h-1 rounded-full ${opt.activeColor} sm:hidden`} />
             )}
           </button>
         )

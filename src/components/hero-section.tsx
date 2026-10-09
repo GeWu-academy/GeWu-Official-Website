@@ -81,7 +81,10 @@ export function HeroSection({
           </div>
 
           {/* 书院名训：宋体金石大字 */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-heading)] leading-[1.2] mb-6">
+          <h1
+            ref={titleLinesRef}
+            className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-heading)] leading-[1.2] mb-6"
+          >
             <span className="block">{t.hero.titleLine1}</span>
             <span className="block mt-1 sm:mt-2 text-[var(--text-body)]">
               {t.hero.titleLine2}
@@ -96,9 +99,12 @@ export function HeroSection({
           </p>
 
           {/* 核心 CTA 行动按钮组 */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10 w-full sm:w-auto">
+          <div
+            ref={ctaRef}
+            className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10 w-full sm:w-auto"
+          >
             <button
-              onClick={handleExploreDirections}
+              onClick={onExploreDirections}
               className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(56,189,248,0.2)] dark:shadow-[0_4px_24px_rgba(56,189,248,0.3)] transition-all cursor-pointer"
             >
               <span>{t.hero.exploreBtn}</span>
@@ -106,7 +112,7 @@ export function HeroSection({
             </button>
 
             <button
-              onClick={handleOpenMaintainer}
+              onClick={onOpenMaintainer}
               className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-sm font-medium shadow-xs transition-all cursor-pointer"
             >
               <Feather className="w-4 h-4 text-[var(--accent-seal)]" />
@@ -125,11 +131,14 @@ export function HeroSection({
           </div>
 
           {/* 简雅学社指标：4 枚极简指标卡片 */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-[var(--border)] w-full">
+          <div
+            ref={metricsRef}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-[var(--border)] w-full"
+          >
             {metrics.map((m) => (
               <div key={m.label} className="flex flex-col">
                 <div className="font-serif text-2xl font-bold text-[var(--text-heading)]">
-                  {m.value}
+                  <AnimatedCounter value={m.value} />
                 </div>
                 <div className="text-xs text-[var(--text-muted)] font-serif mt-0.5">
                   {m.label}

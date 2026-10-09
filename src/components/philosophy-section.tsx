@@ -1,9 +1,17 @@
+import { useRef } from 'react'
 import { Users, Cpu, Compass, TrendingUp, CheckCircle2 } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useScrollReveal } from '@/animation'
 
 export function PhilosophySection() {
   const { t } = useI18n()
+  const sectionRef = useScrollReveal<HTMLElement>({
+    selector: '.scholar-card',
+    stagger: 0.14,
+    y: 32,
+    start: 'top 82%',
+  })
 
   const iconMap: Record<string, React.ElementType> = {
     Users,
@@ -15,7 +23,11 @@ export function PhilosophySection() {
   const p = t.philosophy
 
   return (
-    <section id="philosophy" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="philosophy"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-6xl mx-auto">
         {/* 顶部标题区：极简宋体留白 */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
