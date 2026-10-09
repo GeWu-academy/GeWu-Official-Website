@@ -3,6 +3,7 @@ import { Menu, X, ArrowUpRight, MessageCircle, Feather } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { ThemeSwitcher } from '@/components/theme-switcher'
+import { LanguageSwitcher } from '@/components/language-switcher'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 import logoImg from '@/assets/329871518.png'
@@ -104,6 +105,9 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
               {/* 主题切换器（白色、米白、暗色） */}
               <ThemeSwitcher variant="segmented" />
 
+              {/* 语言切换器（中文、English） */}
+              <LanguageSwitcher variant="segmented" />
+
               <a
                 href="https://github.com/gewu-academy"
                 target="_blank"
@@ -125,8 +129,9 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
               </button>
             </div>
 
-            {/* 移动端汉堡切换与主题切换 */}
+            {/* 移动端汉堡切换与语言/主题切换 */}
             <div className="flex sm:hidden items-center gap-1.5">
+              <LanguageSwitcher variant="compact" />
               <ThemeSwitcher variant="compact" />
 
               <button
@@ -171,6 +176,9 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
 
             {/* 抽屉内主题切换器 */}
             <ThemeSwitcher variant="drawer" />
+
+            {/* 抽屉内语言切换器 */}
+            <LanguageSwitcher variant="drawer" />
 
             <div className="flex flex-col gap-1 pt-1 border-t border-[var(--border)]">
               {t.nav.links.map((link) => (

@@ -1,6 +1,7 @@
 import { ArrowUp, Heart } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { LanguageSwitcher } from '@/components/language-switcher'
 import logoImg from '@/assets/329871518.png'
 import { useI18n } from '@/i18n'
 
@@ -106,13 +107,16 @@ export function Footer() {
             </span>
           </div>
 
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] transition-colors cursor-pointer shadow-xs"
-          >
-            <span>{t.footer.backToTop}</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex items-center gap-2.5">
+            <LanguageSwitcher variant="segmented" />
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] transition-colors cursor-pointer shadow-xs"
+            >
+              <span>{t.footer.backToTop}</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

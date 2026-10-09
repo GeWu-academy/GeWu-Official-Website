@@ -56,7 +56,7 @@ export function LanguageSwitcher({
                 onClick={() => setLanguage(opt.code)}
                 className={`relative flex flex-col items-center justify-center py-2 px-1 rounded-xl text-xs font-serif transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[var(--card-bg)] text-[var(--text-heading)] shadow-sm font-semibold border border-[var(--border)]'
+                    ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] shadow-xs font-semibold border border-[var(--border)]'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
                 }`}
                 title={opt.label}
@@ -127,7 +127,7 @@ export function LanguageSwitcher({
             onClick={() => setLanguage(opt.code)}
             className={`relative z-10 flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl text-xs font-serif transition-all cursor-pointer ${
               isActive
-                ? 'bg-[var(--card-bg)] text-[var(--text-heading)] font-semibold shadow-sm border border-[var(--border)]'
+                ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] font-semibold shadow-xs border border-[var(--border)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
             }`}
             title={`${t.lang.name}: ${opt.label}`}

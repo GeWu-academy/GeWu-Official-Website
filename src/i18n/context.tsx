@@ -7,6 +7,7 @@ import {
 } from '@/store/use-i18n-store'
 
 export type { LanguageOption }
+// oxlint-disable-next-line react/only-export-components
 export { AVAILABLE_LANGUAGES, useI18n, useI18nStore }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
