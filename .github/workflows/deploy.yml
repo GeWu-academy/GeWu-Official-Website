@@ -1,0 +1,71 @@
+name: Deploy and Merge
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+# 保证同一时间只有一个流程在执行，防止并发推送导致 Git 分支冲突
+concurrency:
+  group: deploy-and-merge
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build project
+        run: bun run build
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+  merge-to-main:
+    name: Merge dev into main
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Merge dev into main
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 确保获取远程分支最新信息
+          git fetch origin main dev
+
+          # 切换到本地 main 分支
+          git checkout main
+
+          # 将 dev 分支合并到 main 分支（包含 [skip ci] 避免递归触发 CI）
+          git merge origin/dev -m "chore: auto-merge dev into main [skip ci]"
+
+          # 推送最新的 main 分支到远程
+          git push origin main
