@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme inline {
     --font-heading: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', serif;
     --font-serif: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', serif;
@@ -42,11 +44,67 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
+/* 默认：白色主题 (White / 纯白明净) */
+:root, [data-theme="white"] {
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --text-heading: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-elevated: #ffffff;
+    --card-hover-border: rgba(2, 132, 199, 0.35);
+    --card-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+    --card-shadow-hover: 0 12px 32px -8px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(15, 23, 42, 0.04);
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    --primary: #0f172a;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #1e293b;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --accent-seal: #b91c1c;
+    --accent-cyan: #0284c7;
+    --accent-bg-subtle: rgba(2, 132, 199, 0.08);
+    --destructive: #b91c1c;
+    --border: #e2e8f0;
+    --border-subtle: #f1f5f9;
+    --input: #e2e8f0;
+    --ring: #94a3b8;
+    --radius: 0.75rem;
+    --theme-tab-bg: #f1f5f9;
+    --theme-hover-bg: #e2e8f0;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --nav-bg-scrolled: rgba(255, 255, 255, 0.96);
+    --footer-bg: #f8fafc;
+    --footer-border: #e2e8f0;
+    --dialog-bg: rgba(255, 255, 255, 0.98);
+    --dock-bg: rgba(255, 255, 255, 0.95);
+    --cursor-ring: rgba(15, 23, 42, 0.35);
+    --cursor-dot: #b91c1c;
+    --code-box-bg: #f8fafc;
+    --section-alt-bg: rgba(248, 250, 252, 0.7);
+}
+
+/* 米白色主题 (Cream / 温润米白宣纸) */
+[data-theme="cream"] {
     --background: #faf9f5;
     --foreground: #1c1917;
+    --text-heading: #1c1917;
+    --text-body: #44403c;
+    --text-muted: #78716c;
     --card: #ffffff;
     --card-foreground: #1c1917;
+    --card-bg: rgba(255, 254, 250, 0.9);
+    --card-elevated: #fffefb;
+    --card-hover-border: rgba(185, 28, 28, 0.25);
+    --card-shadow: 0 4px 20px -4px rgba(28, 25, 23, 0.04), 0 1px 3px rgba(28, 25, 23, 0.02);
+    --card-shadow-hover: 0 12px 32px -8px rgba(28, 25, 23, 0.08), 0 2px 6px rgba(28, 25, 23, 0.03);
     --popover: #ffffff;
     --popover-foreground: #1c1917;
     --primary: #1c1917;
@@ -57,70 +115,129 @@
     --muted-foreground: #78716c;
     --accent: #f5f4ee;
     --accent-foreground: #1c1917;
+    --accent-seal: #b91c1c;
+    --accent-cyan: #0f766e;
+    --accent-bg-subtle: rgba(15, 118, 110, 0.08);
     --destructive: #b91c1c;
     --border: #e7e5e0;
+    --border-subtle: #f0eee8;
     --input: #e7e5e0;
     --ring: #a8a29e;
     --radius: 0.75rem;
+    --theme-tab-bg: #f5f4ee;
+    --theme-hover-bg: #edebe3;
+    --nav-bg: rgba(250, 249, 245, 0.88);
+    --nav-bg-scrolled: rgba(255, 254, 250, 0.96);
+    --footer-bg: #f2efe7;
+    --footer-border: #e7e5e0;
+    --dialog-bg: rgba(255, 254, 250, 0.98);
+    --dock-bg: rgba(255, 254, 250, 0.95);
+    --cursor-ring: rgba(68, 64, 60, 0.35);
+    --cursor-dot: #b91c1c;
+    --code-box-bg: rgba(245, 244, 238, 0.8);
+    --section-alt-bg: rgba(245, 244, 238, 0.5);
+}
+
+/* 暗色主题 (Dark / 深邃黑曜赛博) */
+.dark, [data-theme="dark"] {
+    --background: #07090e;
+    --foreground: #f8fafc;
+    --text-heading: #ffffff;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --card: #111520;
+    --card-foreground: #f8fafc;
+    --card-bg: rgba(17, 21, 32, 0.75);
+    --card-elevated: #0e121a;
+    --card-hover-border: rgba(56, 189, 248, 0.35);
+    --card-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    --card-shadow-hover: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.15);
+    --popover: #111520;
+    --popover-foreground: #f8fafc;
+    --primary: #38bdf8;
+    --primary-foreground: #020617;
+    --secondary: #1e2433;
+    --secondary-foreground: #f1f5f9;
+    --muted: #1e2433;
+    --muted-foreground: #94a3b8;
+    --accent: #1e2433;
+    --accent-foreground: #f8fafc;
+    --accent-seal: #ef4444;
+    --accent-cyan: #38bdf8;
+    --accent-bg-subtle: rgba(56, 189, 248, 0.12);
+    --destructive: #ef4444;
+    --border: rgba(255, 255, 255, 0.12);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --input: rgba(255, 255, 255, 0.15);
+    --ring: #38bdf8;
+    --radius: 0.75rem;
+    --theme-tab-bg: rgba(255, 255, 255, 0.07);
+    --theme-hover-bg: rgba(255, 255, 255, 0.12);
+    --nav-bg: rgba(11, 14, 20, 0.82);
+    --nav-bg-scrolled: rgba(11, 14, 20, 0.95);
+    --footer-bg: #040609;
+    --footer-border: rgba(255, 255, 255, 0.1);
+    --dialog-bg: rgba(11, 15, 22, 0.98);
+    --dock-bg: rgba(11, 14, 20, 0.94);
+    --cursor-ring: rgba(56, 189, 248, 0.45);
+    --cursor-dot: #38bdf8;
+    --code-box-bg: rgba(0, 0, 0, 0.4);
+    --section-alt-bg: rgba(255, 255, 255, 0.02);
 }
 
 @layer base {
   * {
-    @apply border-stone-200/80;
+    border-color: var(--border);
   }
   body {
-    @apply bg-[#faf9f5] text-stone-800 font-sans;
+    background-color: var(--background);
+    color: var(--text-body);
+    font-family: var(--font-sans);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    background-color: #faf9f5;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   html {
     @apply scroll-smooth;
   }
 }
 
-/* 简约宋风素白宣纸卡片体系 */
+/* 核心卡片体系（响应主题变量） */
 .scholar-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(231, 229, 224, 0.9);
-  box-shadow: 
-    0 4px 20px -4px rgba(28, 25, 23, 0.03),
-    0 1px 3px 0 rgba(28, 25, 23, 0.02);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scholar-card:hover {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(185, 28, 28, 0.25);
-  box-shadow: 
-    0 12px 32px -8px rgba(28, 25, 23, 0.07),
-    0 2px 6px 0 rgba(28, 25, 23, 0.03);
+  background: var(--card-bg);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--card-shadow-hover);
   transform: translateY(-2px);
 }
 
 .scholar-card-subtle {
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--theme-tab-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(231, 229, 224, 0.7);
+  border: 1px solid var(--border);
 }
 
 .scholar-card-elevated {
-  background: #ffffff;
-  border: 1px solid rgba(220, 218, 212, 0.95);
-  box-shadow: 
-    0 10px 30px -5px rgba(28, 25, 23, 0.05),
-    0 2px 4px 0 rgba(28, 25, 23, 0.02);
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
 }
 
 .scholar-pill {
-  background: rgba(245, 244, 238, 0.8);
+  background: var(--theme-tab-bg);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(231, 229, 224, 0.8);
+  border: 1px solid var(--border);
 }
 
-/* 古风文字排版特性 */
+/* 文字排版特性 */
 .font-serif {
   font-family: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', serif;
 }
@@ -131,31 +248,23 @@
   letter-spacing: 0.25em;
 }
 
-/* 水墨墨晕渐变与印鉴文字 */
+/* 渐变文本 */
 .ink-gradient {
-  background: linear-gradient(135deg, #1c1917 0%, #44403c 60%, #78716c 100%);
+  background: linear-gradient(135deg, var(--text-heading) 0%, var(--text-body) 60%, var(--text-muted) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .celadon-gradient {
-  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #115e59 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .cinnabar-gradient {
-  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  background: linear-gradient(135deg, var(--accent-seal) 0%, #991b1b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* 宣纸极细纹理 */
-.bg-rice-paper {
-  background-color: #faf9f5;
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(28, 25, 23, 0.015) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
 
 /* 动效 */

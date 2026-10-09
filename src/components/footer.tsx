@@ -4,6 +4,8 @@ import { ScholarSeal } from '@/components/scholar-seal'
 import logoImg from '@/assets/329871518.png'
 import { COMMUNITY_INFO } from '@/data/community-data'
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -108,7 +110,7 @@ export function Footer() {
         {/* 底栏版权与返回顶部 */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-serif text-stone-500">
           <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} 格物书院 (Gewu Academy). All rights reserved.</span>
+            <span>© {CURRENT_YEAR} 格物书院 (Gewu Academy). All rights reserved.</span>
             <span>·</span>
             <span className="flex items-center gap-1">
               以开源求真之道共筑 <Heart className="w-3 h-3 text-red-800 fill-red-800" />

@@ -24,14 +24,14 @@ export function PhilosophySection() {
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
             <ScholarSeal text="书院" subtext="四立" size="sm" variant="cinnabar" />
-            <span className="font-serif text-xs tracking-widest text-stone-500 uppercase">
+            <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
               ACADEMY PHILOSOPHY
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-4">
             以实作破局 · 与良友同行
           </h2>
-          <p className="font-serif text-sm sm:text-base text-stone-600 leading-relaxed">
+          <p className="font-serif text-sm sm:text-base text-[var(--text-body)] leading-relaxed">
             {COMMUNITY_INFO.originStory}
           </p>
         </div>
@@ -50,43 +50,43 @@ export function PhilosophySection() {
                 <div>
                   {/* 顶栏序号与宋风题签 */}
                   <div className="flex items-center justify-between mb-5">
-                    <span className="font-serif text-xs font-semibold text-red-800 tracking-wider">
+                    <span className="font-serif text-xs font-semibold text-[var(--accent-seal)] tracking-wider">
                       {meta.prefix}
                     </span>
-                    <span className="text-[11px] font-mono text-stone-400">
+                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
                       {pillar.tag}
                     </span>
                   </div>
 
                   {/* 核心主标题 */}
                   <div className="flex items-start gap-3.5 mb-3">
-                    <div className="p-2.5 rounded-xl bg-stone-100 text-stone-800 shrink-0 border border-stone-200">
+                    <div className="p-2.5 rounded-xl bg-[var(--theme-tab-bg)] text-[var(--text-heading)] shrink-0 border border-[var(--border)]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-xl font-bold text-stone-900">
+                      <h3 className="font-serif text-xl font-bold text-[var(--text-heading)]">
                         {pillar.title}
                       </h3>
-                      <p className="text-xs text-stone-500 font-serif mt-0.5">
+                      <p className="text-xs text-[var(--text-muted)] font-serif mt-0.5">
                         {pillar.subtitle}
                       </p>
                     </div>
                   </div>
 
                   {/* 简要说明 */}
-                  <p className="text-sm text-stone-600 leading-relaxed mb-6 font-serif">
+                  <p className="text-sm text-[var(--text-body)] leading-relaxed mb-6 font-serif">
                     {pillar.description}
                   </p>
                 </div>
 
                 {/* 落地清单：极简 3 条 */}
-                <div className="pt-4 border-t border-stone-200/80 space-y-2">
+                <div className="pt-4 border-t border-[var(--border)] space-y-2">
                   {pillar.details.map((detail, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2 text-xs sm:text-sm text-stone-700"
+                      className="flex items-center gap-2 text-xs sm:text-sm text-[var(--text-body)]"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-cyan)] shrink-0" />
                       <span className="font-sans">{detail}</span>
                     </div>
                   ))}
@@ -97,24 +97,24 @@ export function PhilosophySection() {
         </div>
 
         {/* 底部文人雅句横幅 */}
-        <div className="rounded-2xl bg-white border border-stone-200 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+        <div className="rounded-2xl bg-[var(--card-elevated)] border border-[var(--border)] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
           <div className="flex items-center gap-3">
             <ScholarSeal text="知行" subtext="合一" size="md" variant="outline" />
             <div>
-              <h4 className="font-serif font-bold text-base text-stone-900">
+              <h4 className="font-serif font-bold text-base text-[var(--text-heading)]">
                 代码为凭 · 经世致用
               </h4>
-              <p className="text-xs text-stone-500 font-serif mt-0.5">
+              <p className="text-xs text-[var(--text-muted)] font-serif mt-0.5">
                 拒绝纸上谈兵与空心套壳，以真实系统架构沉淀个人终身技术资产
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-serif text-stone-600">
-            <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200">
+          <div className="flex items-center gap-2 text-xs font-serif text-[var(--text-body)]">
+            <span className="px-3 py-1.5 rounded-lg bg-[var(--theme-tab-bg)] border border-[var(--border)]">
               每周研讨研习会
             </span>
-            <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200">
+            <span className="px-3 py-1.5 rounded-lg bg-[var(--theme-tab-bg)] border border-[var(--border)]">
               一对一实战 Review
             </span>
           </div>
