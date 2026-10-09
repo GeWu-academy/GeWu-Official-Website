@@ -175,6 +175,8 @@
     --footer-border: rgba(255, 255, 255, 0.1);
     --dialog-bg: rgba(11, 15, 22, 0.98);
     --dock-bg: rgba(11, 14, 20, 0.94);
+    --cursor-ring: rgba(56, 189, 248, 0.45);
+    --cursor-dot: #38bdf8;
     --code-box-bg: rgba(0, 0, 0, 0.4);
     --section-alt-bg: rgba(255, 255, 255, 0.02);
 }

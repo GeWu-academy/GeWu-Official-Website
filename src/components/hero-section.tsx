@@ -5,10 +5,11 @@ import { ScholarSeal } from '@/components/scholar-seal'
 import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
+import { useUIStore } from '@/store/use-ui-store'
 
 interface HeroSectionProps {
-  onOpenMaintainer: () => void
-  onExploreDirections: () => void
+  onOpenMaintainer?: () => void
+  onExploreDirections?: () => void
 }
 
 export function HeroSection({
@@ -16,10 +17,30 @@ export function HeroSection({
   onExploreDirections,
 }: HeroSectionProps) {
   const { t } = useI18n()
+  const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
   const metrics = t.hero?.metrics || COMMUNITY_INFO.metrics
   const containerRef = useRef<HTMLDivElement>(null)
   const leftColRef = useRef<HTMLDivElement>(null)
   const rightColRef = useRef<HTMLDivElement>(null)
+
+  const handleOpenMaintainer = () => {
+    if (onOpenMaintainer) {
+      onOpenMaintainer()
+    } else {
+      openMaintainerModal()
+    }
+  }
+
+  const handleExploreDirections = () => {
+    if (onExploreDirections) {
+      onExploreDirections()
+    } else {
+      const el = document.getElementById('tech-directions')
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,54 +73,54 @@ export function HeroSection({
           className="lg:col-span-6 flex flex-col items-start text-left z-10"
         >
           {/* 标牌：朱砂印泥与学社定位 */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-stone-100/90 border border-stone-200/90 text-stone-600 mb-6 shadow-sm">
-            <ScholarSeal text="格物" subtext="" size="sm" variant="cinnabar" />
-            <span className="font-serif text-xs tracking-wider text-stone-700">
-              面向开发者与设计师的实践学社
+          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[var(--theme-tab-bg)] border border-[var(--border)] text-[var(--text-body)] mb-6 shadow-xs backdrop-blur-sm">
+            <ScholarSeal text={t.hero.sealText || '格物'} subtext="" size="sm" variant="cinnabar" />
+            <span className="font-serif text-xs tracking-wider text-[var(--text-muted)]">
+              {t.hero.badge}
             </span>
           </div>
 
           {/* 书院名训：宋体金石大字 */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.2] mb-6">
-            <span className="block">穷理而格物</span>
-            <span className="block mt-1 sm:mt-2 text-stone-700">
-              知行以致远
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-heading)] leading-[1.2] mb-6">
+            <span className="block">{t.hero.titleLine1}</span>
+            <span className="block mt-1 sm:mt-2 text-[var(--text-body)]">
+              {t.hero.titleLine2}
             </span>
           </h1>
 
           {/* 凝练初衷：控制信息密度，留白舒朗 */}
-          <p className="font-serif text-base sm:text-lg text-stone-600 leading-relaxed mb-8 max-w-xl">
-            「致知在格物，物格而后知至。」
+          <p className="font-serif text-base sm:text-lg text-[var(--text-body)] leading-relaxed mb-8 max-w-xl">
+            {t.hero.descriptionQuote}
             <br />
-            同行互帮互助，打磨硬核实战能力，消除技术与求职信息差，助力成员更好立身与就业。
+            {t.hero.descriptionBody}
           </p>
 
           {/* 核心 CTA 行动按钮组 */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10 w-full sm:w-auto">
             <button
-              onClick={onExploreDirections}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-stone-900 hover:bg-stone-800 text-stone-50 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(28,25,23,0.12)] hover:shadow-lg transition-all cursor-pointer"
+              onClick={handleExploreDirections}
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(56,189,248,0.2)] dark:shadow-[0_4px_24px_rgba(56,189,248,0.3)] transition-all cursor-pointer"
             >
-              <span>问道研习方向</span>
-              <ArrowRight className="w-4 h-4 text-stone-400" />
+              <span>{t.hero.exploreBtn}</span>
+              <ArrowRight className="w-4 h-4 opacity-70" />
             </button>
 
             <button
-              onClick={onOpenMaintainer}
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white hover:bg-stone-50 text-stone-800 border border-stone-200 font-serif text-sm font-medium shadow-sm transition-all cursor-pointer"
+              onClick={handleOpenMaintainer}
+              className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-sm font-medium shadow-xs transition-all cursor-pointer"
             >
-              <Feather className="w-4 h-4 text-red-800" />
-              <span>拜谒山长 / 申请入阁</span>
+              <Feather className="w-4 h-4 text-[var(--accent-seal)]" />
+              <span>{t.hero.maintainerBtn}</span>
             </button>
 
             <a
               href="https://github.com/gewu-academy"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-3 rounded-2xl text-stone-600 hover:text-stone-900 font-serif text-sm transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-3 rounded-2xl text-[var(--text-muted)] hover:text-[var(--text-heading)] font-serif text-sm transition-colors"
             >
-              <GitPullRequest className="w-4 h-4 text-stone-400" />
-              <span>共建 PR</span>
+              <GitPullRequest className="w-4 h-4 opacity-60" />
+              <span>{t.hero.prBtn}</span>
             </a>
           </div>
 
