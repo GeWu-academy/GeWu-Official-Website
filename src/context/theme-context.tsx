@@ -8,7 +8,7 @@ import {
 } from '@/store/use-theme-store'
 
 export type { Theme, ThemeOption }
-export { THEME_OPTIONS, useTheme }
+export { THEME_OPTIONS, useTheme, useThemeStore }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   // Theme state and DOM sync is initialized and handled via Zustand in useThemeStore.

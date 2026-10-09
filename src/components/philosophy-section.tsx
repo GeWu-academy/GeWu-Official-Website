@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { Users, Cpu, Compass, TrendingUp, CheckCircle2 } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'

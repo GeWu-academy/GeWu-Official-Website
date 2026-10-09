@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger } from '../gsap-setup'
+import { gsap } from '../gsap-setup'
 
 export interface SectionRevealOptions {
   trigger?: gsap.DOMTarget

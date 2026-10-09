@@ -6,6 +6,7 @@ import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
+import { AnimatedCounter } from '@/animation'
 
 interface HeroSectionProps {
   onOpenMaintainer?: () => void
@@ -22,6 +23,9 @@ export function HeroSection({
   const containerRef = useRef<HTMLDivElement>(null)
   const leftColRef = useRef<HTMLDivElement>(null)
   const rightColRef = useRef<HTMLDivElement>(null)
+  const titleLinesRef = useRef<HTMLHeadingElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
+  const metricsRef = useRef<HTMLDivElement>(null)
 
   const handleOpenMaintainer = () => {
     if (onOpenMaintainer) {
@@ -104,7 +108,7 @@ export function HeroSection({
             className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10 w-full sm:w-auto"
           >
             <button
-              onClick={onExploreDirections}
+              onClick={handleExploreDirections}
               className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(56,189,248,0.2)] dark:shadow-[0_4px_24px_rgba(56,189,248,0.3)] transition-all cursor-pointer"
             >
               <span>{t.hero.exploreBtn}</span>
@@ -112,7 +116,7 @@ export function HeroSection({
             </button>
 
             <button
-              onClick={onOpenMaintainer}
+              onClick={handleOpenMaintainer}
               className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-sm font-medium shadow-xs transition-all cursor-pointer"
             >
               <Feather className="w-4 h-4 text-[var(--accent-seal)]" />

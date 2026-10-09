@@ -42,7 +42,10 @@ export function GewuOracleLot() {
   return (
     <div className="w-full max-w-xl mx-auto">
       {/* 宣纸竹简与黑曜晶石自适应卡片主体 */}
-      <div className="relative rounded-3xl bg-gradient-to-b from-[#fbfbfa] to-[#f4f2ea] dark:from-[#111728] dark:to-[#080d17] border border-stone-200/90 dark:border-white/10 p-6 sm:p-8 shadow-[0_12px_40px_rgba(28,25,23,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.08)] overflow-hidden transition-all duration-500 backdrop-blur-md">
+      <div
+        ref={cardRef}
+        className="relative rounded-3xl bg-gradient-to-b from-[#fbfbfa] to-[#f4f2ea] dark:from-[#111728] dark:to-[#080d17] border border-stone-200/90 dark:border-white/10 p-6 sm:p-8 shadow-[0_12px_40px_rgba(28,25,23,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.08)] overflow-hidden transition-all duration-500 backdrop-blur-md"
+      >
         {/* 背景素淡花窗水墨晕边 */}
         <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl from-[var(--border)]/30 to-transparent rounded-bl-full pointer-events-none" />
         <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-gradient-to-tr from-[var(--accent-seal)]/5 dark:from-[var(--accent-cyan)]/10 to-transparent rounded-tr-full pointer-events-none" />
@@ -50,7 +53,9 @@ export function GewuOracleLot() {
         {/* 顶部标题栏：印章与签次 */}
         <div className="relative z-10 flex items-center justify-between pb-5 border-b border-[var(--border)] mb-6">
           <div className="flex items-center gap-3">
-            <ScholarSeal text={t.oracle.sealText} subtext={t.oracle.sealSubtext} size="md" variant="cinnabar" />
+            <div ref={sealRef}>
+              <ScholarSeal text={t.oracle.sealText} subtext={t.oracle.sealSubtext} size="md" variant="cinnabar" />
+            </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-serif font-bold text-lg text-[var(--text-heading)] tracking-wide">

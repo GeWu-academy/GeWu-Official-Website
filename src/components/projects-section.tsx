@@ -2,6 +2,7 @@ import { ExternalLink, GitPullRequest } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useScrollReveal } from '@/animation'
 
 interface ProjectsSectionProps {
   onOpenMaintainer: () => void
@@ -9,9 +10,19 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
   const { t } = useI18n()
+  const sectionRef = useScrollReveal<HTMLElement>({
+    selector: '.scholar-card',
+    stagger: 0.12,
+    y: 30,
+    start: 'top 82%',
+  })
 
   return (
-    <section id="projects" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-6xl mx-auto">
         {/* 顶部标题栏 */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14">

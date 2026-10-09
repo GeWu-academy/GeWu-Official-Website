@@ -2,17 +2,29 @@ import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
+import { useScrollReveal } from '@/animation'
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
   const { t } = useI18n()
+
+  const sectionRef = useScrollReveal<HTMLElement>({
+    selector: '.scholar-card',
+    stagger: 0.1,
+    y: 24,
+    start: 'top 85%',
+  })
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx)
   }
 
   return (
-    <section id="faq" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="faq"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 mb-3">

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { gsap, ScrollTrigger } from '../gsap-setup'
+import { gsap } from '../gsap-setup'
 
 export interface UseScrollRevealOptions {
   /**
@@ -55,7 +55,9 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     } = options
 
     const ctx = gsap.context(() => {
-      const targets = selector ? el.querySelectorAll(selector) : el
+      const selected = selector ? el.querySelectorAll(selector) : null
+      const targets = selected && selected.length > 0 ? selected : el
+      const effectiveStagger = selected && selected.length > 0 ? stagger : 0
 
       gsap.fromTo(
         targets,
@@ -69,7 +71,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
           y: 0,
           filter: 'blur(0px)',
           duration,
-          stagger: selector ? stagger : 0,
+          stagger: effectiveStagger,
           ease,
           scrollTrigger: {
             trigger: el,

@@ -11,6 +11,7 @@ import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
+import { useScrollReveal } from '@/animation'
 
 interface CollaborationSectionProps {
   onOpenMaintainer: () => void
@@ -20,6 +21,13 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
   const [copiedWechat, setCopiedWechat] = useState(false)
   const { t } = useI18n()
 
+  const sectionRef = useScrollReveal<HTMLElement>({
+    selector: '.scholar-card',
+    stagger: 0.15,
+    y: 30,
+    start: 'top 82%',
+  })
+
   const handleCopyWechat = () => {
     navigator.clipboard.writeText(COMMUNITY_INFO.maintainerContact.wechat)
     setCopiedWechat(true)
@@ -27,7 +35,11 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
   }
 
   return (
-    <section id="collaboration" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="collaboration"
+      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-6xl mx-auto">
         {/* 标头 */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">

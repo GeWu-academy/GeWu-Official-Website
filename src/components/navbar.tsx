@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import { Menu, X, ArrowUpRight, MessageCircle, Feather } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
@@ -5,6 +6,7 @@ import { ThemeSwitcher } from '@/components/theme-switcher'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 import logoImg from '@/assets/329871518.png'
+import { gsap } from '@/animation'
 
 interface NavbarProps {
   onOpenMaintainer?: () => void
@@ -12,10 +14,23 @@ interface NavbarProps {
 
 export function Navbar({ onOpenMaintainer }: NavbarProps) {
   const { t } = useI18n()
+  const navRef = useRef<HTMLElement>(null)
   const isMobileMenuOpen = useUIStore((s) => s.isMobileMenuOpen)
   const setMobileMenuOpen = useUIStore((s) => s.setMobileMenuOpen)
   const toggleMobileMenu = useUIStore((s) => s.toggleMobileMenu)
   const openMaintainerModal = useUIStore((s) => s.openMaintainerModal)
+
+  useEffect(() => {
+    if (!navRef.current) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        navRef.current,
+        { y: -16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
+      )
+    })
+    return () => ctx.revert()
+  }, [])
 
   const handleOpenMaintainer = () => {
     if (onOpenMaintainer) {
@@ -35,7 +50,10 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-40 py-2 sm:py-3">
+      <header
+        ref={navRef}
+        className="absolute top-0 left-0 right-0 z-40 py-2 sm:py-3"
+      >
         <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
           <nav className="mx-auto flex items-center justify-between rounded-xl px-3 py-1.5 sm:px-4 sm:py-1.5 bg-[var(--nav-bg)] border border-[var(--border)] shadow-[var(--card-shadow)] backdrop-blur-md transition-all">
             {/* Logo 区域 */}
