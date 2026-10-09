@@ -380,8 +380,8 @@ export function GewuArmillarySphere({
     <div
       className={`relative w-full h-full flex flex-col items-center justify-center select-none ${className}`}
     >
-      {/* 宣纸底衬与宋代八角花窗轻边框 */}
-      <div className="absolute inset-2 sm:inset-4 rounded-3xl border border-stone-200/70 bg-gradient-to-b from-stone-50/60 via-white/80 to-stone-50/40 pointer-events-none shadow-[inset_0_1px_3px_rgba(255,255,255,0.9),0_10px_30px_rgba(28,25,23,0.03)] backdrop-blur-sm" />
+      {/* 宣纸底衬与轻边框（随主题自适应） */}
+      <div className="absolute inset-2 sm:inset-4 rounded-3xl border border-[var(--border)] bg-[var(--card-bg)] pointer-events-none shadow-[var(--card-shadow)] backdrop-blur-sm" />
 
       {/* 3D 渲染画布挂载容器 */}
       <div
@@ -393,24 +393,24 @@ export function GewuArmillarySphere({
       <div className="absolute top-5 left-5 z-20 flex items-center gap-2.5 pointer-events-none">
         <ScholarSeal text="浑天" subtext="格物" size="sm" variant="cinnabar" />
         <div className="flex flex-col">
-          <span className="font-serif text-xs font-semibold text-stone-800 tracking-wider">
+          <span className="font-serif text-xs font-semibold text-[var(--text-heading)] tracking-wider">
             格物乾坤仪
           </span>
-          <span className="text-[10px] text-stone-400 font-mono tracking-widest uppercase">
+          <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-widest uppercase">
             Armillary Core 3D
           </span>
         </div>
       </div>
 
-      {/* 右上角：交互模式切换器（极简白底墨线宋风设计） */}
+      {/* 右上角：交互模式切换器 */}
       {showControls && (
-        <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5 p-1 rounded-xl bg-white/90 border border-stone-200/90 shadow-[0_2px_10px_rgba(28,25,23,0.04)] backdrop-blur-md">
+        <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5 p-1 rounded-xl bg-[var(--card-elevated)] border border-[var(--border)] shadow-sm backdrop-blur-md">
           <button
             onClick={() => handleModeChange('celestial')}
-            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all ${
+            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all cursor-pointer ${
               activeMode === 'celestial'
-                ? 'bg-stone-800 text-stone-50 shadow-sm'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100/70'
+                ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
+                : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
             title="浑天演历：天度同心环"
           >
@@ -418,10 +418,10 @@ export function GewuArmillarySphere({
           </button>
           <button
             onClick={() => handleModeChange('crystal')}
-            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all ${
+            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all cursor-pointer ${
               activeMode === 'crystal'
-                ? 'bg-stone-800 text-stone-50 shadow-sm'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100/70'
+                ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
+                : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
             title="格物晶核：数理多面体"
           >
@@ -429,10 +429,10 @@ export function GewuArmillarySphere({
           </button>
           <button
             onClick={() => handleModeChange('constellation')}
-            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all ${
+            className={`px-2.5 py-1 text-[11px] rounded-lg font-serif transition-all cursor-pointer ${
               activeMode === 'constellation'
-                ? 'bg-stone-800 text-stone-50 shadow-sm'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100/70'
+                ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-xs font-medium'
+                : 'text-[var(--text-body)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-tab-bg)]'
             }`}
             title="星轨散络：四象星图"
           >
@@ -440,7 +440,7 @@ export function GewuArmillarySphere({
           </button>
           <button
             onClick={handleResetRotation}
-            className="p-1 text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-100 transition-colors ml-0.5"
+            className="p-1 text-[var(--text-muted)] hover:text-[var(--text-heading)] rounded-lg hover:bg-[var(--theme-tab-bg)] transition-colors ml-0.5 cursor-pointer"
             title="归正原位"
           >
             <RotateCw className="w-3.5 h-3.5" />
@@ -448,13 +448,13 @@ export function GewuArmillarySphere({
         </div>
       )}
 
-      {/* 底部禅意引导文字：轻盈呼吸，低信息密度 */}
-      <div className="absolute bottom-4 inset-x-6 z-20 flex items-center justify-between text-[11px] text-stone-400 font-serif border-t border-stone-200/60 pt-2.5 pointer-events-none">
-        <span className="flex items-center gap-1.5 text-stone-500">
-          <Compass className="w-3 h-3 text-stone-400" />
+      {/* 底部禅意引导文字 */}
+      <div className="absolute bottom-4 inset-x-6 z-20 flex items-center justify-between text-[11px] text-[var(--text-muted)] font-serif border-t border-[var(--border)] pt-2.5 pointer-events-none">
+        <span className="flex items-center gap-1.5 text-[var(--text-muted)]">
+          <Compass className="w-3 h-3 opacity-60" />
           <span>拖拽可转动乾坤 · 鼠标掠过生墨澜</span>
         </span>
-        <span className="text-stone-400/80 hidden sm:inline tracking-wider">
+        <span className="text-[var(--text-muted)] opacity-80 hidden sm:inline tracking-wider">
           「致知在格物，物格而后知至」
         </span>
       </div>

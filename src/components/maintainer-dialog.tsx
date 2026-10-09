@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { X, Copy, Check, MessageCircle, Mail } from 'lucide-react'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { useI18n } from '@/i18n'
 import logoImg from '@/assets/329871518.png'
 import maintainerQrImg from '@/assets/maintainer-qr.jpg'
 
@@ -13,6 +14,7 @@ interface MaintainerDialogProps {
 export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
   const [copiedWechat, setCopiedWechat] = useState(false)
   const [copiedEmail, setCopiedEmail] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -53,7 +55,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
       />
 
       {/* 拜帖模态框主体 */}
-      <div className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl bg-[var(--dialog-bg)] border border-[var(--border)] p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.15)] z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl bg-[var(--dialog-bg)] border border-[var(--border)] p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-10 animate-in fade-in zoom-in-95 duration-200">
         {/* 关闭按钮 */}
         <button
           onClick={onClose}
@@ -65,28 +67,28 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
         {/* 顶部标题与拜帖印签 */}
         <div className="flex items-center gap-3.5 mb-5 pb-4 border-b border-[var(--border)]">
           <div className="w-11 h-11 rounded-2xl p-1 bg-white border border-[var(--border)] overflow-hidden shadow-2xs">
-            <img src={logoImg} alt="格物书院" className="w-full h-full object-contain" />
+            <img src={logoImg} alt={t.nav.title} className="w-full h-full object-contain" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-serif font-bold text-lg text-[var(--text-heading)]">
-                山长拜帖 · 入阁指引
+                {t.maintainerModal.title}
               </h3>
-              <ScholarSeal text="格物" subtext="拜启" size="sm" variant="cinnabar" />
+              <ScholarSeal text={t.maintainerModal.sealText} subtext={t.maintainerModal.sealSubtext} size="sm" variant="cinnabar" />
             </div>
             <p className="text-xs text-[var(--text-muted)] font-serif">
-              格物书院 · 穷理致知 · 知行合一
+              {t.maintainerModal.tagline}
             </p>
           </div>
         </div>
 
         {/* 核心指引 */}
         <div className="p-3.5 rounded-xl bg-[var(--theme-tab-bg)] border border-[var(--border)] mb-5 text-xs text-[var(--text-body)] font-serif leading-relaxed">
-          欢迎同窗！添加 Maintainer 微信时请备注：
+          {t.maintainerModal.tipPrefix}
           <span className="font-bold text-[var(--text-heading)] font-sans block mt-0.5">
-            「格物加入 + 研习方向（AI / 全栈 / 系统 / 设计）」
+            {t.maintainerModal.tipHighlight}
           </span>
-          山长将在 24 小时内邀你进入研习交流群。
+          {t.maintainerModal.tipSuffix}
         </div>
 
         {/* 联系方式条目 */}
@@ -99,7 +101,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               </div>
               <div>
                 <span className="text-[10px] text-[var(--text-muted)] block font-mono">
-                  WECHAT
+                  {t.maintainerModal.wechatLabel}
                 </span>
                 <span className="text-xs sm:text-sm font-bold text-[var(--text-heading)] font-mono">
                   {COMMUNITY_INFO.maintainerContact.wechat}
@@ -113,12 +115,12 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               {copiedWechat ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">已复制</span>
+                  <span className="text-emerald-600">{t.maintainerModal.copiedBtn}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 opacity-60" />
-                  <span>复制</span>
+                  <span>{t.maintainerModal.copyBtn}</span>
                 </>
               )}
             </button>
@@ -132,7 +134,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               </div>
               <div>
                 <span className="text-[10px] text-[var(--text-muted)] block font-mono">
-                  EMAIL
+                  {t.maintainerModal.emailLabel}
                 </span>
                 <span className="text-xs sm:text-sm font-bold text-[var(--text-heading)] font-mono">
                   {COMMUNITY_INFO.maintainerContact.email}
@@ -146,12 +148,12 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               {copiedEmail ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">已复制</span>
+                  <span className="text-emerald-600">{t.maintainerModal.copiedBtn}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 opacity-60" />
-                  <span>复制</span>
+                  <span>{t.maintainerModal.copyBtn}</span>
                 </>
               )}
             </button>
@@ -163,7 +165,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
           <div className="p-1.5 bg-white rounded-xl border border-[var(--border)] mb-2.5">
             <img
               src={maintainerQrImg}
-              alt="山长 Alkaid 微信二维码"
+              alt="Maintainer QR Code"
               className="w-52 sm:w-56 h-auto object-contain rounded-lg"
             />
           </div>
@@ -173,8 +175,8 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               {COMMUNITY_INFO.maintainerContact.name} ({COMMUNITY_INFO.maintainerContact.region})
             </span>
           </div>
-          <span className="text-[11px] text-[var(--text-muted)] font-serif mb-2.5">
-            打开微信扫一扫添加山长，沟通入阁事宜
+          <span className="text-[11px] text-[var(--text-muted)] font-serif mb-2.5 text-center">
+            {t.maintainerModal.qrTitlePrefix}
           </span>
           <div className="flex items-center gap-2">
             <a
@@ -182,7 +184,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               download="Alkaid-WeChat-QRCode.jpg"
               className="px-3 py-1 rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] text-[11px] font-serif text-[var(--text-body)] transition-colors"
             >
-              保存名片
+              {t.maintainerModal.saveQrBtn}
             </a>
             <a
               href={maintainerQrImg}
@@ -190,7 +192,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
               rel="noreferrer"
               className="px-3 py-1 rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] text-[11px] font-serif text-[var(--text-body)] transition-colors"
             >
-              查看大图
+              {t.maintainerModal.viewFullBtn}
             </a>
           </div>
         </div>
@@ -200,7 +202,7 @@ export function MaintainerDialog({ isOpen, onClose }: MaintainerDialogProps) {
           onClick={onClose}
           className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-xs font-medium transition-colors cursor-pointer"
         >
-          关闭拜帖
+          {t.maintainerModal.closeBtn}
         </button>
       </div>
     </div>

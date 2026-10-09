@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { FAQ_LIST } from '@/data/community-data'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { useI18n } from '@/i18n'
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const { t } = useI18n()
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx)
@@ -15,21 +16,21 @@ export function FAQSection() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 mb-3">
-            <ScholarSeal text="问道" subtext="解惑" size="sm" variant="cinnabar" />
+            <ScholarSeal text={t.faq.sealText} subtext={t.faq.sealSubtext} size="sm" variant="cinnabar" />
             <span className="font-serif text-xs tracking-widest text-[var(--text-muted)] uppercase">
-              QUESTIONS & ANSWERS
+              {t.faq.subtitle}
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text-heading)] tracking-tight mb-3">
-            入阁问道 · 常见答疑
+            {t.faq.title}
           </h2>
           <p className="font-serif text-sm text-[var(--text-muted)]">
-            关于加入书院、项目共建与修习就业的常见关切。
+            {t.faq.desc}
           </p>
         </div>
 
         <div className="space-y-3.5">
-          {FAQ_LIST.map((item, idx) => {
+          {t.faq.items.map((item, idx) => {
             const isOpen = openIndex === idx
             return (
               <div
