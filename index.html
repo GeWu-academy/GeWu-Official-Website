@@ -1,12 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN" data-theme="white">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/src/assets/329871518.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gewu-official-website</title>
+    <title>格物书院 · 穷理而格物，知行以致远</title>
+    <meta name="description" content="面向开发者与设计师的实践社区。同行互帮互助，打磨硬核实战能力，消除求职与技术信息差，助力成员更好就业。" />
+    <meta name="keywords" content="格物书院,开发者社区,设计师社区,AI Agent,TypeScript全栈,Rust,Golang,UI/UX设计,求职内推" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('gewu-theme');
+          var theme = (saved === 'cream' || saved === 'dark' || saved === 'white') ? saved : 'white';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body>
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
