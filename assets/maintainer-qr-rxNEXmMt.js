@@ -1,0 +1,1 @@
+var e=new URL(`maintainer-qr-DDNbWAcG.webp`,import.meta.url).href;export{e as default};
