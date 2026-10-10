@@ -1,5 +1,6 @@
-import { Target, Award, Check, ArrowRight } from 'lucide-react'
+import { Target, Users, Check, ArrowRight } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 
@@ -98,11 +99,13 @@ export function CareerPathwaySection({ onOpenMaintainer }: CareerPathwaySectionP
 
           <div className="pt-4 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-xs text-[var(--text-muted)] font-serif">
-              <Award className="w-4 h-4 opacity-60" />
+              <Users className="w-4 h-4 opacity-60" />
               <span>{t.career.companionNote}</span>
             </div>
             <button
               onClick={handleOpenMaintainer}
+              onMouseEnter={preloadMaintainerAssets}
+              onTouchStart={preloadMaintainerAssets}
               className="inline-flex items-center gap-1.5 text-xs font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer"
             >
               <span>{t.career.mentorCta}</span>

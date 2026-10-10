@@ -2,7 +2,7 @@ import { Languages, Check } from 'lucide-react'
 import { useI18n, type Language } from '@/i18n'
 
 export interface LanguageSwitcherProps {
-  variant?: 'segmented' | 'compact' | 'drawer' | 'button'
+  variant?: 'segmented' | 'compact' | 'drawer' | 'button' | 'pill'
   className?: string
   showIcon?: boolean
 }
@@ -74,31 +74,61 @@ export function LanguageSwitcher({
     )
   }
 
-  // 2. 紧凑单键切换样式 (Compact - 适用于移动端顶栏或空间紧张处)
+  // 2. 紧凑双段药丸样式 (Pill - 与 ThemeSwitcher compact 极佳搭配，仅占约 52px)
+  if (variant === 'pill') {
+    return (
+      <div
+        role="group"
+        aria-label={t.lang.name}
+        className={`inline-flex items-center p-0.5 rounded-lg bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-2xs ${className}`}
+      >
+        {languageOptions.map((opt) => {
+          const isActive = language === opt.code
+          return (
+            <button
+              key={opt.code}
+              type="button"
+              onClick={() => setLanguage(opt.code)}
+              className={`px-1.5 py-0.5 rounded-md text-[11px] font-serif transition-all cursor-pointer ${
+                isActive
+                  ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] font-semibold shadow-2xs border border-[var(--border)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
+              }`}
+              title={`${t.lang.name}: ${opt.label}`}
+            >
+              <span className="tracking-wider">{opt.shortLabel}</span>
+            </button>
+          )
+        })}
+      </div>
+    )
+  }
+
+  // 3. 紧凑单键切换样式 (Compact - 适用于移动端顶栏或空间紧张处)
   if (variant === 'compact') {
     return (
       <button
         type="button"
         onClick={toggleLanguage}
-        className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] border border-[var(--border)] text-[var(--text-heading)] text-xs font-serif transition-all cursor-pointer active:scale-95 shadow-2xs ${className}`}
+        className={`inline-flex items-center gap-1 px-1.5 py-1 rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] border border-[var(--border)] text-[var(--text-heading)] text-xs font-serif transition-all cursor-pointer active:scale-95 shadow-2xs ${className}`}
         title={t.lang.switchTip}
         aria-label={t.lang.switchTip}
       >
         <Languages className="w-3.5 h-3.5 text-[var(--accent-seal)]" />
-        <span className="font-semibold tracking-wider">
+        <span className="font-semibold tracking-wider text-[11px]">
           {language === 'zh' ? '中' : 'EN'}
         </span>
       </button>
     )
   }
 
-  // 3. 极简轻量按钮 (Button)
+  // 4. 极简轻量按钮 (Button)
   if (variant === 'button') {
     return (
       <button
         type="button"
         onClick={toggleLanguage}
-        className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-serif text-[var(--text-body)] hover:text-[var(--text-heading)] rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] border border-[var(--border)] transition-all cursor-pointer ${className}`}
+        className={`flex items-center gap-1.5 px-2 py-0.5 text-xs font-serif text-[var(--text-body)] hover:text-[var(--text-heading)] rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] border border-[var(--border)] transition-all cursor-pointer ${className}`}
         title={t.lang.switchTip}
       >
         <Languages className="w-3 h-3 text-[var(--text-muted)]" />
@@ -107,12 +137,12 @@ export function LanguageSwitcher({
     )
   }
 
-  // 4. 默认双段分段切换器 (Segmented Control - 与 ThemeSwitcher 风格高度一致)
+  // 5. 精简双段分段切换器 (Segmented Control)
   return (
     <div
       role="group"
       aria-label={t.lang.name}
-      className={`relative inline-flex items-center p-1 rounded-2xl bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] ${className}`}
+      className={`relative inline-flex items-center p-0.5 rounded-xl bg-[var(--theme-tab-bg)] border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] ${className}`}
     >
       {showIcon && (
         <span className="pl-1.5 pr-0.5 text-[var(--text-muted)] hidden md:inline-flex items-center">
@@ -124,19 +154,17 @@ export function LanguageSwitcher({
         return (
           <button
             key={opt.code}
+            type="button"
             onClick={() => setLanguage(opt.code)}
-            className={`relative z-10 flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-xl text-xs font-serif transition-all cursor-pointer ${
+            className={`relative z-10 flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-serif transition-all cursor-pointer ${
               isActive
-                ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] font-semibold shadow-xs border border-[var(--border)]'
+                ? 'bg-[var(--card-elevated)] text-[var(--text-heading)] font-semibold shadow-2xs border border-[var(--border)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-heading)] hover:bg-[var(--theme-hover-bg)]'
             }`}
             title={`${t.lang.name}: ${opt.label}`}
           >
             <span className="tracking-wide hidden sm:inline">{opt.label}</span>
             <span className="tracking-wide sm:hidden">{opt.shortLabel}</span>
-            {isActive && (
-              <span className="w-1 h-1 rounded-full bg-[var(--accent-seal)] inline-block" />
-            )}
           </button>
         )
       })}

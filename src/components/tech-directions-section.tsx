@@ -9,6 +9,7 @@ import {
   BookOpen,
 } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 import { animateTabSwitch, useScrollReveal } from '@/animation'
@@ -94,13 +95,13 @@ export function TechDirectionsSection({ onOpenMaintainer }: TechDirectionsSectio
                 onClick={() => setActiveTab(dir.id)}
                 className={`flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-2xl font-serif text-xs sm:text-sm transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md scale-[1.02] font-semibold'
+                    ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md dark:shadow-[0_4px_16px_rgba(255,255,255,0.18)] scale-[1.02] font-semibold'
                     : 'bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-body)] hover:text-[var(--text-heading)] border border-[var(--border)] shadow-xs'
                 }`}
               >
                 <Icon
                   className={`w-4 h-4 ${
-                    isActive ? 'text-amber-300 dark:text-amber-200' : 'text-[var(--text-muted)]'
+                    isActive ? 'text-amber-300 dark:text-[var(--primary-foreground)]' : 'text-[var(--text-muted)]'
                   }`}
                 />
                 <span className="font-medium">{dir.tabLabel || dir.title}</span>
@@ -158,6 +159,8 @@ export function TechDirectionsSection({ onOpenMaintainer }: TechDirectionsSectio
 
                 <button
                   onClick={handleOpenMaintainer}
+                  onMouseEnter={preloadMaintainerAssets}
+                  onTouchStart={preloadMaintainerAssets}
                   className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer group"
                 >
                   <span>{td.exploreWithMaintainer}</span>

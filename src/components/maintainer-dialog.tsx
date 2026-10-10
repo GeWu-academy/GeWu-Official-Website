@@ -4,8 +4,8 @@ import { COMMUNITY_INFO } from '@/data/community-data'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
-import logoImg from '@/assets/329871518.png'
-import maintainerQrImg from '@/assets/maintainer-qr.jpg'
+import logoImg from '@/assets/logo.webp'
+import maintainerQrImg from '@/assets/maintainer-qr.webp'
 import { gsap } from '@/animation'
 
 interface MaintainerDialogProps {
@@ -86,7 +86,14 @@ export function MaintainerDialog({ isOpen: propIsOpen, onClose: propOnClose }: M
         {/* 顶部标题与拜帖印签 */}
         <div className="flex items-center gap-3.5 mb-5 pb-4 border-b border-[var(--border)]">
           <div className="w-11 h-11 rounded-2xl p-1 bg-[var(--card-elevated)] border border-[var(--border)] overflow-hidden shadow-2xs">
-            <img src={logoImg} alt={t.nav.title} className="w-full h-full object-contain" />
+            <img
+              src={logoImg}
+              alt={t.nav.title}
+              width={44}
+              height={44}
+              decoding="async"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -185,6 +192,9 @@ export function MaintainerDialog({ isOpen: propIsOpen, onClose: propOnClose }: M
             <img
               src={maintainerQrImg}
               alt="Maintainer QR Code"
+              width={224}
+              height={333}
+              decoding="async"
               className="w-52 sm:w-56 h-auto object-contain rounded-lg"
             />
           </div>
@@ -200,7 +210,7 @@ export function MaintainerDialog({ isOpen: propIsOpen, onClose: propOnClose }: M
           <div className="flex items-center gap-2">
             <a
               href={maintainerQrImg}
-              download="Alkaid-WeChat-QRCode.jpg"
+              download="Alkaid-WeChat-QRCode.webp"
               className="px-3 py-1 rounded-lg bg-[var(--theme-tab-bg)] hover:bg-[var(--theme-hover-bg)] text-[11px] font-serif text-[var(--text-body)] transition-colors"
             >
               {t.maintainerModal.saveQrBtn}

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
@@ -95,7 +96,7 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
                 rel="noreferrer"
                 className="w-full py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-xs transition-all"
               >
-                <GitPullRequest className="w-4 h-4 text-amber-300 dark:text-amber-200" />
+                <GitPullRequest className="w-4 h-4 text-amber-300 dark:text-[var(--primary-foreground)] opacity-95" />
                 <span>{t.collaboration.githubCard.btn}</span>
               </a>
             </div>
@@ -155,6 +156,8 @@ export function CollaborationSection({ onOpenMaintainer }: CollaborationSectionP
             <div className="pt-4 border-t border-[var(--border)]">
               <button
                 onClick={handleOpenMaintainer}
+                onMouseEnter={preloadMaintainerAssets}
+                onTouchStart={preloadMaintainerAssets}
                 className="w-full py-2.5 rounded-xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
               >
                 <span>{t.collaboration.maintainerCard.viewQrBtn}</span>

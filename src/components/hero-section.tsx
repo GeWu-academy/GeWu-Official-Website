@@ -1,11 +1,18 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, lazy, Suspense } from 'react'
 import { ArrowRight, Feather, GitPullRequest } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
-import { GewuArmillarySphere } from '@/components/three/gewu-armillary-sphere'
+import { ArmillarySphereSkeleton } from '@/components/three/armillary-sphere-skeleton'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { COMMUNITY_INFO } from '@/data/community-data'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 import { gsap, AnimatedCounter } from '@/animation'
+
+const GewuArmillarySphere = lazy(() =>
+  import('@/components/three/gewu-armillary-sphere').then((mod) => ({
+    default: mod.GewuArmillarySphere,
+  }))
+)
 
 interface HeroSectionProps {
   onOpenMaintainer?: () => void
@@ -127,14 +134,16 @@ export function HeroSection({
           >
             <button
               onClick={handleExploreDirections}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(56,189,248,0.2)] dark:shadow-[0_4px_24px_rgba(56,189,248,0.3)] transition-all cursor-pointer"
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-95 font-serif text-sm font-medium shadow-[0_4px_16px_rgba(0,0,0,0.12)] dark:shadow-[0_4px_24px_rgba(255,255,255,0.18)] transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>{t.hero.exploreBtn}</span>
-              <ArrowRight className="w-4 h-4 opacity-70" />
+              <ArrowRight className="w-4 h-4 opacity-75" />
             </button>
 
             <button
               onClick={handleOpenMaintainer}
+              onMouseEnter={preloadMaintainerAssets}
+              onTouchStart={preloadMaintainerAssets}
               className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[var(--card-elevated)] hover:bg-[var(--theme-hover-bg)] text-[var(--text-heading)] border border-[var(--border)] font-serif text-sm font-medium shadow-xs transition-all cursor-pointer"
             >
               <Feather className="w-4 h-4 text-[var(--accent-seal)]" />
@@ -170,13 +179,15 @@ export function HeroSection({
           </div>
         </div>
 
-        {/* 右侧：Three.js 格物乾坤仪装置 */}
+        {/* 右侧：Three.js 格物乾坤仪装置（异步懒加载，带宋韵骨架占位） */}
         <div
           ref={rightColRef}
           id="celestial-lab"
           className="lg:col-span-6 relative w-full h-[380px] sm:h-[460px] lg:h-[500px]"
         >
-          <GewuArmillarySphere interactive={true} showControls={true} />
+          <Suspense fallback={<ArmillarySphereSkeleton />}>
+            <GewuArmillarySphere interactive={true} showControls={true} />
+          </Suspense>
         </div>
       </div>
     </section>

@@ -21,13 +21,13 @@ export const en: TranslationsSchema = {
     githubOrg: 'GitHub Organization',
   },
   hero: {
-    badge: 'Practical Fellowship for Developers & Designers',
+    badge: 'A Pragmatic Tech Community for Developers & Designers',
     sealText: 'Gewu',
     titleLine1: 'Seek Truth via Inquiry',
     titleLine2: 'Act with Resolute Insight',
     descriptionQuote: '“To acquire knowledge, one must investigate things thoroughly.”',
     descriptionBody:
-      'Peer-driven mutual aid, sharpening hardcore engineering craftsmanship, breaking technological and career information barriers, empowering members to thrive.',
+      'Pure technical sharing and open source collaboration. Peer mutual support, sharpening hardcore engineering craftsmanship, and peer-to-peer referral opportunities.',
     exploreBtn: 'Explore Disciplines',
     maintainerBtn: 'Meet Maintainer / Join',
     prBtn: 'Contribute PR',
@@ -44,7 +44,7 @@ export const en: TranslationsSchema = {
     subtitle: 'ACADEMY PHILOSOPHY',
     title: 'Breakthrough via Craft · Journeying with Great Peers',
     originStory:
-      '“Knowledge emerges from deep inquiry.” In an era of rapid AI iteration and fierce career competition, Gewu Academy was founded by veteran tech leads and design specialists. We reject superficial wrappers and empty talk, anchoring ourselves in production-grade systems and open source collaboration to shatter technical isolation and career barriers.',
+      '“Knowledge emerges from deep inquiry.” Gewu Academy is an open tech community for developers and designers. We have no commercial mentor tutoring or packaging gimmicks—we stand for “pure technical sharing” and “letting the code speak”. We reject superficial wrappers and empty talk, anchoring ourselves in production-grade systems and open source collaboration to shatter technical isolation through peer mutual support, open dialogue, and peer referrals.',
     pillars: [
       {
         number: '01',
@@ -56,7 +56,7 @@ export const en: TranslationsSchema = {
           'Break engineering silos. Pair programming, deep-dive debugging salons, and design reviews spark breakthrough ideas continuously.',
         details: [
           'On-demand “Gewu Engineering Salon” deep-dives',
-          'One-on-one code reviews & architecture walkthroughs',
+          'Peer code reviews & architecture walkthroughs',
           'First-hand teardowns of frontier tech and open source trends',
         ],
         iconName: 'Users',
@@ -72,7 +72,7 @@ export const en: TranslationsSchema = {
         details: [
           'High concurrency, resilience, and disaster recovery design',
           'Multi-Agent workflows & state machine lifecycle management',
-          'Real business challenges that convert into standout GitHub portfolios',
+          'Real engineering scenarios driving authentic open source code and GitHub contributions',
         ],
         iconName: 'Cpu',
       },
@@ -81,12 +81,12 @@ export const en: TranslationsSchema = {
         prefix: 'III · Clear Insight',
         tag: 'ZERO INFO GAP',
         title: 'Zero Information Gap',
-        subtitle: 'Dismantle hiring barriers; reveal real expectations',
+        subtitle: 'Dismantle technical & information barriers; reveal real engineering standards',
         description:
-          'Direct connections with staff engineers and mentors at top-tier tech firms, sharing real hiring radars, interview evaluations, and team demands.',
+          'Bringing together practicing developers from top tech firms, unicorns, and open source communities to openly discuss production hurdles, architecture choices, and technological evolution.',
         details: [
-          'Real-time tech radar updates from leading global tech teams',
-          'Transparent career roadmaps, leveling bars, and compensation trends',
+          'Real-time tech radar updates from leading engineering teams',
+          'Open sharing of production war stories, open-source architectures, and best practices',
           'Filtering hype to focus on durable foundational engineering moats',
         ],
         iconName: 'Compass',
@@ -94,15 +94,15 @@ export const en: TranslationsSchema = {
       {
         number: '04',
         prefix: 'IV · Pragmatic Growth',
-        tag: 'CAREER ACCELERATION',
-        title: 'Career Advancement',
-        subtitle: 'From portfolio polishing to direct leader referral',
+        tag: 'COMMUNITY REFERRAL',
+        title: 'Peer Mutual Referrals',
+        subtitle: 'Grounded in verifiable open source craft; peer-to-peer recommendations',
         description:
-          'Transform project code into compelling GitHub showcases and design case studies, paired with mock technical interviews and direct referrals.',
+          'No commercial gimmicks or lecture-style mentoring. By transforming real project work into compelling, production-grade GitHub repositories, community members organically refer each other to top teams.',
         details: [
-          'Line-by-line resume refining & engineering spotlight extraction',
-          'Full-fidelity system design defense & mock interviews',
-          'Exclusive referral channels directly to engineering leads',
+          'Replace inflated resumes with verified GitHub commits and open-source contributions',
+          'Peer deep-dives, system design discussions, and real troubleshooting on equal footing',
+          'Dedicated community referral exchanges sharing verified hiring opportunities',
         ],
         iconName: 'TrendingUp',
       },
@@ -112,7 +112,7 @@ export const en: TranslationsSchema = {
     bannerTitle: 'Code Speaks · Practical Application',
     bannerDesc: 'Reject hollow slide decks; build lifelong technical assets on real system architectures',
     bannerTag1: 'Flexible Engineering Salon',
-    bannerTag2: '1-on-1 Code Review',
+    bannerTag2: 'Peer Code Reviews & Walkthroughs',
   },
   techDirections: {
     sealText: 'Study',
@@ -330,10 +330,10 @@ export const en: TranslationsSchema = {
         tier: 'Auspicious',
         motto: 'To study in solitude without companions leads to narrow insight and shallow view.',
         source: 'The Book of Rites · Record on Education',
-        principle: 'Mutual aid shatters echo chambers and job search isolation.',
-        dos: 'Join community tech roundtables and review resumes together',
+        principle: 'Peer mutual support; shatter engineering isolation and information bubbles.',
+        dos: 'Participate in tech roundtables, conduct peer code reviews, and share job referrals',
         donts: 'Worrying in isolation and reinventing the wheel in secret',
-        direction: 'Peer Support · Career Acceleration',
+        direction: 'Peer Support · Technical Growth',
       },
     ],
   },
@@ -402,52 +402,52 @@ export const en: TranslationsSchema = {
   career: {
     sealText: 'Career',
     sealSubtext: 'Growth',
-    subtitle: 'CAREER EMPOWERMENT',
-    title: 'Career Pathways & Growth',
-    desc: 'Replace empty buzzwords with verifiable production code, ensuring every hour invested converts into authentic technical standing.',
+    subtitle: 'GROWTH & REFERRAL',
+    title: 'Self-Cultivation · Technical Growth & Peer Referrals',
+    desc: 'No spoon-fed mentorship—let hardcore code speak. Level up through pure technical sharing, anchor in open source collaboration, and refer each other as peers.',
     loopTag: 'Action Loop',
     steps: [
       {
         num: 'I',
-        title: 'Skill Benchmark Alignment',
-        desc: 'Direct alignment with real job rubrics from top tech teams, clarifying hardcore criteria and ending aimless self-study.',
+        title: 'Engineering Standards & Horizon Alignment',
+        desc: 'Align directly with production-grade open source standards and industry best practices, ending isolated and aimless self-study.',
       },
       {
         num: 'II',
         title: 'Production Open Source Craft',
-        desc: 'Say no to cookie-cutter toy demos. Contribute directly to academy projects, earning real commits in distributed systems and agents.',
+        desc: 'Say no to cookie-cutter toy demos. Contribute directly to academy projects, earning real commits in distributed systems, AI agents, and design systems.',
       },
       {
         num: 'III',
-        title: 'Resume Review & Defense',
-        desc: 'Staff engineers and maintainers refine resumes line-by-line, conducting mock architectural defenses and system design deep-dives.',
+        title: 'Peer Review & Architectural Deduction',
+        desc: 'Community members conduct egalitarian code reviews and architecture debates, sharpening system design depth through real scenario trade-offs.',
       },
       {
         num: 'IV',
-        title: 'Precision Direct Referral',
-        desc: 'Direct introductions straight to engineering hiring leads, bypassing initial HR screening bottlenecks with full support.',
+        title: 'Direct Peer Referrals',
+        desc: 'Community peers organically refer fellow developers to quality roles, cutting through intermediary noise with authentic code and peer trust.',
       },
     ],
-    diffTitle: 'Eliminating Tech Information Gaps · Building Durable Moats',
-    diffDesc: 'Through authentic open source engineering, establish a personal moat that withstands industry shifts',
-    badTag: 'Pain Point',
-    goodTag: 'Gewu Path',
+    diffTitle: 'Breaking Conventional Dilemmas · Returning to Pure Craft',
+    diffDesc: 'No commercial bootcamp packaging; build genuine personal moats through open source collaboration and peer mutual support',
+    badTag: 'Conventional Dilemma',
+    goodTag: 'Gewu Academy',
     differences: [
       {
-        traditional: 'Blind self-study; resumes stuffed with generic toy demos',
+        traditional: 'Blind self-study; portfolios stuffed with generic toy demos',
         gewu: 'Deep involvement in production repos; verifiable architecture and code',
       },
       {
-        traditional: 'Isolated from industry expectations; unaware of real assessment depth',
-        gewu: 'Active mentors keep tech radars and interview priorities continuously updated',
+        traditional: 'Working in silos; lacking quality technical exchange and industry vision',
+        gewu: 'Pure technical sharing; peers deep-diving into production challenges',
       },
       {
-        traditional: 'Cold mass applications getting lost in automated HR filters',
-        gewu: 'Direct line to engineering leads backed by verified GitHub contributions',
+        traditional: 'Cold mass applications alone; isolated from quality roles and referrals',
+        gewu: 'Organic peer referrals within the community backed by verified contributions',
       },
     ],
-    companionNote: 'Peer fellowship network · Lifelong engineering companion',
-    mentorCta: 'Book 1-on-1 Mentor Resume Guidance',
+    companionNote: 'Egalitarian developer dialogue · Pure technical sharing community',
+    mentorCta: 'Join Community & Peer Referrals',
   },
   collaboration: {
     sealText: 'Join',
@@ -459,7 +459,7 @@ export const en: TranslationsSchema = {
       tag: 'Open Source',
       title: 'Issue & PR Contribution Channel',
       desc: 'We uphold “code speaks”. Head over to our GitHub organization, pick issues tagged “good first issue”, and sharpen production engineering together.',
-      point1: 'Rigorous Code Review and architectural defense',
+      point1: 'Rigorous peer code reviews and architectural discussions',
       point2: 'All merged code permanently retains contributor authorship',
       btn: 'Visit GitHub Organization',
     },
@@ -475,7 +475,7 @@ export const en: TranslationsSchema = {
     },
     weeklySync: {
       title: 'Academy Online Tech Roundtable (On-Demand)',
-      desc: 'Pair programming, production bug autopsy, mock interview defense, and industry radar sharing, organized flexibly around key topics',
+      desc: 'Peer pair programming, production bug autopsy, cutting-edge architecture discussions, and community mutual referrals, organized flexibly around key topics',
       tag: 'Flexible Open Salons',
     },
   },
@@ -484,7 +484,7 @@ export const en: TranslationsSchema = {
     sealSubtext: 'Guide',
     subtitle: 'QUESTIONS & ANSWERS',
     title: 'Fellowship FAQ · Inquiries & Answers',
-    desc: 'Common questions regarding joining the academy, project collaboration, and career development.',
+    desc: 'Common questions regarding joining the academy, project collaboration, and peer mutual support.',
     items: [
       {
         question: 'What are the prerequisites for joining Gewu Academy?',
@@ -492,9 +492,9 @@ export const en: TranslationsSchema = {
           'We welcome developers and designers who genuinely love technology, respect open source, and are hungry to sharpen hardcore skills. Whether you are a student seeking internships, an engineer seeking technical breakthroughs, or transitioning tracks, as long as you uphold our inquiry mindset and commit time to collaborate, there is a place for you.',
       },
       {
-        question: 'How does the academy help members level up and secure top offers?',
+        question: 'How does the academy support member growth and peer referrals?',
         answer:
-          'We reject vanity metrics. First, through production-grade projects and open source repos, members write real architectural code and build impressive commit histories; second, practicing mentors provide hands-on code reviews, resume overhauls, and mock defenses; third, we connect members directly with engineering leads at premier tech and global teams.',
+          'We are a pure technical sharing and open source community—not a commercial bootcamp with senior tutors or guaranteed offer packaging. First, we let the code speak: members participate directly in production-grade systems and open-source repositories to build verifiable GitHub credentials. Second, egalitarian technical roundtables allow peers to code review and debate complex architectures together. Third, built on technical trust, community members organically share verified job openings and offer peer referrals.',
       },
       {
         question: 'How can I start contributing and submit issues or PRs?',
@@ -510,7 +510,7 @@ export const en: TranslationsSchema = {
   },
   footer: {
     motto: 'Seeking Truth through Inquiry · Bridging Knowledge & Action',
-    desc: 'A practical fellowship for developers and designers. Peer mutual support, sharpening hardcore engineering craftsmanship, breaking technological information gaps.',
+    desc: 'An open technical community for developers and designers. Pure technical sharing, peer mutual support, sharpening hardcore engineering craftsmanship, and peer referrals.',
     sealText: 'Gewu',
     sealSubtext: 'Truth',
     colTechTitle: 'Disciplines',
@@ -567,7 +567,7 @@ export const en: TranslationsSchema = {
     dark: 'Dark',
     whiteHint: 'Clean & Bright · Modern Minimalist',
     creamHint: 'Warm Xuan Paper · Song Dynasty Aesthetic',
-    darkHint: 'Obsidian Black · Cybernetic Glow',
+    darkHint: 'Pure Obsidian · Monochrome Line Contours',
   },
   lang: {
     name: 'Language',
