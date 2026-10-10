@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { RotateCw, Compass } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
 import { useI18n } from '@/i18n'
@@ -61,27 +65,69 @@ export function GewuArmillarySphere({
     renderer.toneMappingExposure = 1.2
     container.appendChild(renderer.domElement)
 
-    // 环境贴图（PMREMGenerator 生成柔和 IBL 以驱动物理材质反射）
+    // 主题判定（须在所有材质构造之前）
+    const isDark = theme === 'dark'
+
+    // 环境贴图（丰富渐变天穹模拟 HDRI — 驱动所有物理材质真实反射）
     const pmremGenerator = new THREE.PMREMGenerator(renderer)
-    pmremGenerator.compileEquirectangularShader()
-    const neutralEnvScene = new THREE.Scene()
-    neutralEnvScene.background = new THREE.Color(isDark ? 0x0a0a0f : 0xfaf8f5)
-    // 添加柔和渐变光源以形成微妙反射
-    const envLight1 = new THREE.DirectionalLight(isDark ? 0xc8d0e8 : 0xfffbf0, 1.0)
-    envLight1.position.set(1, 3, 2)
-    neutralEnvScene.add(envLight1)
-    const envLight2 = new THREE.DirectionalLight(isDark ? 0xf59e0b : 0xfef3c7, 0.5)
-    envLight2.position.set(-2, -1, -1)
-    neutralEnvScene.add(envLight2)
-    const envAmbient = new THREE.AmbientLight(0xffffff, 0.4)
-    neutralEnvScene.add(envAmbient)
-    const envMap = pmremGenerator.fromScene(neutralEnvScene, 0.04).texture
+    const envScene = new THREE.Scene()
+
+    // 天穹渐变球（从底到顶的温暖色调渐变，提供柔和包围反射）
+    const skyGeo = new THREE.SphereGeometry(50, 32, 32)
+    const skyCanvas = document.createElement('canvas')
+    skyCanvas.width = 512
+    skyCanvas.height = 512
+    const skyCtx = skyCanvas.getContext('2d')!
+    const skyGrad = skyCtx.createLinearGradient(0, 0, 0, 512)
+    if (isDark) {
+      skyGrad.addColorStop(0, '#1a1a2e')
+      skyGrad.addColorStop(0.3, '#16213e')
+      skyGrad.addColorStop(0.5, '#0f0f1a')
+      skyGrad.addColorStop(0.7, '#1a1220')
+      skyGrad.addColorStop(1, '#0a0a0f')
+    } else {
+      skyGrad.addColorStop(0, '#fef9ee')
+      skyGrad.addColorStop(0.3, '#fff7ed')
+      skyGrad.addColorStop(0.5, '#faf5f0')
+      skyGrad.addColorStop(0.7, '#f0ebe4')
+      skyGrad.addColorStop(1, '#e8e2d8')
+    }
+    skyCtx.fillStyle = skyGrad
+    skyCtx.fillRect(0, 0, 512, 512)
+    const skyTex = new THREE.CanvasTexture(skyCanvas)
+    skyTex.mapping = THREE.EquirectangularReflectionMapping
+    const skyMat = new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide })
+    const skyMesh = new THREE.Mesh(skyGeo, skyMat)
+    envScene.add(skyMesh)
+
+    // 模拟多个区域光源 — 产生丰富的高光反射点
+    const envLightPositions = [
+      { pos: [5, 8, 3], color: isDark ? 0xc8d8f0 : 0xfff8ee, intensity: 2.5 },
+      { pos: [-4, 5, -5], color: isDark ? 0xf59e0b : 0xfde68a, intensity: 1.5 },
+      { pos: [0, -6, 4], color: isDark ? 0x6366f1 : 0xd4c8a8, intensity: 0.8 },
+      { pos: [6, -2, -3], color: isDark ? 0xfb7185 : 0xfecaca, intensity: 0.6 },
+      { pos: [-5, 0, 6], color: isDark ? 0x10b981 : 0xa7f3d0, intensity: 0.7 },
+    ]
+    envLightPositions.forEach(({ pos, color, intensity }) => {
+      // 用小型发光球体替代单纯的方向光，产生更自然的面状反射
+      const lightSphereGeo = new THREE.SphereGeometry(1.5, 16, 16)
+      const lightSphereMat = new THREE.MeshBasicMaterial({ color })
+      lightSphereMat.color.multiplyScalar(intensity)
+      const lightSphere = new THREE.Mesh(lightSphereGeo, lightSphereMat)
+      lightSphere.position.set(pos[0] * 3, pos[1] * 3, pos[2] * 3)
+      envScene.add(lightSphere)
+    })
+
+    const envAmbient = new THREE.AmbientLight(0xffffff, 0.3)
+    envScene.add(envAmbient)
+
+    const envMap = pmremGenerator.fromScene(envScene, 0.02).texture
+    envMap.mapping = THREE.EquirectangularReflectionMapping
     scene.environment = envMap
-    neutralEnvScene.dispose()
+    envScene.dispose()
     pmremGenerator.dispose()
 
     // 光照系统
-    const isDark = theme === 'dark'
     const ambientLight = new THREE.AmbientLight(0xffffff, isDark ? 1.0 : 1.4)
     scene.add(ambientLight)
 
@@ -221,10 +267,10 @@ export function GewuArmillarySphere({
       return ringGroup
     }
 
-    createArmillaryRing(0, 2.3, 0.02, Math.PI / 2, 0, 0, 0.45)
-    createArmillaryRing(1, 2.0, 0.02, Math.PI / 4, Math.PI / 6, 0, 0.6)
-    createArmillaryRing(2, 1.7, 0.018, 0, Math.PI / 3, Math.PI / 5, 0.4)
-    createArmillaryRing(3, 1.35, 0.015, -Math.PI / 5, Math.PI / 2, Math.PI / 7, 0.5)
+    createArmillaryRing(0, 2.3, 0.05, Math.PI / 2, 0, 0, 0.45)
+    createArmillaryRing(1, 2.0, 0.045, Math.PI / 4, Math.PI / 6, 0, 0.6)
+    createArmillaryRing(2, 1.7, 0.04, 0, Math.PI / 3, Math.PI / 5, 0.4)
+    createArmillaryRing(3, 1.35, 0.035, -Math.PI / 5, Math.PI / 2, Math.PI / 7, 0.5)
 
     ringsRef.current = ringsGroup
     torusMeshesRef.current = torusMeshes
@@ -270,29 +316,48 @@ export function GewuArmillarySphere({
       nodesGroup.add(pulseMesh)
     })
 
-    // 水墨与星辰粒子（纯白星芒与墨尘）
-    const particleCount = 180
+    // 水墨与星辰粒子（柔光星芒 — Canvas 生成径向渐变精灵纹理）
+    const particleCount = 220
     const particlePositions = new Float32Array(particleCount * 3)
+    const particleSizes = new Float32Array(particleCount)
 
     for (let i = 0; i < particleCount; i++) {
-      const radius = 1.2 + Math.random() * 2.2
+      const radius = 1.2 + Math.random() * 2.4
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(Math.random() * 2 - 1)
 
       particlePositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
       particlePositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
       particlePositions[i * 3 + 2] = radius * Math.cos(phi)
+      particleSizes[i] = 0.03 + Math.random() * 0.05
     }
+
+    // 生成柔光精灵纹理
+    const spriteCanvas = document.createElement('canvas')
+    spriteCanvas.width = 64
+    spriteCanvas.height = 64
+    const spriteCtx = spriteCanvas.getContext('2d')!
+    const gradient = spriteCtx.createRadialGradient(32, 32, 0, 32, 32, 32)
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)')
+    gradient.addColorStop(0.15, 'rgba(255, 255, 255, 0.8)')
+    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.3)')
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
+    spriteCtx.fillStyle = gradient
+    spriteCtx.fillRect(0, 0, 64, 64)
+    const spriteTexture = new THREE.CanvasTexture(spriteCanvas)
 
     const particleGeo = new THREE.BufferGeometry()
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3))
 
     const particleMat = new THREE.PointsMaterial({
-      color: isDark ? 0xffffff : 0x57534e,
-      size: isDark ? 0.045 : 0.045,
+      color: isDark ? 0xffffff : 0x8a8078,
+      size: 0.06,
+      map: spriteTexture,
       transparent: true,
-      opacity: isDark ? 0.65 : 0.55,
-      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
+      opacity: isDark ? 0.85 : 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      sizeAttenuation: true,
     })
 
     const particles = new THREE.Points(particleGeo, particleMat)
@@ -338,6 +403,22 @@ export function GewuArmillarySphere({
     container.addEventListener('mousedown', handleMouseDown)
     window.addEventListener('mouseup', handleMouseUp)
 
+    // 后处理管线：Bloom 辉光效果
+    const composer = new EffectComposer(renderer)
+    const renderPass = new RenderPass(scene, camera)
+    composer.addPass(renderPass)
+
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(width, height),
+      isDark ? 0.45 : 0.25,  // 辉光强度
+      0.6,                    // 辉光扩散半径
+      isDark ? 0.75 : 0.85    // 阈值 — 只有足够亮的区域才泛光
+    )
+    composer.addPass(bloomPass)
+
+    const outputPass = new OutputPass()
+    composer.addPass(outputPass)
+
     // 动画循环
     let animationFrameId: number
     const clock = new THREE.Clock()
@@ -369,7 +450,7 @@ export function GewuArmillarySphere({
         particlesRef.current.rotation.y = -elapsedTime * 0.04
       }
 
-      renderer.render(scene, camera)
+      composer.render()
     }
 
     animate()
@@ -382,6 +463,8 @@ export function GewuArmillarySphere({
       camera.aspect = newWidth / newHeight
       camera.updateProjectionMatrix()
       renderer.setSize(newWidth, newHeight)
+      composer.setSize(newWidth, newHeight)
+      bloomPass.resolution.set(newWidth, newHeight)
     }
 
     const resizeObserver = new ResizeObserver(handleResize)
@@ -400,6 +483,10 @@ export function GewuArmillarySphere({
       wireMat.dispose()
       particleGeo.dispose()
       particleMat.dispose()
+      spriteTexture.dispose()
+      envMap.dispose()
+      skyTex.dispose()
+      composer.dispose()
       renderer.dispose()
 
       if (container.contains(renderer.domElement)) {

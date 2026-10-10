@@ -57,8 +57,8 @@ export const COMMUNITY_INFO = {
   motto: '穷理而格物 · 知行以致远',
   mottoTranslation: 'Seeking Truth through Deep Inquiry · Bridging Knowledge and Resolute Action',
   subheading: '面向开发者与设计师的高质量实践社区',
-  mission: '同行互帮互助，打磨硬核实战能力，消除求职与技术信息差，助力成员更好就业。',
-  originStory: '「致知在格物，物格而后知至。」在技术快速迭代与就业竞争加剧的时代，格物书院由一群一线资深工程师与设计专家发起。我们拒绝纸上谈兵与浮躁套壳，坚持以真实生产级工程与开源协同为基石，通过同行互助打破技术孤岛与求职壁垒。',
+  mission: '纯粹技术分享，同行互帮互助，打磨硬核实战能力，社区成员平等互助内推。',
+  originStory: '「致知在格物，物格而后知至。」格物书院由一群热爱技术的开发者与设计实践者发起。我们是一个开放的开发者社区，没有商业导师带徒包装，推崇「纯粹技术分享」与「代码说话」。我们坚持以真实生产级工程与开源协同为基石，通过同侪互助打破技术孤岛，平等交流并自发互助内推。',
   metrics: [
     { label: '核心实践方向', value: '4 大', unit: '硬核领域' },
     { label: '开源代码驱动', value: '开源', unit: '代码为凭' },
@@ -70,13 +70,13 @@ export const COMMUNITY_INFO = {
     wechat: 'Alkaid',
     region: '中国香港',
     wechatGroupNote: '备注「格物加入+方向」',
-    email: 'maintainer@gewu.academy',
+    email: 'yma868680@gmail.com',
     githubOrg: 'https://github.com/gewu-academy',
-    weeklySync: '书院在线技术研讨圆桌与实战答辩（不定时发起）',
+    weeklySync: '书院在线技术研讨圆桌与同侪切磋（不定时发起）',
     rules: [
       '保持对技术的敬畏与求真务实态度',
       '主张「代码说话」，提倡积极发起 Issue & Pull Request',
-      '无私分享、彼此尊重，打破技术壁垒与信息闭塞'
+      '纯粹技术分享，无私互助，平等交流与自发内推'
     ]
   }
 }
@@ -91,7 +91,7 @@ export const MUTUAL_AID_PILLARS: MutualAidPillar[] = [
     description: '打破技术孤点与孤岛。线上结对编程、疑难 Bug 攻坚研讨、设计体验推演，同行者随时碰撞思路。',
     details: [
       '不定时发起「格物实战研讨会」深度切磋',
-      '一对一 Code Review 与架构推演',
+      '同侪互相 Code Review 与架构推演',
       '前沿技术早报与开源趋势一手拆解'
     ]
   },
@@ -105,33 +105,33 @@ export const MUTUAL_AID_PILLARS: MutualAidPillar[] = [
     details: [
       '涵盖高并发高可用工程落地与容灾考量',
       'Multi-Agent 复杂工作流与状态机调度',
-      '真实业务场景驱动，成果可沉淀至简历与 GitHub'
+      '真实工程场景驱动，成果以开源代码与 GitHub 真实贡献说话'
     ]
   },
   {
     number: '03',
     title: '消除信息差',
-    subtitle: '打破求职与行业壁垒，还原真实要求',
+    subtitle: '打破技术与信息壁垒，还原真实工程规范',
     tag: 'ZERO INFO GAP',
     iconName: 'Compass',
-    description: '直连一线大厂、独角兽与优质出海团队的在职导师，实时同步技术评级标准、面试真题与用人需求。',
+    description: '汇聚一线名企、独角兽与开源团队的同行开发者，平等探讨生产落地难点、架构选型与真实技术演进。',
     details: [
-      '一线名企与出海团队技术雷达实时同步',
-      '求职避坑经验、定级标准与薪资结构透明化',
+      '一线名企与开源前沿技术雷达实时同步',
+      '工程实践踩坑复盘，开源架构与最佳实践透明共享',
       '技术风口甄别，聚焦具备长期护城河的底层能力'
     ]
   },
   {
     number: '04',
-    title: '助力成员更好就业',
-    subtitle: '从作品集打磨到精准内推，全程护航',
-    tag: 'CAREER ACCELERATION',
+    title: '同侪互助内推',
+    subtitle: '以硬核开源实作为凭，社区成员平等互助内推',
+    tag: 'COMMUNITY REFERRAL',
     iconName: 'TrendingUp',
-    description: '将实战项目直接转化为极具说服力的 GitHub 作品集与设计 Case Study，配套资深导师模拟面试与精准内推。',
+    description: '没有机构包装与导师说教。将实战项目沉淀为真实高质量的 GitHub 开源作品集，社区成员自发互助内推优质机会，连接志同道合的技术团队。',
     details: [
-      '简历逐行打磨与实战项目闪光点提炼',
-      '全仿真技术深挖、系统设计与设计答辩模拟',
-      'Maintainer 与校友网络专属直推通道'
+      '以高质量 GitHub 真实 Commit 与开源成果代替浮夸包装',
+      '同行深度切磋、系统设计与生产疑难问题平等探讨',
+      '社区成员专属互助内推通道，共享真实一线团队岗位机会'
     ]
   }
 ]
@@ -400,8 +400,8 @@ export const FAQ_LIST: FAQItem[] = [
     answer: '我们欢迎真正热爱技术、尊重开源、渴望提升硬核实战能力的开发者与设计师。无论你是高校在读、寻找实习，还是在职渴望技术进阶或转换赛道，只要你愿意保持「穷理而格物」的钻研心态，并能投入时间参与共建，书院都有适合你的梯队。'
   },
   {
-    question: '书院如何帮助成员打磨硬核能力并更好就业？',
-    answer: '我们拒绝形式主义。第一，通过真实生产级项目和开源仓库，让成员深度参与系统设计与核心代码编写，积累高质量的 GitHub Commit；第二，一线在职导师定期开展 Code Review、简历逐行打磨与架构答辩模拟；第三，整合一线名企与优质出海团队的内推资源，直接递送至业务 Leader。'
+    question: '书院如何助力成员技术成长与互助内推？',
+    answer: '我们是一个纯粹的技术分享与开源社区，没有商业机构的「资深导师带徒」或「保过包装」。第一，推崇「代码说话」，通过真实生产级项目和开源仓库，让成员深度参与系统设计与核心开发，积累高质量 GitHub 实作；第二，平等的技术研讨，同侪之间互相 Code Review、切磋疑难技术方案；第三，依托技术交流建立的同侪信任，社区成员自发互通优质招聘信息并提供真诚互助内推。'
   },
   {
     question: '如何参与贡献并提交 Issue 或 Pull Request？',

@@ -1,6 +1,7 @@
 import { ExternalLink, GitPullRequest } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/github-icon'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 
@@ -137,6 +138,8 @@ export function ProjectsSection({ onOpenMaintainer }: ProjectsSectionProps) {
                     )}
                     <button
                       onClick={handleOpenMaintainer}
+                      onMouseEnter={preloadMaintainerAssets}
+                      onTouchStart={preloadMaintainerAssets}
                       className="inline-flex items-center gap-1 text-xs font-serif text-[var(--text-muted)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
                     >
                       <span>{t.projects.claimIssue}</span>

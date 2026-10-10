@@ -9,6 +9,7 @@ import {
   BookOpen,
 } from 'lucide-react'
 import { ScholarSeal } from '@/components/scholar-seal'
+import { preloadMaintainerAssets } from '@/lib/preload'
 import { useI18n } from '@/i18n'
 import { useUIStore } from '@/store/use-ui-store'
 import { animateTabSwitch, useScrollReveal } from '@/animation'
@@ -158,6 +159,8 @@ export function TechDirectionsSection({ onOpenMaintainer }: TechDirectionsSectio
 
                 <button
                   onClick={handleOpenMaintainer}
+                  onMouseEnter={preloadMaintainerAssets}
+                  onTouchStart={preloadMaintainerAssets}
                   className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-serif font-bold text-[var(--text-heading)] hover:text-[var(--accent-seal)] transition-colors cursor-pointer group"
                 >
                   <span>{td.exploreWithMaintainer}</span>
