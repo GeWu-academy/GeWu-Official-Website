@@ -9,10 +9,10 @@ export interface UseCountUpOptions {
 /**
  * 解析像 "500+", "98%", "200h+", "40+" 这样的字符串
  */
-function parseNumberString(val: string): { prefix: string; num: number; suffix: string } {
+function parseNumberString(val: string): { prefix: string; num: number; suffix: string } | null {
   const match = val.match(/^([^0-9.]*)([0-9.]+)(.*)$/)
   if (!match) {
-    return { prefix: '', num: 0, suffix: val }
+    return null
   }
   return {
     prefix: match[1] || '',
@@ -33,7 +33,9 @@ export function useCountUp(targetValue: string, options: UseCountUpOptions = {})
     const el = elementRef.current
     if (!el) return
 
-    const { prefix, num, suffix } = parseNumberString(targetValue)
+    const parsed = parseNumberString(targetValue)
+    if (!parsed) return
+    const { prefix, num, suffix } = parsed
     if (isNaN(num)) return
 
     const counter = { val: 0 }
@@ -52,6 +54,7 @@ export function useCountUp(targetValue: string, options: UseCountUpOptions = {})
           const formatted = Math.floor(counter.val)
           setDisplayValue(`${prefix}${formatted}${suffix}`)
         },
+        onComplete: () => setDisplayValue(targetValue),
       })
     }, el)
 
@@ -60,5 +63,5 @@ export function useCountUp(targetValue: string, options: UseCountUpOptions = {})
     }
   }, [targetValue, duration, ease])
 
-  return { displayValue, elementRef }
+  return { displayValue: parseNumberString(targetValue) ? displayValue : targetValue, elementRef }
 }
