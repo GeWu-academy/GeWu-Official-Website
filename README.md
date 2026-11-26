@@ -33,3 +33,8 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+
+## UI regression tests
+
+Run `bun install --frozen-lockfile`, `bunx playwright install chromium`, then `bun run test:e2e`. The tests exercise the real page at phone, tablet and desktop widths, including opening the drawer and following a navigation link. A focused fixture mounts the production counter hook to check text-only metrics, numeric suffixes, decimal completion and value changes. Tests run serially with a 90-second timeout to accommodate software-rendered WebGL on CI. `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` can point to an existing compatible Chromium installation. Run `bun run build` and `bun run lint` before submitting.

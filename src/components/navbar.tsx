@@ -138,16 +138,18 @@ export function Navbar({ onOpenMaintainer }: NavbarProps) {
             </div>
 
             {/* 移动端汉堡切换与语言/主题切换 */}
-            <div className="flex sm:hidden items-center gap-1.5">
-              <LanguageSwitcher variant="compact" />
-              <ThemeSwitcher variant="toggle" />
+            <div className="flex lg:hidden items-center gap-1.5">
+              <div className="flex sm:hidden items-center gap-1.5">
+                <LanguageSwitcher variant="compact" />
+                <ThemeSwitcher variant="toggle" />
 
-              <button
-                onClick={handleOpenMaintainer}
-                className="px-2.5 py-1 text-[11px] rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium shadow-xs hover:opacity-90 whitespace-nowrap"
-              >
-                {t.nav.join}
-              </button>
+                <button
+                  onClick={handleOpenMaintainer}
+                  className="px-2.5 py-1 text-[11px] rounded-md bg-[var(--primary)] text-[var(--primary-foreground)] font-serif font-medium shadow-xs hover:opacity-90 whitespace-nowrap"
+                >
+                  {t.nav.join}
+                </button>
+              </div>
               <button
                 onClick={toggleMobileMenu}
                 className="p-1.5 text-[var(--text-body)] hover:text-[var(--text-heading)] rounded-lg bg-[var(--theme-tab-bg)] border border-[var(--border)]"
